@@ -1,0 +1,150 @@
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  width: 90%;
+  z-index: 1000;
+  background: rgba(5, 10, 5, 0.35);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(0, 255, 65, 0.1);
+  border-radius: 50px;
+  max-width: 1200px;
+  padding: 14px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 20px rgba(0,255,65,0.05);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.navbar-brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar-logo-container {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(6px * var(--logo-scale, 1));
+  cursor: pointer;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-letter {
+  font-family: var(--font-heading);
+  font-size: calc(1.6rem * var(--logo-scale, 1));
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+.nav-logo-pill {
+  width: calc(40px * var(--logo-scale, 1));
+  height: calc(20px * var(--logo-scale, 1));
+  border: calc(4px * var(--logo-scale, 1)) solid var(--secondary);
+  border-radius: 20px;
+  box-shadow: 0 0 calc(10px * var(--logo-scale, 1)) rgba(168, 255, 26, 0.4);
+}
+
+@media (max-width: 768px) {
+  .navbar-logo-container {
+    --logo-scale: 0.8 !important; /* Smaller logo globally on mobile */
+  }
+}
+.navbar-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.navbar-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+}
+.navbar-link:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+  text-shadow: 0 0 10px rgba(0,255,65,0.4);
+}
+.navbar-cta {
+  padding: 12px 24px;
+  font-size: 0.8rem;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0,255,65,0.2);
+}
+
+.navbar-burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1001;
+  width: 20px;
+}
+
+.burger-line {
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,255,65,0.4);
+}
+
+.navbar-mobile-menu {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 10, 5, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 255, 65, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+.navbar-mobile-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    width: 95%;
+    padding: 12px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+  .navbar-burger {
+    display: flex;
+  }
+  .navbar {
+    width: 85%;
+    padding: 12px 20px;
+    border-radius: 40px;
+    top: 15px;
+  }
+  .navbar-title {
+    font-size: 1.2rem; /* Slightly scale down title for mobile */
+  }
+}
+
+

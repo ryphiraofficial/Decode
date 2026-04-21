@@ -1,0 +1,152 @@
+.projects-section {
+    padding: 120px 0;
+    background: #080808;
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-bg-animation {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+.projects-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.projects-label {
+    font-weight: 500;
+    color: var(--primary);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.projects-title {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: transform 0.8s ease, opacity 0.6s ease;
+}
+
+.project-card:hover .project-image {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+.project-category {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.project-name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.project-client {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project-overlay-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 100% 0%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.project-card:hover .project-overlay-glow {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .projects-section {
+        padding: 60px 0;
+    }
+
+    .project-card {
+        height: 320px;
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+
+    .project-name {
+        font-size: 1.35rem;
+    }
+
+    .projects-title {
+        font-size: 2.2rem;
+    }
+}
