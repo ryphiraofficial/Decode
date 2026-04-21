@@ -345,19 +345,21 @@ const Courses = () => {
                             </div>
                         </motion.div>
                     ))}
-                    {courses.length > 8 && (
-                        <div className="courses-shadow-overlay">
-                            <div style={{ height: '40px' }} />
-                            <button
-                                className="btn-outline explore-btn"
-                                onClick={() => navigate('/all-courses')}
-                                style={{ marginBottom: '32px' }}
-                            >
-                                Explore More Courses
-                            </button>
-                        </div>
-                    )}
                 </div>
+
+                {courses.length > 8 && (
+                    <div className="courses-footer">
+                        <motion.button
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="btn-outline explore-btn"
+                            onClick={() => navigate('/all-courses')}
+                        >
+                            Explore More Courses
+                        </motion.button>
+                    </div>
+                )}
             </div>
         </section>
     );

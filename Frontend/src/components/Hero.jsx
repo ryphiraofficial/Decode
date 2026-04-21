@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import './css/Hero.css';
 
 const Hero = () => {
@@ -138,7 +139,9 @@ const Hero = () => {
               We provide <span className="hero-highlight">industry-standard training</span> and <span className="hero-highlight">hands-on experience</span> to bridge the gap between academic learning and high-end tech execution.
             </p>
             <div className="hero-btn-group">
-              <button className="btn-primary hero-btn-outline">Explore Tracks</button>
+              <Link to="/all-courses" className="btn-primary hero-btn-outline">
+                Explore Courses
+              </Link>
             </div>
           </motion.div>
         </div>

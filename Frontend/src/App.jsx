@@ -57,18 +57,18 @@ function App() {
   return (
     <div className="app">
       {/* <Preloader isVisible={showPreloader} onComplete={() => setPreloaderDone(true)} /> */}
-      
+
       {/* Site content reveals with a smooth fade + subtle scale up */}
       {/* We trigger animation as soon as showPreloader is false (curtain starts sliding) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ 
-            duration: 1.2, 
-            ease: [0.16, 1, 0.3, 1],
-            delay: 0.3 // reveal starts slightly after curtain lift begins
+        transition={{
+          duration: 1.2,
+          ease: [0.16, 1, 0.3, 1],
+          delay: 0.3 // reveal starts slightly after curtain lift begins
         }}
-        style={{ 
+        style={{
           pointerEvents: 'auto',
           transformOrigin: 'top center',
           width: '100%'

@@ -31,7 +31,7 @@ const Footer = () => {
           <div>
             <h4 style={{ fontSize: '1.25rem', marginBottom: '32px', textTransform: 'uppercase', fontWeight: 700 }}>Connect</h4>
             <ul style={{ listStyle: 'none', color: 'var(--text-dim)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <li>mridul@decoode.com</li>
+              <li>[EMAIL_ADDRESS]</li>
               <li>LinkedIn / DecoodeAgency</li>
               <li>X @DecoodeArchitects</li>
             </ul>

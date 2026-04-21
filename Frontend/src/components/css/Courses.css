@@ -1,15 +1,9 @@
-.courses-shadow-overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 70%, transparent 100%);
+.courses-footer {
     display: flex;
-    align-items: flex-end;
     justify-content: center;
-    pointer-events: none;
-    z-index: 2;
+    margin-top: 50px;
+    position: relative;
+    z-index: 10;
 }
 .explore-btn {
     margin-bottom: 18px;

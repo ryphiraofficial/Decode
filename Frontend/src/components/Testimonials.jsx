@@ -59,7 +59,7 @@ const Testimonials = () => {
                 <div
                     className="testimonials-carousel-inner"
                     onTransitionEnd={handleTransitionEnd}
-                    style={{ 
+                    style={{
                         // Math: To center an item: Offset = (ViewportCenter - ItemCenter) - (Index * ItemWidth)
                         // This formula is universal for any number of visible items
                         transform: `translateX(calc((100% - var(--slide-width)) / 2 - (${index} * var(--slide-width))))`,
@@ -72,8 +72,8 @@ const Testimonials = () => {
                         // Logic to highlight the "active" slide based on real index
                         const isActive = i === index;
                         return (
-                            <div 
-                                key={i} 
+                            <div
+                                key={i}
                                 className={`testimonial-slide ${isActive ? 'active' : ''}`}
                             >
                                 <div className="testimonial-card-v2">
