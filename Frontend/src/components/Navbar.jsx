@@ -9,25 +9,30 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleScroll = (e, targetId) => {
+  const handleScroll = (e, target) => {
     e.preventDefault();
     
-    // Internal helper to perform scroll
+    // If it's a relative page route (not a hash)
+    if (target.startsWith('/') && !target.includes('#')) {
+      navigate(target);
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    // Handle hash scrolling
+    const targetId = target.startsWith('#') ? target : target.split('#')[1] ? `#${target.split('#')[1]}` : null;
+    if (!targetId) return;
+
     const performScroll = (id) => {
       const el = document.querySelector(id);
       if (el) {
         if (window.lenis) {
           window.lenis.scrollTo(id, { duration: 1.5 });
         } else {
-          // Native fallback with manual offset check if needed
           const headerOffset = 80;
           const elementPosition = el.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       }
     };
@@ -41,9 +46,9 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Academy', href: '#courses' },
-    { name: 'Services', href: '#services' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Academy', href: '/all-courses' },
     { name: 'Team', href: '#team' },
     { name: 'Contact', href: '#contact' },
     { name: 'Projects', href: '#projects' }

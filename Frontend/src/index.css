@@ -56,65 +56,95 @@ html.lenis body {
   padding: 0 40px;
 }
 
-/* Dynamic Section Separators - Base utilities */
-.sep-slant-top-surface {
+/* Modern Curve Section Separators */
+.sep-curve-top-surface {
   position: relative;
   background: var(--bg-surface);
-  clip-path: polygon(0 150px, 100% 0, 100% 100%, 0 100%);
-  margin-top: -150px;
-  padding-top: 200px;
-}
-
-.sep-slant-top-dark {
-  position: relative;
-  background: var(--bg-dark);
-  clip-path: polygon(0 150px, 100% 0, 100% 100%, 0 100%);
-  margin-top: -150px;
-  padding-top: 200px;
-}
-
-.sep-slant-bottom-surface {
-  position: relative;
-  background: var(--bg-surface);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 150px), 0 100%);
-  padding-bottom: 200px;
-}
-
-.sep-v-top-dark {
-  position: relative;
-  background: var(--bg-dark);
-  clip-path: polygon(0 0, 50% 150px, 100% 0, 100% 100%, 0 100%);
-  margin-top: -150px;
-  padding-top: 200px;
-}
-
-.sep-v-bottom-dark {
-  position: relative;
-  background: var(--bg-dark);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 150px), 0 100%);
-  padding-bottom: 250px;
-}
-
-.sep-step-top-surface {
-  position: relative;
-  background: var(--bg-surface);
-  clip-path: polygon(0 80px, 40% 80px, 60% 0, 100% 0, 100% 100%, 0 100%);
-  margin-top: -80px;
+  margin-top: -100px;
   padding-top: 150px;
 }
 
-.sep-zigzag-bottom-dark {
+.sep-curve-top-surface::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--bg-surface);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  transform: translateY(-98%);
+  z-index: 10;
+}
+
+.sep-curve-bottom-surface {
+  position: relative;
+  background: var(--bg-surface);
+  padding-bottom: 150px;
+}
+
+.sep-curve-bottom-surface::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--bg-surface);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  transform: translateY(98%);
+  z-index: 10;
+}
+
+.sep-curve-top-dark {
   position: relative;
   background: var(--bg-dark);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 80% 100%, 60% 90%, 40% 100%, 20% 90%, 0 100%);
+  margin-top: -100px;
+  padding-top: 150px;
+}
+
+.sep-curve-top-dark::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--bg-dark);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  transform: translateY(-98%);
+  z-index: 10;
+}
+
+.sep-curve-bottom-dark {
+  position: relative;
+  background: var(--bg-dark);
   padding-bottom: 200px;
 }
 
-.sep-asymmetric-surface {
-  position: relative;
-  background: var(--bg-surface);
-  clip-path: polygon(0 200px, 100% 0, 100% calc(100% - 200px), 0 100%);
-  padding: 250px 0;
+.sep-curve-bottom-dark::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--bg-dark);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  transform: translateY(98%);
+  z-index: 10;
 }
 
 /* Mobile Reset */

@@ -20,11 +20,10 @@ const Footer = () => {
           <div>
             <h4 style={{ fontSize: '1.25rem', marginBottom: '32px', textTransform: 'uppercase', fontWeight: 700 }}>Navigate</h4>
             <ul style={{ listStyle: 'none', color: 'var(--text-dim)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <li><a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>Home</a></li>
-              <li><a href="#about" style={{ textDecoration: 'none', color: 'inherit' }}>Company</a></li>
-              <li><a href="#internships" style={{ textDecoration: 'none', color: 'inherit' }}>Internships</a></li>
-              <li><a href="#courses" style={{ textDecoration: 'none', color: 'inherit' }}>Courses</a></li>
-              <li><a href="#services" style={{ textDecoration: 'none', color: 'inherit' }}>Services</a></li>
+              <li><a href="/" style={{ textDecoration: 'none', color: 'inherit' }}>Home</a></li>
+              <li><a href="/about" style={{ textDecoration: 'none', color: 'inherit' }}>Company</a></li>
+              <li><a href="/all-courses" style={{ textDecoration: 'none', color: 'inherit' }}>Academy</a></li>
+              <li><a href="/services" style={{ textDecoration: 'none', color: 'inherit' }}>Services</a></li>
             </ul>
           </div>
 
@@ -65,8 +64,8 @@ const Footer = () => {
         }}>
           <div>© 2026 DECOODE DIGITAL AGENCY • BUILT IN THE VOID</div>
           <div style={{ display: 'flex', gap: '32px' }}>
-            <a href="#" style={{ color: 'inherit' }}>Privacy Policy</a>
-            <a href="#" style={{ color: 'inherit' }}>Terms of Service</a>
+            <a href="/privacy" style={{ color: 'inherit' }}>Privacy Policy</a>
+            <a href="/terms" style={{ color: 'inherit' }}>Terms of Service</a>
           </div>
         </div>
       </div>
