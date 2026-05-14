@@ -261,8 +261,8 @@ export default function Services() {
     },
     {
       icon: <Cpu />,
-      title: "AI Neural Integrations",
-      description: "Custom LLM training and predictive analytics models for operational automation."
+      title: "Web	 Development",
+      description: "Next-gen native applications designed for seamless interaction and high retention rates."
     }
   ];
 

@@ -63,7 +63,7 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="mailto:dcoodeofficial@gmail.com">dcoodeofficial@gmail.com</a></li>
               <li><a href="https://linkedin.com/company/dcoode" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-              <li><a href="https://x.com/dcoode" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
+              {/* <li><a href="https://x.com/dcoode" target="_blank" rel="noopener noreferrer">X / Twitter</a></li> */}
               <li><a href="https://www.instagram.com/_dcoode_/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             </ul>
           </motion.div>
