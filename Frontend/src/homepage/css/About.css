@@ -1,0 +1,294 @@
+/* NEW MUSCAT ABOUT PAGE STYLES */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+
+.about-page-root {
+    position: relative;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* 1. HERO SECTION */
+.about-hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.about-pixel-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.about-pixel-grid .pixel {
+    border: 0.5px solid rgba(255, 255, 255, 0.03);
+    transition: background-color 0.4s ease;
+}
+
+.about-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.about-lead {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 1.5 SCROLL REVEAL SECTION */
+.about-reveal-section {
+    height: 850vh;
+    /* Increased for even longer scroll duration */
+    background: #000;
+    position: relative;
+}
+
+.about-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+}
+
+.about-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    /* Reduced size */
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 900px;
+    /* Narrower for better readability with smaller font */
+    letter-spacing: -0.02em;
+    text-transform: none;
+    /* Removed uppercase for DM Sans elegance */
+}
+
+.reveal-text-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reveal-word {
+    margin: 0 0.2em;
+}
+
+
+/* 2. VALUES SECTION */
+.about-values {
+    padding: 120px 0;
+    background: #000;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3rem;
+    border-radius: 24px;
+    transition: all 0.4s ease;
+}
+
+.value-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.value-number {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    letter-spacing: 0.2em;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.value-card p {
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* 3. WHITE CONTRAST SECTION (New) */
+.about-white-sec {
+    padding: 150px 0;
+    background: #fff;
+    color: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-badge-dark {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: #000;
+    opacity: 0.5;
+    position: relative;
+    display: inline-block;
+}
+
+.about-badge-dark::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    width: 30px;
+    height: 1px;
+    background: #000;
+}
+
+.section-title-dark {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
+    color: #000;
+}
+
+.text-accent-dark {
+    color: var(--primary);
+    /* Keep the neon green as the signature accent */
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.founder-text-dark {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+}
+
+.stats-row-dark {
+    display: flex;
+    gap: 5rem;
+}
+
+.stat-dark {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-dark .number-dark {
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.stat-dark .label-dark {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #000;
+    opacity: 0.4;
+    letter-spacing: 0.2em;
+    margin-top: 10px;
+}
+
+/* UTILS */
+.text-gradient {
+    background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: var(--primary);
+    position: relative;
+}
+
+.section-label::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    width: 20px;
+    height: 1px;
+    background: var(--primary);
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .about-hero {
+        height: 70vh;
+    }
+
+    .about-title {
+        font-size: 2.8rem;
+    }
+
+    .about-lead {
+        font-size: 1rem;
+    }
+
+    .about-values {
+        padding: 80px 0;
+    }
+
+    .value-card {
+        padding: 2rem;
+    }
+
+    .about-white-sec {
+        padding: 100px 0;
+    }
+
+    .section-title-dark {
+        font-size: 2.5rem;
+    }
+
+    .stats-row-dark {
+        gap: 2rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-dark .number-dark {
+        font-size: 3.5rem;
+    }
+}
+
+/* GRAIN OVERLAY REUSE */
+.grain-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 5;
+}

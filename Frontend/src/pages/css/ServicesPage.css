@@ -1,0 +1,229 @@
+/* ServicesPage.css - Black and White Editorial Theme Extracted Styles */
+
+.sp-page {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Hero Section */
+.sp-hero {
+  background-color: #000000;
+  border-bottom: 1px solid #111111;
+}
+
+.sp-hero-shape-1 {
+  background: rgba(255, 255, 255, 0.05);
+  filter: blur(100px);
+}
+
+.sp-hero-shape-2 {
+  background: rgba(255, 255, 255, 0.03);
+  filter: blur(120px);
+}
+
+.sp-hero-title {
+  color: #ffffff !important;
+}
+
+.sp-hero-subtitle {
+  color: #f7f5f5 !important;
+}
+
+.sp-hero-desc {
+  color: #aaaaaa !important;
+}
+
+.sp-btn-explore {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.sp-btn-explore:hover {
+  background: #dddddd;
+}
+
+/* Full-Bleed White Section */
+.sp-white-section {
+  background: #ffffff;
+  color: #000000;
+  padding: 120px 0;
+  position: relative;
+}
+
+.sp-white-bg-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.sp-white-bg-line-left {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sp-white-bg-line-right {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Typography & Badges */
+.sp-badge-dark {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sp-badge-light {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.sp-text-dark { color: #000000 !important; }
+.sp-text-light { color: #ffffff !important; }
+.sp-text-gray-dark { color: #555555 !important; }
+.sp-text-gray-light { color: #aaaaaa !important; }
+
+/* Mixed Cards */
+.sp-card-dark {
+  background: #0a0a0a !important;
+  border-color: #0a0a0a !important;
+  color: #ffffff !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.sp-card-dark:hover {
+  border-color: #333333 !important;
+}
+
+.sp-card-dark .ap-card-icon {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.sp-card-dark h3 { color: #ffffff !important; }
+.sp-card-dark p { color: #888888 !important; }
+
+.sp-card-white {
+  background: #ffffff !important;
+  border-color: #eaeaea !important;
+  color: #000000 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+}
+
+.sp-card-white:hover {
+  border-color: #cccccc !important;
+}
+
+.sp-card-white .ap-card-icon {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.sp-card-white h3 { color: #000000 !important; }
+.sp-card-white p { color: #555555 !important; }
+
+/* Image Cards (Workflow) */
+.sp-img-card {
+  filter: grayscale(100%);
+}
+
+.sp-img-card .ap-card-icon {
+  color: #000000 !important;
+  background: #ffffff !important;
+}
+
+/* CTA */
+.sp-cta {
+  background: #ffffff !important;
+  color: #000000 !important;
+  background-image: none !important;
+  border: 1px solid #eaeaea !important;
+}
+
+.sp-btn-dark {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.sp-btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* NEW: Extended Content Styles */
+.sp-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 100px;
+}
+@media (max-width: 768px) {
+  .sp-detail-row {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+.sp-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+.sp-tech-item {
+  border: 1px solid #eaeaea;
+  padding: 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  background: #fafafa;
+  color: #000;
+  transition: all 0.3s ease;
+}
+.sp-tech-item:hover {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+.sp-faq-item {
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 0;
+}
+.sp-faq-item h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #000;
+}
+.sp-faq-item p {
+  color: #555;
+  margin: 0;
+}
+
+/* Accent Green */
+.sp-btn-green {
+  background: #00FF41 !important;
+  color: #000000 !important;
+  border: none;
+  font-weight: 800;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+.sp-btn-green:hover {
+  background: #00e63a !important;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+  transform: translateY(-2px);
+}
