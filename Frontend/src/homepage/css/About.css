@@ -60,8 +60,7 @@
 
 /* 1.5 SCROLL REVEAL SECTION */
 .about-reveal-section {
-    height: 850vh;
-    /* Increased for even longer scroll duration */
+    height: 200vh;
     background: #000;
     position: relative;
 }
@@ -78,16 +77,13 @@
 
 .about-headline {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    /* Reduced size */
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 300;
     line-height: 1.2;
     text-align: center;
     max-width: 900px;
-    /* Narrower for better readability with smaller font */
     letter-spacing: -0.02em;
     text-transform: none;
-    /* Removed uppercase for DM Sans elegance */
 }
 
 .reveal-text-container {

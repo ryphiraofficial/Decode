@@ -1,0 +1,355 @@
+/* ContactPage.css - Premium High-End Digital Studio Light Theme */
+
+.contact-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff; /* Pure white background */
+  padding: 160px 0 100px 0;
+  overflow: hidden;
+  color: #0f172a; /* Deep charcoal tech text */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+/* Translucent Editorial Grid Backdrop (Light Theme) */
+.contact-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+/* Ambient layered background glow orbs (Soft and delicate for Light Theme) */
+.contact-glow-sphere-1 {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 65, 0.04) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+  animation: floatOrb1 20s ease-in-out infinite alternate;
+}
+
+.contact-glow-sphere-2 {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 255, 26, 0.03) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+  animation: floatOrb2 25s ease-in-out infinite alternate;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  z-index: 2;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .contact-container {
+    grid-template-columns: 1.1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+}
+
+/* ── LEFT COLUMN EDITORIAL TYPOGRAPHY ── */
+.contact-editorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #0f172a;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary, #00FF41);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  animation: badgeDotPulse 2.5s infinite;
+}
+
+.contact-hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 24px 0;
+  letter-spacing: -1.5px;
+  color: #0f172a;
+}
+
+@media (min-width: 768px) {
+  .contact-hero-title {
+    font-size: 4.8rem;
+  }
+}
+
+.contact-hero-title .neon-text {
+  background: linear-gradient(135deg, #0f172a 40%, var(--primary, #00FF41) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-hero-desc {
+  color: #64748b; /* Slate tech description */
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 0 44px 0;
+  font-weight: 400;
+}
+
+/* Coordinates List */
+.contact-coordinates {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 44px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 36px;
+}
+
+.coordinate-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.coord-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.coord-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+a.coord-value:hover {
+  color: var(--primary, #00FF41);
+}
+
+/* Social links list */
+.contact-socials {
+  display: flex;
+  gap: 28px;
+}
+
+.social-link {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+/* ── RIGHT COLUMN ELITE FORM CARD (LIGHT THEME) ── */
+.contact-form-card {
+  position: relative;
+  background: #ffffff; /* Clean white card surface */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 36px;
+  padding: 44px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+}
+
+.form-card-glow-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 10%, rgba(0, 255, 65, 0.02) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.form-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.form-card-subtitle {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0 0 32px 0;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-real-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group-v2 label {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group-v2 input,
+.form-group-v2 select,
+.form-group-v2 textarea {
+  background: rgba(0, 0, 0, 0.01);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #0f172a;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group-v2 input:focus,
+.form-group-v2 select:focus,
+.form-group-v2 textarea:focus {
+  border-color: var(--primary, #00FF41);
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.05);
+}
+
+.form-group-v2 select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.form-group-v2 textarea {
+  resize: vertical;
+}
+
+/* Luxurious Solid Black Capsule Submit Button */
+.contact-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+  background-color: #000000; /* Rich solid black high-contrast capsule */
+  color: #ffffff;
+  padding: 16px;
+  border-radius: 100px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-submit-btn:hover {
+  background-color: var(--primary, #00FF41);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 255, 65, 0.2);
+}
+
+.submit-btn-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.contact-submit-btn:hover .submit-btn-icon {
+  transform: translateX(5px);
+}
+
+@keyframes floatOrb1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-30px, 40px) scale(1.15); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -30px) scale(0.9); }
+}
+
+@keyframes badgeDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 65, 0.8); }
+}
+
+@media (max-width: 640px) {
+  .contact-form-card {
+    padding: 32px 24px;
+  }
+}

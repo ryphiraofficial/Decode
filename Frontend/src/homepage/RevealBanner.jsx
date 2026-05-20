@@ -110,7 +110,12 @@ const RevealBanner = ({
         {/* Main Image Container */}
         <div ref={containerRef} className="relative w-full h-full will-change-transform bg-white">
           <div className="absolute inset-0 opacity-40">
-            <img src={imageUrl} alt="banner" className="w-full h-full object-cover grayscale" />
+            <img
+              src={imageUrl}
+              alt="banner"
+              className="w-full h-full object-cover grayscale"
+              style={{ objectPosition: '10% center' }}
+            />
           </div>
 
           {/* Masked Image Layer */}
@@ -124,7 +129,12 @@ const RevealBanner = ({
               maskPosition: 'center'
             }}
           >
-            <img src={imageUrl} alt="mask" className="w-full h-full object-cover grayscale brightness-50 contrast-125" />
+            <img
+              src={imageUrl}
+              alt="mask"
+              className="w-full h-full object-cover grayscale brightness-50 contrast-125"
+              style={{ objectPosition: '40% center' }}
+            />
           </div>
 
           {/* Centered Reveal Title */}
@@ -145,11 +155,11 @@ const RevealBanner = ({
 
         {/* Floating Intro Text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-          <div className="flex gap-4 w-full px-4">
-            <div ref={introLeftRef} className="flex-1 flex justify-end">
+          <div className="flex justify-center items-center w-full px-4 gap-6 md:gap-12">
+            <div ref={introLeftRef} className="flex-shrink-0">
               <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introLeft}</h1>
             </div>
-            <div ref={introRightRef} className="flex-1">
+            <div ref={introRightRef} className="flex-shrink-0">
               <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introRight}</h1>
             </div>
           </div>

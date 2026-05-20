@@ -1,4 +1,4 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap');
 
 :root {
@@ -225,4 +225,97 @@ html.lenis body {
   opacity: 0.025;
   /* Even more subtle grain */
   background: var(--noise);
+}
+
+/* Sleek Typography Muting - Globally Muted Font Weights for Minimalist Tech Aesthetic */
+* {
+  font-weight: 300 !important; /* Mute normal/body texts to clean light weights */
+}
+
+h1, h2, h3, h4, h5, h6, 
+strong, b, th, 
+[class*="title"], [class*="heading"], [class*="number"], [class*="metric-number"], 
+.navbar-link, .nav-item, .navbar-brand-wrapper, 
+button, .btn-primary, .btn-outline, 
+span.font-bold, span.font-black, span.font-semibold {
+  font-weight: 500 !important; /* Mute headings, buttons, and bold sections from heavy/black to sophisticated medium (500) */
+}
+
+/* ── ULTRA-PREMIUM RESPONSIVE OVERRIDES (100% DEVICE COMPATIBILITY WITH PRESERVED ALIGNMENTS) ── */
+
+/* 2. Responsive scaling for tablets and laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 30px !important; /* Comfortably shrinks outer borders */
+  }
+  
+  h1, [class*="hero-title"], .contact-hero-title {
+    font-size: clamp(2.5rem, 7vw, 3.8rem) !important;
+    line-height: 1.15 !important;
+  }
+  
+  h2, [class*="title-v4"] {
+    font-size: clamp(2rem, 5vw, 2.8rem) !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* 3. Responsive overrides for mobile and smaller devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px !important; /* Optimizes content space on narrow screens */
+  }
+
+  /* Safely stack grid layout elements without changing individual selector stylings */
+  .footer-directory-cols,
+  .contact-container,
+  .contact-real-form .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  /* Metric counters stacking for small screens */
+  .cta-metrics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .metric-card {
+    align-items: center !important;
+  }
+  
+  /* Font size scale downs to prevent viewport clippings */
+  h1, [class*="hero-title"], .contact-hero-title {
+    font-size: clamp(2rem, 9vw, 2.8rem) !important;
+  }
+  
+  h2, [class*="title-v4"] {
+    font-size: clamp(1.8rem, 7vw, 2.2rem) !important;
+  }
+  
+  h3, [class*="card-title"] {
+    font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+  }
+
+  /* Adjust section padding for mobile comfort */
+  [class*="outer-section"], .contact-page-wrapper {
+    padding-top: 100px !important;
+    padding-bottom: 60px !important;
+  }
+}
+
+/* 4. Micro-mobile optimization (max-width: 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px !important;
+  }
+
+  /* Button sizes optimization */
+  .btn-primary, .btn-outline, .contact-submit-btn {
+    width: 100% !important;
+    padding: 14px 24px !important;
+    font-size: 0.85rem !important;
+  }
 }

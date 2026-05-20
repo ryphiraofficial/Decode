@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import {
   Smartphone,
@@ -6,226 +7,399 @@ import {
   Cloud,
   Palette,
   ShieldCheck,
-  Cpu,
-  ArrowRight
+  Cpu
 } from "lucide-react";
-
-/**
- * UiloraKineticSlider - Mobile Optimized Split Layout
- * Left: Fixed heading. Right: Kinetic scrollable cards.
- */
 const UiloraKineticSlider = ({
   services = [],
   brandName = "CORE.TECH",
-  sidebarTitle = "Digital\nArchitecture",
   ease = 0.1,
 }) => {
   const containerRef = useRef(null);
-  const stickyRef = useRef(null);
-  const wrapperRef = useRef(null);
-  const rightPanelRef = useRef(null);
   const slidesRef = useRef([]);
-  const [gsapLoaded, setGsapLoaded] = useState(false);
+  const audioCtxRef = useRef(null);
+  const activeIndexRef = useRef(0);
+  const isTransitioningRef = useRef(false);
+  const isJumpingRef = useRef(false);
+  const navButtonsRef = useRef([]);
+
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
+  const [gsapLoaded, setGsapLoaded] = useState(false);
+  const [audioFeedback, setAudioFeedback] = useState(true);
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, height: 0 });
+
+  // Animation settings
+  const transitionDuration = 0.45;
+  const visualPreset = "centerZoom";
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    
-    const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
-    script.async = true;
-    script.onload = () => setGsapLoaded(true);
-    document.head.appendChild(script);
+    const updatePill = () => {
+      const activeButton = navButtonsRef.current[activeIndex];
+      if (activeButton) {
+        setPillStyle({
+          left: activeButton.offsetLeft,
+          width: activeButton.offsetWidth,
+          height: activeButton.offsetHeight
+        });
+      }
+    };
+    // Let the DOM render completely first
+    setTimeout(updatePill, 50);
+    window.addEventListener("resize", updatePill);
+    return () => window.removeEventListener("resize", updatePill);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const loadScript = (src) => {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.async = true;
+        script.onload = resolve;
+        document.head.appendChild(script);
+      });
+    };
+
+    if (!window.gsap) {
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js").then(() => {
+        if (!isMounted) return;
+        loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js").then(() => {
+          if (isMounted) setGsapLoaded(true);
+        });
+      });
+    } else if (!window.ScrollTrigger) {
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js").then(() => {
+        if (isMounted) setGsapLoaded(true);
+      });
+    } else {
+      setGsapLoaded(true);
+    }
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      const existingScript = document.querySelector(`script[src="${script.src}"]`);
-      if (existingScript) document.head.removeChild(existingScript);
+      isMounted = false;
     };
   }, []);
 
-  const isMobile = windowWidth < 768;
+  const playTickSound = () => {
+    if (!audioFeedback) return;
+    try {
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      const audioCtx = audioCtxRef.current;
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
 
-  const jumpTo = (idx) => {
-    const slide = slidesRef.current[idx];
-    if (slide && containerRef.current && wrapperRef.current && rightPanelRef.current) {
-      const panelWidth = rightPanelRef.current.offsetWidth;
-      const maxHorizontal = wrapperRef.current.offsetWidth - panelWidth;
-      const runwayHeight = containerRef.current.offsetHeight - window.innerHeight;
+      const osc = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
 
-      const requiredX = (slide.offsetLeft + slide.offsetWidth / 2) - panelWidth / 2;
-      const bufferedProgress = Math.max(0, Math.min(1, requiredX / maxHorizontal));
+      // Design an elegant high-frequency mechanical switch click
+      osc.frequency.setValueAtTime(750, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.04);
 
-      const buffer = isMobile ? 0.05 : 0.1;
-      const progress = bufferedProgress * (1 - buffer) + buffer;
+      gainNode.gain.setValueAtTime(0.012, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
 
-      const targetScroll = containerRef.current.offsetTop + (progress * runwayHeight);
-      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.04);
+    } catch (e) {
+      console.warn("Audio feedback blocked or not initialized yet.");
+    }
+  };
+
+  const animateSlides = (fromIdx, toIdx) => {
+    if (!window.gsap) return;
+    const gsap = window.gsap;
+    const currentSlide = slidesRef.current[fromIdx];
+    const targetSlide = slidesRef.current[toIdx];
+    if (!currentSlide || !targetSlide) return;
+
+    const isNext = toIdx > fromIdx;
+
+    if (visualPreset === "centerZoom") {
+      gsap.to(currentSlide, {
+        opacity: 0,
+        scale: isNext ? 2.2 : 0.4,
+        duration: transitionDuration,
+        ease: "power2.inOut",
+        force3D: true,
+        onComplete: () => {
+          gsap.set(currentSlide, { pointerEvents: 'none' });
+        }
+      });
+
+      gsap.fromTo(targetSlide,
+        {
+          opacity: 0,
+          scale: isNext ? 0.4 : 2.2,
+          pointerEvents: 'none'
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: transitionDuration,
+          ease: "power2.inOut",
+          force3D: true,
+          onComplete: () => {
+            gsap.set(targetSlide, { pointerEvents: 'auto' });
+          }
+        }
+      );
+    } else {
+      gsap.to(currentSlide, {
+        opacity: 0,
+        xPercent: isNext ? -60 : 60,
+        scale: 0.85,
+        duration: transitionDuration,
+        ease: "power3.inOut",
+        force3D: true,
+        onComplete: () => {
+          gsap.set(currentSlide, { pointerEvents: 'none' });
+        }
+      });
+
+      gsap.fromTo(targetSlide,
+        {
+          opacity: 0,
+          xPercent: isNext ? 60 : -60,
+          scale: 0.85,
+          pointerEvents: 'none'
+        },
+        {
+          opacity: 1,
+          xPercent: 0,
+          scale: 1,
+          duration: transitionDuration,
+          ease: "power3.inOut",
+          force3D: true,
+          onComplete: () => {
+            gsap.set(targetSlide, { pointerEvents: 'auto' });
+          }
+        }
+      );
     }
   };
 
   useEffect(() => {
-    if (!gsapLoaded || !window.gsap) return;
+    if (!gsapLoaded || !window.gsap || !window.ScrollTrigger || services.length === 0) return;
 
     const gsap = window.gsap;
-    let currentX = 0;
-    let targetX = 0;
-    let animationFrameId;
+    const ScrollTrigger = window.ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
 
-    const update = () => {
-      if (!containerRef.current || !wrapperRef.current || !rightPanelRef.current) return;
+    // Initial positioning setup
+    slidesRef.current.forEach((slide, idx) => {
+      if (!slide) return;
+      if (idx !== 0) {
+        gsap.set(slide, {
+          opacity: 0,
+          scale: 0.4,
+          pointerEvents: 'none',
+          force3D: true
+        });
+      } else {
+        gsap.set(slide, {
+          opacity: 1,
+          scale: 1,
+          pointerEvents: 'auto',
+          force3D: true
+        });
+      }
+    });
 
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const viewHeight = window.innerHeight;
-      const totalHeight = containerRef.current.offsetHeight;
-      const panelWidth = rightPanelRef.current.offsetWidth;
+    let isLocked = false;
+    let lastIndex = 0;
+    // Create ScrollTrigger over the runway
+    const st = ScrollTrigger.create({
+      id: "services-trigger",
+      trigger: containerRef.current,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.4,
 
-      const scrollStart = containerRef.current.offsetTop;
-      const currentScroll = window.scrollY;
+      onUpdate: (self) => {
+        if (isLocked || isJumpingRef.current) return;
 
-      const rawProgress = (currentScroll - scrollStart) / (totalHeight - viewHeight);
-      const progress = Math.max(0, Math.min(1, rawProgress));
+        const totalSlides = services.length;
+        const progress = self.progress;
 
-      setIsVisible(containerRect.top < viewHeight && containerRect.bottom > 0);
+        const targetIndex = Math.min(
+          totalSlides - 1,
+          Math.max(0, Math.floor(progress * totalSlides))
+        );
 
-      const buffer = isMobile ? 0.05 : 0.1;
-      const bufferedProgress = Math.max(0, (progress - buffer) / (1 - buffer));
+        if (targetIndex !== activeIndexRef.current) {
+          isLocked = true;
+          isTransitioningRef.current = true;
 
-      const maxHorizontal = wrapperRef.current.offsetWidth - panelWidth;
-      targetX = -bufferedProgress * maxHorizontal;
+          const prevIndex = activeIndexRef.current;
 
-      currentX = currentX + (targetX - currentX) * ease;
-      gsap.set(wrapperRef.current, { x: currentX });
+          activeIndexRef.current = targetIndex;
+          setActiveIndex(targetIndex);
 
-      let closestIdx = 0;
-      let minDistance = Infinity;
+          animateSlides(prevIndex, targetIndex);
+          playTickSound();
 
-      slidesRef.current.forEach((slide, idx) => {
-        if (!slide) return;
-        const rect = slide.getBoundingClientRect();
-        const panelRect = rightPanelRef.current.getBoundingClientRect();
-        const panelCenter = panelRect.left + panelRect.width / 2;
-        const slideCenter = rect.left + rect.width / 2;
-        const distanceFromCenter = slideCenter - panelCenter;
-        const normalizedDistance = Math.abs(distanceFromCenter) / (panelWidth / 2);
+          // Snap scroll to exact section center
+          const start = self.start;
+          const end = self.end;
+          const segmentSize = (end - start) / totalSlides;
 
-        if (Math.abs(distanceFromCenter) < minDistance) {
-          minDistance = Math.abs(distanceFromCenter);
-          closestIdx = idx;
+          const targetScroll =
+            start + targetIndex * segmentSize + segmentSize / 2;
+
+          window.scrollTo({
+            top: targetScroll,
+            behavior: "smooth",
+          });
+
+          // Hold the slide for 0.2 sec
+          setTimeout(() => {
+            isLocked = false;
+            isTransitioningRef.current = false;
+          }, 200);
         }
 
-        const scale = 1 + (1 - Math.min(1, normalizedDistance)) * (isMobile ? 0.08 : 0.15);
-        const opacity = 0.3 + (1 - Math.min(1, normalizedDistance)) * 0.7;
+        lastIndex = targetIndex;
+      }
+    });
 
-        gsap.set(slide, { scale, opacity, force3D: true });
+    return () => {
+      st.kill();
+    };
+  }, [gsapLoaded, services.length]);
+
+  const jumpTo = (idx) => {
+    if (isTransitioningRef.current || idx === activeIndexRef.current) return;
+    if (!window.ScrollTrigger || !containerRef.current) return;
+
+    const st = window.ScrollTrigger.getById("services-trigger");
+    if (st) {
+      isJumpingRef.current = true;
+      isTransitioningRef.current = true;
+      playTickSound();
+
+      const prevIndex = activeIndexRef.current;
+      activeIndexRef.current = idx;
+      setActiveIndex(idx);
+
+      animateSlides(prevIndex, idx);
+
+      const start = st.start;
+      const end = st.end;
+      const segmentSize = (end - start) / services.length;
+      const targetScroll = start + (idx * segmentSize) + (segmentSize / 2);
+
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth"
       });
 
-      setActiveIndex(closestIdx);
-      animationFrameId = requestAnimationFrame(update);
-    };
-
-    update();
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [ease, gsapLoaded, services.length, isMobile]);
+      // Release lock after smooth scroll settles (700ms buffer)
+      setTimeout(() => {
+        isJumpingRef.current = false;
+        isTransitioningRef.current = false;
+      }, 700);
+    }
+  };
 
   return (
-    <div ref={containerRef} className="relative w-full h-[600vh] bg-white">
-      <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden flex flex-col md:flex-row text-black font-sans">
-
-        {/* Branding Section */}
-        <div className="w-full md:w-[45%] h-[40vh] md:h-full flex flex-col justify-center items-center text-center px-10 z-20 bg-white">
-          <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-12 opacity-40 w-full">
-            <div className="w-8 md:w-12 h-[1px] bg-black"></div>
-            <p className="text-[10px] md:text-[12px] uppercase tracking-[0.6em] md:tracking-[0.8em] font-black">Services</p>
-            <div className="w-8 md:w-12 h-[1px] bg-black"></div>
-          </div>
-
-          <h2 className="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase mb-6 md:mb-8">
-            Our<br />Expertise
-          </h2>
-
-          <p className="text-[11px] md:text-sm font-bold text-black/40 max-w-[260px] md:max-w-[350px] leading-relaxed uppercase tracking-wider">
-            Pushing the boundaries of digital architecture through innovative engineering and design.
-          </p>
+    <div
+      ref={containerRef}
+      className="services-section relative w-full h-[400vh] bg-black text-white select-none"
+    >
+      <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center items-center bg-black">
+        {/* Background Video with refined overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <video
+            src="/story bg.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-40 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-90"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)]"></div>
         </div>
 
-        {/* Kinetic Panel */}
-        <div ref={rightPanelRef} className="flex-1 h-[60vh] md:h-full relative overflow-hidden bg-neutral-50/50">
-          <div
-            ref={wrapperRef}
-            className="absolute flex items-center h-full gap-8 md:gap-24 will-change-transform"
-            style={{
-              paddingLeft: isMobile ? '15%' : '25%',
-              paddingRight: isMobile ? '15%' : '25%'
-            }}
-          >
+        <div className="relative w-full h-full flex items-center justify-center z-10 px-6 md:px-12">
+          {/* Full-width Central Typographic Canvas */}
+          <div className="w-full max-w-4xl relative h-[300px] md:h-[400px] flex items-center justify-center pointer-events-none">
             {services.map((service, idx) => (
               <div
                 key={idx}
                 ref={(el) => (slidesRef.current[idx] = el)}
-                className="group w-[75vw] md:w-[400px] h-[350px] md:h-[450px] bg-black text-white flex-shrink-0 flex flex-col items-center justify-center p-8 md:p-12 rounded-[2.5rem] text-center shadow-2xl"
+                className="absolute w-full flex flex-col items-center text-center select-none pointer-events-auto"
               >
-                {/* <div className="mb-6 md:mb-8 p-4 md:p-6 bg-white/5 rounded-2xl md:rounded-3xl group-hover:bg-white group-hover:text-black transition-all duration-500">
-                  {React.cloneElement(service.icon, { size: isMobile ? 24 : 28, strokeWidth: 2 })}
-                </div> */}
-
-                <div className="flex-1 flex flex-col items-center justify-center">
-                  <span className="font-mono text-[9px] font-bold tracking-[0.3em] text-white/40 uppercase mb-3">
-                    Sector 0{idx + 1}
+                {/* Visual Label */}
+                <div className="flex items-center justify-center gap-3 mb-4 opacity-50">
+                  <span className="text-[9px] font-mono tracking-[0.5em] text-neutral-400 uppercase">
+                    SECTOR 0{idx + 1}
                   </span>
-
-                  <h3 className="text-xl md:text-3xl font-black uppercase leading-tight mb-3 md:mb-4 tracking-tighter">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-[10px] md:text-xs font-bold text-white/50 leading-relaxed max-w-[220px] md:max-w-[280px]">
-                    {service.description}
-                  </p>
+                  <span className="w-1 h-1 rounded-full bg-white/40"></span>
+                  <div className="text-neutral-300">
+                    {React.cloneElement(service.icon, { size: 12, className: "opacity-80 animate-pulse" })}
+                  </div>
                 </div>
 
-                {/* <button className="flex items-center gap-2 md:gap-3 text-[9px] font-black uppercase tracking-widest hover:tracking-[0.2em] transition-all mt-4">
-                  View Service <ArrowRight size={12} />
-                </button> */}
+                {/* Massive Minimalist Center Typography */}
+                <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-none mb-4 text-white select-none text-center">
+                  {service.title}
+                </h3>
+
+                {/* Ultra-Minimal Subtext description centered */}
+                <p className="text-xs font-medium tracking-wide text-neutral-400 max-w-sm leading-relaxed uppercase text-center">
+                  {service.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Mini Navigation */}
-        <div
-          className={`fixed bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-3 md:px-6 py-3 md:py-4 bg-black/5 backdrop-blur-xl rounded-full transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-            }`}
-        >
-          {services.map((service, idx) => (
-            <button
-              key={idx}
-              onClick={() => jumpTo(idx)}
-              className={`group relative flex items-center justify-center transition-all duration-500 rounded-full ${activeIndex === idx
-                  ? 'bg-black text-white w-20 md:w-32 h-8 md:h-10 px-2 md:px-4'
-                  : 'bg-neutral-200/50 text-neutral-500 w-8 h-8 md:w-10 md:h-10 hover:bg-black hover:text-white'
-                }`}
-            >
-              <div className={`${activeIndex === idx && !isMobile ? 'mr-2' : ''}`}>
-                {React.cloneElement(service.icon, { size: activeIndex === idx ? (isMobile ? 10 : 12) : 14 })}
-              </div>
+        {/* Mini Bottom Navigation Indicators */}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-4">
+          <div className="relative flex items-center gap-2 px-3 py-2 bg-neutral-900/40 backdrop-blur-xl rounded-full border border-white/[0.04]">
+            {/* Sliding absolute white pill */}
+            <div
+              style={{
+                position: "absolute",
+                left: `${pillStyle.left}px`,
+                width: `${pillStyle.width}px`,
+                height: `${pillStyle.height}px`,
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+              className="bg-white rounded-full transition-all duration-300 ease-out z-0 pointer-events-none"
+            />
 
-              {activeIndex === idx && (
-                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-tighter whitespace-nowrap overflow-hidden">
-                  {isMobile ? service.title.split(' ')[0].substring(0, 4) : service.title.split(' ')[0]}
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Brand Logo */}
-        <div className="absolute top-0 left-0 p-8 md:p-10 z-50 mix-blend-difference">
-          <a href="#" className="font-black uppercase tracking-tighter text-xl md:text-2xl text-white">
-            {brandName}
-          </a>
+            {services.map((service, idx) => {
+              const displayTitle = service.title.trim().split(/\s+/)[0];
+              return (
+                <button
+                  key={idx}
+                  ref={(el) => (navButtonsRef.current[idx] = el)}
+                  onClick={() => jumpTo(idx)}
+                  className={`group relative flex items-center justify-center transition-colors duration-300 rounded-full z-10 w-20 md:w-28 h-8 md:h-9 text-[9px] md:text-[10px] ${activeIndex === idx
+                      ? "text-black font-black"
+                      : "text-neutral-400 hover:text-white"
+                    }`}
+                >
+                  {activeIndex === idx ? (
+                    <div className="flex items-center gap-1 md:gap-1.5 font-bold uppercase tracking-widest text-[8px] md:text-[9px] font-mono">
+                      {React.cloneElement(service.icon, { size: 9 })}
+                      <span>{displayTitle}</span>
+                    </div>
+                  ) : (
+                    <span className="text-[9px] md:text-[10px] font-mono">0{idx + 1}</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -261,7 +435,7 @@ export default function Services() {
     },
     {
       icon: <Cpu />,
-      title: "Web	 Development",
+      title: "Web Development",
       description: "Next-gen native applications designed for seamless interaction and high retention rates."
     }
   ];
@@ -270,9 +444,8 @@ export default function Services() {
     <main>
       <UiloraKineticSlider
         services={serviceData}
-        brandName=""
-        sidebarTitle={"Modern\nLogistics"}
-        ease={0.1}
+        brandName="CORE.TECH"
+        ease={0.15}
       />
     </main>
   );

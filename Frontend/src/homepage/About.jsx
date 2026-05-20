@@ -35,9 +35,8 @@ const RevealText = ({ progress, text }) => {
   return (
     <span className="reveal-text-container">
       {words.map((word, i) => {
-        // We finish the reveal at 0.6 progress, leaving 0.4 buffer
-        const start = (i / words.length) * 0.6;
-        const end = start + (0.1); // Add a small overlap/duration for each word
+        const start = (i / words.length) * 0.15;
+        const end = start + 0.01;
         return <Word key={i} range={[start, end]} progress={progress}>{word}</Word>;
       })}
     </span>

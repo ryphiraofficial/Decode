@@ -4,7 +4,7 @@
   left: 50%;
   width: 90%;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(36, 36, 36, 0.7);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -92,7 +92,7 @@
 .navbar-link {
   font-size: 0.85rem;
   font-weight: 700;
-  color: black;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-transform: uppercase;
@@ -131,31 +131,51 @@
 }
 
 .navbar-mobile-menu {
-  position: absolute;
-  top: 90px;
-  left: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  padding: 30px;
-  border-radius: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw; /* Covers half the screen */
+  min-width: 250px; /* Safe bounds on narrow viewports */
+  height: 100vh;
+  background: #ffffff; /* Clean pristine white background */
+  padding: 120px 40px 40px 40px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(31, 148, 45, 0.875);
+  gap: 24px;
+  text-align: left;
+  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.15);
+  z-index: 999; /* Below burger button (1001) but above page content */
+}
+
+/* Background overlay when mobile menu is open */
+.navbar-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998; /* Below drawer */
 }
 
 .navbar-mobile-link {
-  color: black;
+  color: #111111; /* Dark black text for maximum readability */
   text-decoration: none;
-
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Outfit', sans-serif;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 12px;
+}
+
+.navbar-mobile-link:hover {
+  color: #000000;
+  transform: translateX(8px);
 }
 
 @media (max-width: 992px) {

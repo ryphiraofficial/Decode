@@ -14,6 +14,12 @@ const Navbar = () => {
 
   // Track scroll direction
   useMotionValueEvent(scrollY, "change", (latest) => {
+    // Disable contract / retract animations completely on mobile viewports
+    if (window.innerWidth <= 768) {
+      setIsContracted(false);
+      return;
+    }
+    
     const previous = scrollY.getPrevious();
 
     // Scrolling DOWN → contract the navbar
@@ -34,26 +40,20 @@ const Navbar = () => {
     e.preventDefault();
 
     if (target.startsWith('/') && !target.includes('#')) {
-      navigate(target);
-      window.scrollTo(0, 0);
+      window.location.href = target;
       return;
     }
 
     const targetId = target.startsWith('#') ? target : target.split('#')[1] ? `#${target.split('#')[1]}` : null;
     if (!targetId) return;
 
-    const performScroll = (id) => {
-      const el = document.querySelector(id);
+    if (location.pathname !== '/') {
+      window.location.href = '/' + targetId;
+    } else {
+      const el = document.querySelector(targetId);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    };
-
-    if (location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => performScroll(targetId), 600);
-    } else {
-      performScroll(targetId);
     }
   };
 
@@ -61,80 +61,93 @@ const Navbar = () => {
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'Programs', href: '/all-courses' },
-    { name: 'Contact', href: '#cta' },
+    { name: 'Contact', href: '/contact' },
     { name: 'Projects', href: '#projects' }
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100, x: '-50%', opacity: 0 }}
-      animate={{
-        y: 0,
-        x: '-50%',
-        opacity: 1,
-      }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`navbar ${isContracted ? 'navbar--contracted' : ''}`}
-    >
-      <Link to="/" className="navbar-brand-wrapper" onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: 'none' }}>
-        <Logo scale={1} />
-      </Link>
+    <>
+      <motion.nav
+        initial={{ y: -100, x: '-50%', opacity: 0 }}
+        animate={{
+          y: 0,
+          x: '-50%',
+          opacity: 1,
+        }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`navbar ${isContracted ? 'navbar--contracted' : ''}`}
+      >
+        <a href="/" className="navbar-brand-wrapper" style={{ textDecoration: 'none' }}>
+          <Logo scale={1} />
+        </a>
 
-      {/* Desktop Links — hidden when contracted */}
-      <div className="navbar-links">
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.href}
-            className="navbar-link"
-            onClick={(e) => handleScroll(e, link.href)}
-          >
-            {link.name}
-          </a>
-        ))}
-        {/* <button className="btn-primary navbar-cta">GET STARTED</button> */}
-      </div>
+        {/* Desktop Links — hidden when contracted */}
+        <div className="navbar-links">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="navbar-link"
+              onClick={(e) => handleScroll(e, link.href)}
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
 
-      {/* Mobile Burger Icon */}
-      <div className="navbar-burger" onClick={() => setIsOpen(!isOpen)}>
-        <motion.div
-          animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-          className="burger-line"
-        />
-        <motion.div
-          animate={isOpen ? { rotate: -45, y: -6, width: '20px' } : { rotate: 0, y: 0, width: '14px' }}
-          className="burger-line"
-          style={{ marginLeft: 'auto' }}
-        />
-      </div>
+        {/* Mobile Burger Icon */}
+        <div className="navbar-burger" onClick={() => setIsOpen(!isOpen)}>
+          <motion.div
+            animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            className="burger-line"
+          />
+          <motion.div
+            animate={isOpen ? { rotate: -45, y: -6, width: '20px' } : { rotate: 0, y: 0, width: '14px' }}
+            className="burger-line"
+            style={{ marginLeft: 'auto' }}
+          />
+        </div>
+      </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Backdrop Overlay & Right Sliding Drawer (Placed outside transformed parent) */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="navbar-mobile-menu"
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="navbar-mobile-link"
-                onClick={(e) => {
-                  setIsOpen(false);
-                  handleScroll(e, link.href);
-                }}
-              >
-                {link.name}
-              </a>
-            ))}
-            <button className="btn-primary navbar-cta" style={{ width: '100%', marginTop: '10px' }}>GET STARTED</button>
-          </motion.div>
+          <>
+            {/* Dark background blur overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="navbar-mobile-overlay"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Right-sliding drawer container */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 26, stiffness: 220 }}
+              className="navbar-mobile-menu"
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="navbar-mobile-link"
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    handleScroll(e, link.href);
+                  }}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 };
 

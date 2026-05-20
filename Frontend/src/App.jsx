@@ -7,14 +7,20 @@ import OurStory from './homepage/OurStory';
 import RevealBanner from './homepage/RevealBanner';
 import CTA from './homepage/CTA';
 import Footer from './shared/Footer';
+import Team from './homepage/Team';
+import Insights from './homepage/Insights';
 // import Preloader from './components/Preloader';
 // import Internships from './components/Internships';
+import { useDynamicFavicon } from './hooks/useDynamicFavicon';
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 
 function App() {
+  // Initialize global Page Visibility feature
+  useDynamicFavicon();
+
   return (
     <div className="app">
       <motion.div
@@ -37,11 +43,9 @@ function App() {
           <Hero />
           <About />
           <Services />
-          <OurStory />
           <RevealBanner />
-          {/* <Team /> */}
-          {/* <Projects /> */}
-          {/* <Testimonials /> */}
+          <Team />
+          <Insights />
           <CTA />
         </main>
       </motion.div>

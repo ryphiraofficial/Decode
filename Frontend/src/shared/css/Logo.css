@@ -1,25 +1,23 @@
+/* Logo.css - Authentic brand SVG logo integration with perfect alignment */
+
 .logo-container {
   display: inline-flex;
   align-items: center;
-  gap: calc(5px * var(--logo-scale, 1));
-  vertical-align: middle;
+  justify-content: center;
   transition: transform 0.3s ease;
+  vertical-align: middle;
   white-space: nowrap;
 }
 
-.logo-letter {
-  font-family: var(--font-heading);
-  font-size: calc(1.6rem * var(--logo-scale, 1));
-  font-weight: 900;
-  color: black;
-  line-height: 1;
+.logo-container:hover {
+  transform: scale(1.02);
 }
 
-
-.logo-pill {
-  width: calc(40px * var(--logo-scale, 1));
-  height: calc(20px * var(--logo-scale, 1));
-  border: calc(4px * var(--logo-scale, 1)) solid var(--secondary);
-  border-radius: 20px;
-  box-shadow: 0 0 calc(10px * var(--logo-scale, 1)) rgba(168, 255, 26, 0.4);
+.dcoode-logo-svg {
+  display: block;
+  width: calc(120px * var(--logo-scale, 1)); /* Perfectly calibrated visual width */
+  height: auto;
+  color: inherit; /* Dynamically inherits text colors of light/dark themes */
+  pointer-events: none;
+  vertical-align: middle;
 }
