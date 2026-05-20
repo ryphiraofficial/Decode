@@ -383,7 +383,7 @@ const UiloraKineticSlider = ({
                   key={idx}
                   ref={(el) => (navButtonsRef.current[idx] = el)}
                   onClick={() => jumpTo(idx)}
-                  className={`group relative flex items-center justify-center transition-colors duration-300 rounded-full z-10 w-20 md:w-28 h-8 md:h-9 text-[9px] md:text-[10px] ${activeIndex === idx
+                  className={`group relative flex items-center justify-center transition-colors duration-300 rounded-full z-10 w-10 sm:w-20 md:w-28 h-8 md:h-9 text-[9px] md:text-[10px] ${activeIndex === idx
                       ? "text-black font-black"
                       : "text-neutral-400 hover:text-white"
                     }`}
@@ -391,7 +391,7 @@ const UiloraKineticSlider = ({
                   {activeIndex === idx ? (
                     <div className="flex items-center gap-1 md:gap-1.5 font-bold uppercase tracking-widest text-[8px] md:text-[9px] font-mono">
                       {React.cloneElement(service.icon, { size: 9 })}
-                      <span>{displayTitle}</span>
+                      <span className="hidden sm:inline">{displayTitle}</span>
                     </div>
                   ) : (
                     <span className="text-[9px] md:text-[10px] font-mono">0{idx + 1}</span>
