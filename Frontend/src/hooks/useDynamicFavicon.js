@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 const SAD_MESSAGES = [
   // "Hey 😢",
   // "Heyy 👀",
-  // "Heyyy 💔",
-  "Iam waiting.... "
+  "Heyyy..",
+  " "
 ];
 
 // We use inline SVG Data URIs to create a perfectly crisp crying emoji animation!
