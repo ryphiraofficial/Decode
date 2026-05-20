@@ -361,8 +361,8 @@ const UiloraKineticSlider = ({
         </div>
 
         {/* Mini Bottom Navigation Indicators */}
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-4">
-          <div className="relative flex items-center gap-2 px-3 py-2 bg-neutral-900/40 backdrop-blur-xl rounded-full border border-white/[0.04]">
+        <div className="absolute bottom-12 md:bottom-24 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-4 w-auto max-w-[95vw]">
+          <div className="relative flex items-center gap-1 sm:gap-2 px-1.5 py-1.5 sm:px-3 sm:py-2 bg-neutral-900/40 backdrop-blur-xl rounded-full border border-white/[0.04] w-full justify-center">
             {/* Sliding absolute white pill */}
             <div
               style={{
