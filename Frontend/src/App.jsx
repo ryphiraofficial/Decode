@@ -18,7 +18,6 @@ import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 
 function App() {
-  // Initialize global Page Visibility feature
   useDynamicFavicon();
 
   return (
