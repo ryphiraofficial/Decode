@@ -67,7 +67,7 @@ const Footer = () => {
             </div>
 
             {/* Column 4: Connect */}
-            <div className="footer-col connect-col">
+            {/* <div className="footer-col connect-col">
               <h4>Connect</h4>
               <ul className="connect-details">
                 <li>
@@ -91,7 +91,7 @@ const Footer = () => {
                   <span className="connect-value">: <a href="https://wa.me/918606483399" target="_blank" rel="noopener noreferrer">+91 8606 483 399</a></span>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
           </div>
         </div>
