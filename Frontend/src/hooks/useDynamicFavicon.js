@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 const SAD_MESSAGES = [
   // "Hey 😢",
   // "Heyy 👀",
-  "Heyyy ",
+  "Heyyy",
   " "
 ];
 
