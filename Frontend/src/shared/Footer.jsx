@@ -59,7 +59,7 @@ const Footer = () => {
               <li><a href="/about">Testimonials</a></li>
               <li><a href="/about">Our Clients</a></li>
               <li><a href="mailto:dcoodeofficial@gmail.com">Submit Feedback to Our CEO</a></li>
-              <li><a href="#" download>Download Brochure</a></li>
+              <li><a href="/browsher/DCOODE.pdf" download="DCOODE-Brochure.pdf">Download Brochure</a></li>
               <li><a href="/legal">Sitemap</a></li>
             </ul>
           </div>
