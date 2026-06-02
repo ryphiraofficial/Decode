@@ -104,7 +104,7 @@ const InsightDetailPage = () => {
                     <span className="coord-block-value">{insight.details.time}</span>
                   </div>
                   <div className="coord-block">
-                    <span className="coord-block-label">RSVP Channels</span>
+                    <span className="coord-block-label">Contact us</span>
                     <a href={`mailto:${insight.details.rsvp}`} className="coord-block-value link">{insight.details.rsvp}</a>
                   </div>
                 </div>
@@ -133,8 +133,36 @@ const InsightDetailPage = () => {
               </motion.div>
             )}
           </motion.div>
-
         </div>
+
+        {/* Symmetrical Event Photo Gallery */}
+        {insight.gallery && insight.gallery.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="editorial-gallery-section"
+          >
+            <div className="gallery-header">
+              <h3 className="gallery-title">Event Highlights</h3>
+              <p className="gallery-subtitle">Moments from the grand inauguration and technical studio launch.</p>
+            </div>
+            
+            <div className="gallery-grid">
+              {insight.gallery.map((imagePath, idx) => (
+                <div key={idx} className="gallery-item">
+                  <img 
+                    src={imagePath} 
+                    alt={`Event Highlight ${idx + 1}`} 
+                    className="gallery-img"
+                  />
+                  <div className="gallery-item-overlay" />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
       </div>
     </div>
   );

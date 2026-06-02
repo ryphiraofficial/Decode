@@ -1,9 +1,9 @@
-/* Footer.css - Editorial Card Layout with Giant Bottom Wordmark */
+/* Footer.css - Editorial Layout with CTA & Social Logos */
 
 .footer-luxury {
-  background-color: #000000; /* Set to pure static black to remove any moving background video/gif */
+  background-color: #000000; /* Pure elegant black background */
   color: #ffffff;
-  padding: 120px 0 100px 0; /* Balanced vertical padding */
+  padding: 100px 0 80px 0;
   font-family: 'Inter', sans-serif;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
@@ -19,52 +19,82 @@
   flex-direction: column;
 }
 
-/* 1. Top Section - Left Info vs Right Directory */
-.footer-top-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 60px;
-  margin-bottom: 80px;
-  position: relative;
-  z-index: 2; /* Keep above giant background watermark */
-}
-
-@media (min-width: 1024px) {
-  .footer-top-grid {
-    grid-template-columns: 1fr 2.6fr;
-    gap: 80px;
-  }
-}
-
-.footer-brand-info {
+/* 1. Top CTA Row styling */
+.footer-cta-row {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
 }
 
-.footer-logo-container .logo-letter {
-  color: #ffffff !important; /* Force white logo text for dark background */
+.footer-cta-text h2 {
+  font-size: 2.8rem;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 0 0 10px 0;
+  color: #ffffff;
 }
 
-.footer-brand-description {
+.footer-cta-text p {
   color: #8c8c8c;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  max-width: 320px;
+  font-size: 1.1rem;
   font-weight: 300;
   margin: 0;
 }
 
-/* 2. Directory Columns */
-.footer-directory-cols {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+.footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (min-width: 768px) {
-  .footer-directory-cols {
-    grid-template-columns: repeat(4, 1fr);
+.footer-cta-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.footer-cta-btn .arrow {
+  transition: transform 0.3s ease;
+}
+
+.footer-cta-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* 2. Directory Grid */
+.footer-directory-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 640px) {
+  .footer-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-directory-grid {
+    grid-template-columns: 1fr 1fr 1fr 1.3fr; /* Gives the Connect column 30% more space to fit email and phone on one line */
   }
 }
 
@@ -74,7 +104,7 @@
   color: #ffffff;
   margin: 0 0 24px 0;
   letter-spacing: 0.5px;
-  text-transform: none; /* simple capitalized */
+  text-transform: none;
 }
 
 .footer-col ul {
@@ -112,49 +142,108 @@
 
 .connect-label {
   color: #8c8c8c;
-  width: 130px;
+  width: 120px; /* Reduced from 130px to free up space for the values */
   flex-shrink: 0;
   font-weight: 300;
 }
 
 .connect-value {
   color: #ffffff;
+  white-space: nowrap; /* Strictly prevents the email from wrapping to the next line */
 }
 
 .connect-value a {
   color: #ffffff;
   text-decoration: none;
   transition: opacity 0.2s ease;
+  display: inline !important; /* Forces link to sit on the same line as the colon */
 }
 
 .connect-value a:hover {
   opacity: 0.8;
 }
 
-/* 3. Middle Copyright Row */
-.footer-mid-row {
+/* 3. Bottom Row with Socials & Links */
+.footer-bottom-row {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 40px 0 0 0; /* Zero bottom padding inside grid */
+  padding-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
   position: relative;
-  z-index: 2; /* Keep above giant background watermark */
+  z-index: 2;
 }
 
-.footer-copyright,
-.footer-attribution {
-  color: #595959;
-  font-size: 0.8rem;
+@media (max-width: 768px) {
+  .footer-bottom-row {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.footer-copyright {
+  color: #8c8c8c;
+  font-size: 0.85rem;
   font-weight: 300;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: #8c8c8c;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 300;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-links .divider {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.85rem;
+}
+
+/* Social links and icons */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.social-link {
+  color: #8c8c8c;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5px;
 }
 
 /* 4. Giant Bottom Wordmark */
 .footer-giant-wordmark {
   position: absolute;
-  top: 50%; /* Center absolutely behind the entire footer text columns */
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
@@ -164,13 +253,13 @@
   align-items: center;
   pointer-events: none;
   user-select: none;
-  opacity: 0.08; /* Reduced opacity to make it a subtle background watermark */
-  z-index: 1; /* Renders behind the text layers */
+  opacity: 0.04; /* Very subtle background watermark */
+  z-index: 1;
 }
 
 .footer-giant-svg {
   width: 100%;
   height: auto;
-  color: #ffffff; /* White brand letters */
+  color: #ffffff;
   display: block;
 }

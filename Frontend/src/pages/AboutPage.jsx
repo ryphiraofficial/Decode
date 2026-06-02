@@ -194,7 +194,7 @@ const AboutPage = () => {
                         </div>
                     </div>
                     
-                    <div className="ap-stats-row">
+                    {/* <div className="ap-stats-row">
                         <div className="ap-stat-item text-center md:text-left">
                             <span className="ap-stat-value">15+</span>
                             <span className="ap-stat-label">Years Exp.</span>
@@ -211,7 +211,7 @@ const AboutPage = () => {
                             <span className="ap-stat-value">05</span>
                             <span className="ap-stat-label">Continents</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </div>

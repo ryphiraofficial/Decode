@@ -328,31 +328,31 @@ const UiloraKineticSlider = ({
 
         <div className="relative w-full h-full flex items-center justify-center z-10 px-6 md:px-12">
           {/* Full-width Central Typographic Canvas */}
-          <div className="w-full max-w-4xl relative h-[300px] md:h-[400px] flex items-center justify-center pointer-events-none">
+          <div className="w-full max-w-5xl relative h-[450px] md:h-[550px] flex items-center justify-center pointer-events-none services-typographic-canvas">
             {services.map((service, idx) => (
               <div
                 key={idx}
                 ref={(el) => (slidesRef.current[idx] = el)}
-                className="absolute w-full flex flex-col items-center text-center select-none pointer-events-auto"
+                className="absolute w-full flex flex-col items-center text-center select-none pointer-events-auto gap-8"
               >
                 {/* Visual Label */}
-                <div className="flex items-center justify-center gap-3 mb-4 opacity-50">
-                  <span className="text-[9px] font-mono tracking-[0.5em] text-neutral-400 uppercase">
+                <div className="flex items-center justify-center gap-4 mb-4 opacity-50">
+                  <span className="text-[11px] sm:text-xs font-mono tracking-[0.5em] text-neutral-400 uppercase">
                     SECTOR 0{idx + 1}
                   </span>
-                  <span className="w-1 h-1 rounded-full bg-white/40"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40"></span>
                   <div className="text-neutral-300">
-                    {React.cloneElement(service.icon, { size: 12, className: "opacity-80 animate-pulse" })}
+                    {React.cloneElement(service.icon, { size: 16, className: "opacity-80 animate-pulse" })}
                   </div>
                 </div>
 
                 {/* Massive Minimalist Center Typography */}
-                <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-none mb-4 text-white select-none text-center">
+                <h3 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-thin tracking-tight leading-none mb-4 text-white/90 antialiased select-none text-center services-heading-override">
                   {service.title}
                 </h3>
 
                 {/* Ultra-Minimal Subtext description centered */}
-                <p className="text-xs font-medium tracking-wide text-neutral-400 max-w-sm leading-relaxed uppercase text-center">
+                <p className="text-xs sm:text-sm md:text-base font-normal tracking-wide text-neutral-400 max-w-xl md:max-w-2xl leading-relaxed uppercase text-center">
                   {service.description}
                 </p>
               </div>
@@ -383,18 +383,18 @@ const UiloraKineticSlider = ({
                   key={idx}
                   ref={(el) => (navButtonsRef.current[idx] = el)}
                   onClick={() => jumpTo(idx)}
-                  className={`group relative flex items-center justify-center transition-colors duration-300 rounded-full z-10 w-10 sm:w-20 md:w-28 h-8 md:h-9 text-[9px] md:text-[10px] ${activeIndex === idx
+                  className={`group relative flex items-center justify-center transition-colors duration-300 rounded-full z-10 w-12 sm:w-24 md:w-32 h-10 md:h-11 text-[11px] md:text-xs ${activeIndex === idx
                       ? "text-black font-black"
                       : "text-neutral-400 hover:text-white"
                     }`}
                 >
                   {activeIndex === idx ? (
-                    <div className="flex items-center gap-1 md:gap-1.5 font-bold uppercase tracking-widest text-[8px] md:text-[9px] font-mono">
-                      {React.cloneElement(service.icon, { size: 9 })}
+                    <div className="flex items-center gap-1 md:gap-2 font-bold uppercase tracking-widest text-[10px] md:text-[11px] font-mono">
+                      {React.cloneElement(service.icon, { size: 12 })}
                       <span className="hidden sm:inline">{displayTitle}</span>
                     </div>
                   ) : (
-                    <span className="text-[9px] md:text-[10px] font-mono">0{idx + 1}</span>
+                    <span className="text-[11px] md:text-xs font-mono">0{idx + 1}</span>
                   )}
                 </button>
               );

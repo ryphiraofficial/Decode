@@ -21,7 +21,15 @@ export const insights = [
       location: "Second Floor, Pathiripala Trade Center, Kerala 679103",
       time: "May 23, 2026, 11:00 AM IST",
       rsvp: "dcoodeofficial@gmail.com"
-    }
+    },
+    gallery: [
+      "/insight/inauguration1.jpg",
+      "/insight/inauguration2.jpg",
+      "/insight/inauguration3.jpg",
+      "/insight/inauguration4.jpg",
+      "/insight/inauguration5.jpg",
+      "/insight/inauguration6.jpg"
+    ]
   },
   {
     id: 2,
@@ -41,9 +49,9 @@ export const insights = [
       "We invite backend architects, full-stack developers, and creative product designers to form teams and showcase their engineering craftsmanship. Keep an eye on this space; official portal registration links and guidelines are launching very soon!"
     ],
     details: {
-      location: "Dcoode Global Studio & Online Portal",
-      time: "Registrations Open June 2026",
-      rsvp: "hackathon@dcoode.com"
+      location: "Second Floor, Pathiripala Trade Center, Kerala 679103",
+      time: "Saturday @ 6pm-6am",
+      rsvp: "dcoodeofficial@gmail.com"
     }
   },
   {
@@ -65,9 +73,9 @@ export const insights = [
       "Contend against the sharpest cyber minds, win recognized elite certifications, and claim advanced hardware tools. Registration slots are strictly capped for this elite cybersecurity tournament. Stay tuned for registration updates!"
     ],
     details: {
-      location: "Dcoode Advanced CyberRange Portal",
-      time: "Coming Summer 2026",
-      rsvp: "ctf@dcoode.com"
+      location: "Second Floor, Pathiripala Trade Center, Kerala 679103",
+      time: "Saturday @ 6pm-6am",
+      rsvp: "dcoodeofficial@gmail.com"
     }
   }
 ];

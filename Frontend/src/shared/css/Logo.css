@@ -15,9 +15,11 @@
 
 .dcoode-logo-svg {
   display: block;
-  width: calc(120px * var(--logo-scale, 1)); /* Perfectly calibrated visual width */
+  width: calc(120px * var(--logo-scale, 1));
+  /* Perfectly calibrated visual width */
   height: auto;
-  color: inherit; /* Dynamically inherits text colors of light/dark themes */
+  color: inherit;
+  /* Dynamically inherits text colors of light/dark themes */
   pointer-events: none;
   vertical-align: middle;
 }

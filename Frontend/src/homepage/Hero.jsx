@@ -9,12 +9,25 @@ const Hero = () => {
 
     const categories = ["People", "Project", "Business"];
     const images = [
-        '/dcoode profiles/home_ph_1.webp',
-        '/dcoode profiles/home_ph_2.webp',
-        '/dcoode profiles/home_ph_3.webp',
-        '/dcoode profiles/home_ph_4.webp',
-        '/dcoode profiles/home_ph_5.webp',
-        '/dcoode profiles/home_ph_6.webp'
+        // '/dcoode profiles/home_ph_1.webp',
+        // '/dcoode profiles/home_ph_2.webp',
+        // '/dcoode profiles/home_ph_3.webp',
+        // '/dcoode profiles/home_ph_4.webp',
+        // '/dcoode profiles/home_ph_5.webp',
+        // '/dcoode profiles/home_ph_6.webp',
+        '/profiles dcoode/vishnu.jpg',
+        '/profiles dcoode/saharash.jpg',
+        '/profiles dcoode/nandhu.jpg',
+        '/profiles dcoode/barath.jpg',
+        '/profiles dcoode/vineesh.jpg',
+        '/profiles dcoode/biju.jpg',
+        '/profiles dcoode/deepu.jpg',
+        '/profiles dcoode/vaideesh.jpg',
+        '/profiles dcoode/arya.jpg',
+        '/profiles dcoode/farzin.jpg',
+        '/profiles dcoode/rohit.jpg',
+        '/profiles dcoode/nidhin.jpg',
+        '/profiles dcoode/mridul.jpg',
     ];
 
     const colors = [
@@ -112,7 +125,7 @@ const Hero = () => {
             if (Math.random() > 0.6) {
                 setCategoryIndex((prev) => (prev + 1) % categories.length);
             }
-        }, 400);
+        }, 450);
 
         return () => clearInterval(swapInterval);
     }, [images.length, categories.length]);

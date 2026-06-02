@@ -39,84 +39,82 @@ const CTA = () => {
 
     return (
         <section id="cta" className="cta-outer-section">
-            <div className="container">
-                <div className="cta-inner-card">
-                    {/* Background Decorative Mesh grid */}
-                    <div className="cta-card-grid-bg" />
-                    
-                    {/* Centered Content Column */}
-                    <div className="cta-left-content">
-                        {/* <motion.div
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="cta-badge"
-                        >
-                            <span className="badge-dot" /> Elite Engineering Partner
-                        </motion.div> */}
+            <div className="cta-inner-card">
+                {/* Background Decorative Mesh grid */}
+                <div className="cta-card-grid-bg" />
+                
+                {/* Centered Content Column */}
+                <div className="cta-left-content">
+                    {/* <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="cta-badge"
+                    >
+                        <span className="badge-dot" /> Elite Engineering Partner
+                    </motion.div> */}
 
-                        <motion.h2
-                            initial={{ opacity: 0, y: 25 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="cta-title-v4"
-                        >
-                            Architecting <br />
-                            The Infinite
-                        </motion.h2>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="cta-title-v4"
+                    >
+                        Architecting <br />
+                        The Infinite
+                    </motion.h2>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="cta-desc-v4"
-                        >
-                            We engineer hyper-scalable custom software, resilient digital platforms, and premium design architectures. Partner with us to transform your complex business objectives into top-performing products.
-                        </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="cta-desc-v4"
+                    >
+                        We engineer hyper-scalable custom software, resilient digital platforms, and premium design architectures. Partner with us to transform your complex business objectives into top-performing products.
+                    </motion.p>
 
-                        {/* Premium Digital Metrics Dashboard */}
-                        {/* <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
-                            className="cta-metrics-grid"
-                        >
-                            <div className="metric-card">
-                                <span className="metric-number">99.99%</span>
-                                <span className="metric-label">Uptime SLA</span>
-                            </div>
-                            <div className="metric-card">
-                                <span className="metric-number">10x</span>
-                                <span className="metric-label">Deploy Velocity</span>
-                            </div>
-                            <div className="metric-card">
-                                <span className="metric-number">Zero</span>
-                                <span className="metric-label">Incidents</span>
-                            </div>
-                        </motion.div> */}
+                    {/* Premium Digital Metrics Dashboard */}
+                    {/* <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                        className="cta-metrics-grid"
+                    >
+                        <div className="metric-card">
+                            <span className="metric-number">99.99%</span>
+                            <span className="metric-label">Uptime SLA</span>
+                        </div>
+                        <div className="metric-card">
+                            <span className="metric-number">10x</span>
+                            <span className="metric-label">Deploy Velocity</span>
+                        </div>
+                        <div className="metric-card">
+                            <span className="metric-number">Zero</span>
+                            <span className="metric-label">Incidents</span>
+                        </div>
+                    </motion.div> */}
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
-                            className="cta-btn-wrap"
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 }}
+                        className="cta-btn-wrap"
+                    >
+                        <a
+                            href="/contact"
+                            className="cta-btn-v4"
+                            style={{ textDecoration: 'none' }}
                         >
-                            <a
-                                href="/contact"
-                                className="cta-btn-v4"
-                                style={{ textDecoration: 'none' }}
-                            >
-                                <span>Start a Project</span>
-                                <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                                    <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </a>
-                        </motion.div>
-                    </div>
+                            <span>Start a Project</span>
+                            <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                                <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </motion.div>
                 </div>
             </div>
 

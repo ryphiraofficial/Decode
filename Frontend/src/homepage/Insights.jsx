@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import "./css/Insights.css";
 import { insights } from "../data/insightsData.js";
 
 const InsightCard = ({ insight, index }) => (
-  <a href={`/insight/${insight.id}`} style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
+  <Link to={`/insight/${insight.id}`} style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
     <motion.article
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -37,7 +38,7 @@ const InsightCard = ({ insight, index }) => (
         {insight.title}
       </h3>
     </motion.article>
-  </a>
+  </Link>
 );
 
 const Insights = () => {
@@ -72,17 +73,18 @@ const Insights = () => {
 
         {/* Minimal Rectangle CTA matching video/screenshot outline design */}
         <div className="insights-button-wrapper">
-          <motion.a
-            href="#"
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="explore-button"
-          >
-            <span>Explore all insights</span>
-            <ArrowRight className="explore-icon" />
-          </motion.a>
+          <Link to="/insights" style={{ textDecoration: 'none' }}>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="explore-button"
+            >
+              <span>Explore all insights</span>
+              <ArrowRight className="explore-icon" />
+            </motion.div>
+          </Link>
         </div>
 
       </div>

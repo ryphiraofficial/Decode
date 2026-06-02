@@ -4,20 +4,70 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 const Team = () => {
     const slides = [
         {
-            src: "/dcoode profiles/home_ph_1.webp",
-            name: "Arjun K.",
-            role: "Creative Director"
+            src: "/profiles dcoode/vishnu.jpg",
+            name: "Vishnu",
+            role: "CMD"
         },
         {
-            src: "/dcoode profiles/home_ph_2.webp",
-            name: "Sarah M.",
-            role: "Lead Engineer"
+            src: "/profiles dcoode/saharash.jpg",
+            name: "Saharash",
+            role: "CEO"
         },
         {
-            src: "/dcoode profiles/home_ph_3.webp",
-            name: "Marcus L.",
-            role: "Product Designer"
-        }
+            src: "/profiles dcoode/nandhu.jpg",
+            name: "Nandhu",
+            role: "COO"
+        },
+        {
+            src: "/profiles dcoode/barath.jpg",
+            name: "Barath",
+            role: "CFO"
+        },
+        {
+           src: "/profiles dcoode/deepu.jpg",
+           name: "Deepu",
+           role: "CTO"
+       },
+        {
+            src: "/profiles dcoode/biju.jpg",
+            name: "Biju",
+            role: "Team Lead"
+        },
+        {
+            src: "/profiles dcoode/vineesh.jpg",
+            name: "Vineesh",
+            role: "Team Lead"
+        },
+        {
+            src: "/profiles dcoode/arya.jpg",
+            name: "Arya",
+            role: "Pyhton developer"
+        },
+        {
+            src: "/profiles dcoode/vaideesh.jpg",
+            name: "Vaidesh",
+            role: "python-AI/ML developer"
+        },
+        {
+            src: "/profiles dcoode/farzin.jpg",
+            name: "Farzin",
+            role: "MERN-Stack Developer"
+        },
+        {
+            src: "/profiles dcoode/nidhin.jpg",
+            name: "Nidhin",
+            role: "nidhin.png",
+        },
+        {
+            src: "/profiles dcoode/rohit.jpg",
+            name: "Rohit",
+            role: "MERN-Stack Developer"
+        },
+        {
+            src: "/profiles dcoode/mridul.jpg",
+            name: "Mridul",
+            role: "MERN-Stack Developer"
+        },
     ];
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -93,29 +143,29 @@ const Team = () => {
     };
 
     return (
-        <section className="sticky top-0 w-full min-h-screen bg-white text-neutral-900 flex flex-col justify-between overflow-x-hidden selection:bg-neutral-100">
+        <section className="sticky top-0 w-full min-h-screen bg-white text-neutral-900 flex flex-col justify-between overflow-x-hidden overflow-y-hidden selection:bg-neutral-100">
 
             {/* Main Content Container */}
-            <main className="flex-grow flex items-center justify-center py-16 md:py-24 px-6 md:px-12 max-w-7xl mx-auto w-full z-10 lg:pl-10 xl:pl-16">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
+            <main className="flex-grow flex items-center justify-center py-10 md:py-24 px-5 md:px-12 max-w-7xl mx-auto w-full z-10 lg:pl-10 xl:pl-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center w-full">
 
                     {/* Left Column (Static Content Frame matching Video) */}
-                    <div className="lg:col-span-6 lg:col-start-2 flex flex-col justify-center space-y-10">
+                    <div className="lg:col-span-6 lg:col-start-2 flex flex-col justify-center space-y-6 md:space-y-10 order-2 lg:order-1">
 
-                        <div className="space-y-8 max-w-xl">
+                        <div className="space-y-5 md:space-y-8 max-w-xl">
                             {/* Heading matching thin weight & line break of the video */}
-                            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-neutral-900 leading-[1.1] whitespace-nowrap">
+                            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-thin tracking-tight text-neutral-900 leading-[1.1] team-heading-override">
                                 You Will Like It Here!
                             </h2>
 
                             {/* Elegant low-contrast body text */}
-                            <p className="text-neutral-500 text-lg md:text-xl leading-relaxed font-light">
+                            <p className="text-neutral-500 text-base md:text-xl leading-relaxed font-light">
                                 At Decoode, we are all about creating a habitat that lets you grow stronger roots and larger branches. Together let's make a fruitful journey!
                             </p>
                         </div>
 
                         {/* Manual Navigation Slide Controls / Indicator Bars */}
-                        <div className="flex items-center justify-between pt-10 border-t border-neutral-100 w-full max-w-lg mt-4">
+                        <div className="flex items-center justify-between pt-6 md:pt-10 border-t border-neutral-100 w-full max-w-lg mt-2 md:mt-4">
                             {/* Arrows */}
                             <div className="flex items-center space-x-3">
                                 <button
@@ -148,25 +198,28 @@ const Team = () => {
                         </div>
                     </div>
                     {/* Right Column (Portrait Studio Frame with Exact Video Transitions) */}
-                    <div className="lg:col-span-5 lg:col-start-8 relative flex justify-center lg:justify-end">
+                    <div className="lg:col-span-5 lg:col-start-8 relative flex justify-center lg:justify-end order-1 lg:order-2">
 
                         {/* Image Frame Aspect Ratio matching 4:5 */}
-                        <div className="relative w-full max-w-[440px] aspect-[4/5] bg-neutral-950 overflow-hidden shadow-sm">
+                        <div className="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[440px] aspect-[4/5] bg-neutral-950 overflow-hidden shadow-sm mx-auto lg:mx-0">
 
                             {/* Portrait Layers (Preloaded for immediate seamless transition) */}
                             <div className="absolute inset-0 w-full h-full">
                                 {slides.map((slide, idx) => (
                                     <div
                                         key={idx}
-                                        className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${idx === activeIndex
-                                            ? "opacity-100 scale-100 pointer-events-auto"
-                                            : "opacity-0 scale-105 pointer-events-none"
+                                        className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${idx === activeIndex
+                                            ? "opacity-100 pointer-events-auto"
+                                            : "opacity-0 pointer-events-none"
                                             }`}
                                     >
                                         <img
                                             src={slide.src}
                                             alt={slide.name}
-                                            className="w-full h-full object-cover grayscale brightness-90 contrast-125 transition-all duration-1000"
+                                            className={`w-full h-full object-cover grayscale brightness-90 contrast-125 transition-transform duration-1000 ease-in-out ${idx === activeIndex
+                                                ? "scale-100"
+                                                : "scale-105"
+                                                }`}
                                         />
 
                                         {/* Caption name tag */}
@@ -184,15 +237,15 @@ const Team = () => {
                             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
 
                             {/* Rotating SVG Circle Badge (Positioned at bottom-right of image, exactly overlapping the edge) */}
-                            <div className="absolute -bottom-16 -right-16 w-44 h-44 pointer-events-none z-20">
+                            <div className="absolute -bottom-12 -right-12 w-32 h-32 md:-bottom-16 md:-right-16 md:w-44 md:h-44 pointer-events-none z-20">
                                 <svg className="animate-[spin_20s_linear_infinite] w-full h-full text-white/20 font-light" viewBox="0 0 120 120">
                                     <defs>
                                         <path id="badgePath" d="M 60, 60 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" fill="none" />
                                     </defs>
                                     <text className="text-[7.5px] tracking-[0.27em] uppercase fill-white/80 font-medium">
-                                        <textPath href="#badgePath" startOffset="0%">
+                                        {/* <textPath href="#badgePath" startOffset="0%">
                                             join our team • join our team •
-                                        </textPath>
+                                        </textPath> */}
                                     </text>
                                 </svg>
                             </div>

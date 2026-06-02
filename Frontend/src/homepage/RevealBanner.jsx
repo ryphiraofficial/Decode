@@ -55,9 +55,9 @@ const RevealBanner = ({
     const tl = window.ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top top",
-      end: "+=300%",
+      end: "+=100%", // 3x faster scroll-reveal completion
       pin: true,
-      scrub: 1,
+      scrub: 0.3, // Snappy, instant scroll wheel response
       onUpdate: (self) => {
         const progress = self.progress;
 
@@ -118,28 +118,30 @@ const RevealBanner = ({
             />
           </div>
 
-          {/* Masked Image Layer */}
-          <div
-            ref={maskRef}
-            className="absolute inset-0 z-10 will-change-transform"
-            style={{
-              WebkitMaskImage: `url(${maskUrl})`,
-              maskImage: `url(${maskUrl})`,
-              maskSize: 'cover',
-              maskPosition: 'center'
-            }}
-          >
-            <img
-              src={imageUrl}
-              alt="mask"
-              className="w-full h-full object-cover grayscale brightness-50 contrast-125"
-              style={{ objectPosition: '40% center' }}
-            />
+          {/* Masked Image Layer Wrapper */}
+          <div className="absolute inset-0 -translate-x-6 md:-translate-x-16 z-10">
+            <div
+              ref={maskRef}
+              className="absolute inset-0 will-change-transform"
+              style={{
+                WebkitMaskImage: `url(${maskUrl})`,
+                maskImage: `url(${maskUrl})`,
+                maskSize: 'cover',
+                maskPosition: 'center'
+              }}
+            >
+              <img
+                src={imageUrl}
+                alt="mask"
+                className="w-full h-full object-cover grayscale brightness-50 contrast-125"
+                style={{ objectPosition: '40% center' }}
+              />
+            </div>
           </div>
 
           {/* Centered Reveal Title */}
-          <div className="absolute inset-0 flex items-center justify-center z-20 px-8 text-center pointer-events-none">
-            <h1 className="text-white text-5xl md:text-[8rem] font-black uppercase leading-[0.85] tracking-tighter">
+          <div className="absolute inset-0 flex items-center justify-center z-20 px-8 text-center pointer-events-none -translate-x-6 md:-translate-x-16">
+            <h1 className="text-white text-5xl md:text-[8rem] font-black leading-[0.85] tracking-tighter">
               {bannerTitle.split(" ").map((word, i) => (
                 <span
                   key={i}
@@ -154,13 +156,17 @@ const RevealBanner = ({
         </div>
 
         {/* Floating Intro Text */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-          <div className="flex justify-center items-center w-full px-4 gap-6 md:gap-12">
-            <div ref={introLeftRef} className="flex-shrink-0">
-              <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introLeft}</h1>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30 -translate-x-6 md:-translate-x-16">
+          <div className="grid grid-cols-2 w-full">
+            <div className="flex justify-end pr-4 md:pr-8 lg:pr-12">
+              <div ref={introLeftRef}>
+                <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introLeft}</h1>
+              </div>
             </div>
-            <div ref={introRightRef} className="flex-shrink-0">
-              <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introRight}</h1>
+            <div className="flex justify-start pl-4 md:pl-8 lg:pl-12">
+              <div ref={introRightRef}>
+                <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introRight}</h1>
+              </div>
             </div>
           </div>
         </div>

@@ -15,12 +15,26 @@ const ScrollToTop = () => {
     }
   };
 
-  // Set the top scroll position
+  // Scroll to absolute top — kill ScrollTrigger pins first so nothing blocks it
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    // Disable all GSAP ScrollTrigger instances so pinned sections don't trap the scroll
+    const ScrollTrigger = window.ScrollTrigger;
+    if (ScrollTrigger) {
+      ScrollTrigger.getAll().forEach(st => st.disable(false));
+    }
+
+    // Force instant jump to the very top
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    // Re-enable ScrollTrigger after the scroll has landed
+    if (ScrollTrigger) {
+      requestAnimationFrame(() => {
+        ScrollTrigger.getAll().forEach(st => st.enable());
+        ScrollTrigger.refresh();
+      });
+    }
   };
 
   useEffect(() => {

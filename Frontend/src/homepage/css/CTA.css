@@ -1,9 +1,7 @@
-/* CTA.css - Premium High-End Digital Engineering Theme with Interactive Canvas Animation (Dark Mode Redesign) */
-
 .cta-outer-section {
   position: relative;
   z-index: 30;
-  padding: 120px 0;
+  padding: 0; /* Full bleed layout, padding removed */
   background-color: #000000; /* Pure deep black backdrop */
   overflow: hidden;
 }
@@ -14,16 +12,20 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Subtly glowing dark border */
-  border-radius: 40px;
-  min-height: 560px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Top border only */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Bottom border only */
+  border-left: none;
+  border-right: none;
+  border-radius: 0; /* Rounded corners removed for full screen stretch */
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  box-shadow: none;
   z-index: 2;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .cta-inner-card::before {

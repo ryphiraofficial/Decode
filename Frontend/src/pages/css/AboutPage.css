@@ -34,7 +34,7 @@
 }
 
 .ap-narrative-title .dim {
-  color: #e5e5e5;
+  color: #8c8c8c; /* Changed from #e5e5e5 to make it beautifully legible on white background */
 }
 
 .ap-narrative-grid {
@@ -53,7 +53,7 @@
 }
 
 .ap-narrative-p.dim {
-  color: #a3a3a3;
+  color: #737373; /* Changed from #a3a3a3 to increase contrast and readability */
 }
 
 /* Expertise Grid Section - Off-white background */
@@ -95,12 +95,12 @@
 }
 
 .ap-expertise-card p {
-  font-size: 10px;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  line-height: 1.8;
+  font-size: 0.95rem; /* Increased from 10px for excellent legibility */
+  font-weight: 400; /* Cleaner weight for paragraph copy */
+  color: #52525b; /* Solid zinc-600 graphite gray for perfect contrast */
+  text-transform: none; /* Sentence case makes multi-line paragraphs much easier to read */
+  letter-spacing: normal;
+  line-height: 1.7; /* Elegant line spacing */
 }
 
 /* Stats Row */
@@ -152,9 +152,11 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .ap-expertise-grid {
     grid-template-columns: 1fr;
   }
+
   .ap-stats-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 60px;
@@ -165,9 +167,11 @@
   .ap-container {
     padding: 0 24px;
   }
+
   .ap-narrative-sec {
     padding: 100px 0;
   }
+
   .ap-expertise-sec {
     padding: 80px 0;
   }
