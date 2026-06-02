@@ -5,27 +5,27 @@ const Team = () => {
     const slides = [
         {
             src: "/profiles dcoode/vishnu.jpg",
-            name: "Vishnu",
+            name: "Vishnu Hari",
             role: "CMD"
         },
         {
             src: "/profiles dcoode/saharash.jpg",
-            name: "Saharash",
+            name: "Saharsh Krishna C",
             role: "CEO"
         },
         {
             src: "/profiles dcoode/nandhu.jpg",
-            name: "Nandhu",
+            name: "Sreenandhan P.P",
             role: "COO"
         },
         {
             src: "/profiles dcoode/barath.jpg",
-            name: "Barath",
+            name: "Bharath Chandran T.S",
             role: "CFO"
         },
         {
            src: "/profiles dcoode/deepu.jpg",
-           name: "Deepu",
+           name: "Deepu A",
            role: "CTO"
        },
         {
@@ -40,32 +40,32 @@ const Team = () => {
         },
         {
             src: "/profiles dcoode/arya.jpg",
-            name: "Arya",
+            name: "Arya Reji",
             role: "Pyhton developer"
         },
         {
             src: "/profiles dcoode/vaideesh.jpg",
-            name: "Vaidesh",
+            name: "Vaideesh S",
             role: "python-AI/ML developer"
         },
         {
             src: "/profiles dcoode/farzin.jpg",
-            name: "Farzin",
+            name: "Mohammed Farsin",
             role: "MERN-Stack Developer"
         },
         {
             src: "/profiles dcoode/nidhin.jpg",
-            name: "Nidhin",
+            name: "Nidhin Paulson",
             role: "MERN-Stack Developer",
         },
         {
             src: "/profiles dcoode/rohit.jpg",
-            name: "Rohit",
+            name: "Rohith Sunilkumar",
             role: "MERN-Stack Developer"
         },
         {
             src: "/profiles dcoode/mridul.jpg",
-            name: "Mridul",
+            name: "Mridul M",
             role: "MERN-Stack Developer"
         },
     ];
@@ -143,29 +143,29 @@ const Team = () => {
     };
 
     return (
-        <section className="sticky top-0 w-full min-h-screen bg-white text-neutral-900 flex flex-col justify-between overflow-x-hidden overflow-y-hidden selection:bg-neutral-100">
+        <section className="sticky top-0 w-full min-h-screen bg-white text-neutral-900 flex flex-col justify-between items-center overflow-x-hidden overflow-y-hidden selection:bg-neutral-100">
 
             {/* Main Content Container */}
-            <main className="flex-grow flex items-center justify-center py-10 md:py-24 px-5 md:px-12 max-w-7xl mx-auto w-full z-10 lg:pl-10 xl:pl-16">
+            <main className="flex-grow flex items-center justify-center py-10 md:py-24 px-5 md:px-12 max-w-7xl mx-auto w-full z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center w-full">
 
                     {/* Left Column (Static Content Frame matching Video) */}
-                    <div className="lg:col-span-6 lg:col-start-2 flex flex-col justify-center space-y-6 md:space-y-10 order-2 lg:order-1">
+                    <div className="lg:col-span-5 lg:col-start-2 flex flex-col justify-center items-center text-center space-y-6 md:space-y-10 order-2 lg:order-1 mx-auto w-full">
 
-                        <div className="space-y-5 md:space-y-8 max-w-xl">
+                        <div className="space-y-5 md:space-y-8 max-w-xl mx-auto">
                             {/* Heading matching thin weight & line break of the video */}
-                            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-thin tracking-tight text-neutral-900 leading-[1.1] team-heading-override">
+                            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-thin tracking-tight text-neutral-900 leading-[1.1] team-heading-override text-center w-full">
                                 You Will Like It Here!
                             </h2>
 
                             {/* Elegant low-contrast body text */}
-                            <p className="text-neutral-500 text-base md:text-xl leading-relaxed font-light">
+                            <p className="text-neutral-500 text-base md:text-xl leading-relaxed font-light text-center">
                                 At Decoode, we are all about creating a habitat that lets you grow stronger roots and larger branches. Together let's make a fruitful journey!
                             </p>
                         </div>
 
                         {/* Manual Navigation Slide Controls / Indicator Bars */}
-                        <div className="flex items-center justify-between pt-6 md:pt-10 border-t border-neutral-100 w-full max-w-lg mt-2 md:mt-4">
+                        <div className="flex items-center justify-between pt-6 md:pt-10 border-t border-neutral-100 w-full max-w-lg mt-2 md:mt-4 mx-auto">
                             {/* Arrows */}
                             <div className="flex items-center space-x-3">
                                 <button
@@ -198,7 +198,7 @@ const Team = () => {
                         </div>
                     </div>
                     {/* Right Column (Portrait Studio Frame with Exact Video Transitions) */}
-                    <div className="lg:col-span-5 lg:col-start-8 relative flex justify-center lg:justify-end order-1 lg:order-2">
+                    <div className="lg:col-span-5 lg:col-start-8 relative flex justify-center lg:justify-center order-1 lg:order-2 mx-auto w-full">
 
                         {/* Image Frame Aspect Ratio matching 4:5 */}
                         <div className="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[440px] aspect-[4/5] bg-neutral-950 overflow-hidden shadow-sm mx-auto lg:mx-0">

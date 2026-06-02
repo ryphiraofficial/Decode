@@ -125,7 +125,7 @@ const Hero = () => {
             if (Math.random() > 0.6) {
                 setCategoryIndex((prev) => (prev + 1) % categories.length);
             }
-        }, 450);
+        }, 500);
 
         return () => clearInterval(swapInterval);
     }, [images.length, categories.length]);

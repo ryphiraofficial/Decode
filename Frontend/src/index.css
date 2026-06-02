@@ -29,7 +29,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Lenis Smooth Scroll Boilerplate */
+/* Lenis Smooth Scroll Boilerplate - COMMENTED OUT
 html.lenis,
 html.lenis body {
   height: auto;
@@ -50,6 +50,7 @@ html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+*/
 
 .container {
   max-width: 1320px;
@@ -343,6 +344,12 @@ h3.services-heading-override {
     padding: 18px 50px !important;
   }
   
+  .navbar.navbar--contracted {
+    max-width: 200px !important;
+    padding: 10px 24px !important;
+    border-radius: 40px !important;
+  }
+  
   .navbar-link {
     font-size: 0.95rem !important;
   }
@@ -544,5 +551,63 @@ h3.services-heading-override {
   .team-section p {
     font-size: 1.6rem !important;
     max-width: 800px !important;
+  }
+}
+
+/* ==========================================================================
+   ── ADDITIONAL DEVICE RESPONSIVENESS OVERRIDES ──
+   ========================================================================== */
+
+/* 1. Height-based laptop scaling (e.g. 1892x882, 1440x900, or standard 1366x768) */
+@media (max-height: 950px) {
+  .services-typographic-canvas {
+    height: 360px !important;
+  }
+  .services-typographic-canvas > div {
+    gap: 1.25rem !important; /* tighter layout spacing */
+  }
+  .services-heading-override {
+    font-size: clamp(2.2rem, 5vw, 4.5rem) !important;
+  }
+  .services-section p {
+    font-size: 0.9rem !important;
+    max-width: 580px !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* 2. iPhone 16 Pro Max and general high-end smartphone viewports (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Prevent horizontal layout shifts on narrow, tall modern mobile devices */
+  body {
+    overflow-x: hidden !important;
+  }
+
+  /* RevealBanner text scale down on mobile viewports to prevent wrapping Build/Future */
+  .mix-blend-difference {
+    font-size: clamp(2.2rem, 11vw, 4.2rem) !important;
+  }
+  
+  /* Services typographic layout adjustments for small mobile screens */
+  .services-typographic-canvas {
+    height: 300px !important;
+    padding: 0 10px !important;
+  }
+  
+  .services-heading-override {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .services-section p {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    max-width: 280px !important;
+  }
+  
+  /* Centering adjustment for team images */
+  .team-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }

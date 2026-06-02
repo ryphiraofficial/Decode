@@ -251,10 +251,13 @@ const UiloraKineticSlider = ({
           const targetScroll =
             start + targetIndex * segmentSize + segmentSize / 2;
 
-          window.scrollTo({
-            top: targetScroll,
-            behavior: "smooth",
-          });
+          const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768;
+          if (!isTouch) {
+            window.scrollTo({
+              top: targetScroll,
+              behavior: "smooth",
+            });
+          }
 
           // Hold the slide for 0.2 sec
           setTimeout(() => {

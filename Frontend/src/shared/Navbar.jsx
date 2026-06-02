@@ -57,6 +57,14 @@ const Navbar = () => {
     }
   };
 
+  const isLinkActive = (href) => {
+    if (href === '/') {
+      return location.pathname === '/';
+    }
+    // Check if path starts with href to handle sub-pages beautifully
+    return location.pathname.startsWith(href);
+  };
+
   const navLinks = [
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
@@ -83,16 +91,19 @@ const Navbar = () => {
 
         {/* Desktop Links — hidden when contracted */}
         <div className="navbar-links">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="navbar-link"
-              onClick={(e) => handleScroll(e, link.href)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = isLinkActive(link.href);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`navbar-link ${isActive ? 'active' : ''}`}
+                onClick={(e) => handleScroll(e, link.href)}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </div>
 
         {/* Mobile Burger Icon */}
@@ -130,19 +141,22 @@ const Navbar = () => {
               transition={{ type: 'spring', damping: 26, stiffness: 220 }}
               className="navbar-mobile-menu"
             >
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="navbar-mobile-link"
-                  onClick={(e) => {
-                    setIsOpen(false);
-                    handleScroll(e, link.href);
-                  }}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = isLinkActive(link.href);
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className={`navbar-mobile-link ${isActive ? 'active' : ''}`}
+                    onClick={(e) => {
+                      setIsOpen(false);
+                      handleScroll(e, link.href);
+                    }}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
             </motion.div>
           </>
         )}

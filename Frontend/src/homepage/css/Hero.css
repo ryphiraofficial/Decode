@@ -122,8 +122,8 @@
     object-fit: cover;
     filter: grayscale(100%) contrast(1.1);
     opacity: 0;
-    transform: scale(0.96);
-    /* Start slightly smaller for elegant depth scaling */
+    transform: scale(1.05);
+    /* Zoomed in slightly when inactive to prevent any bottom gap */
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     /* Beautiful, smooth cinematic blend */
 }
@@ -131,7 +131,7 @@
 .person-image.active {
     opacity: 1;
     transform: scale(1);
-    /* Smoothly scale up to full size when active */
+    /* Settles down to exactly 100% when active */
 }
 
 .logo {

@@ -15,7 +15,7 @@ import { useDynamicFavicon } from './hooks/useDynamicFavicon';
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import Lenis from 'lenis';
+// import Lenis from 'lenis';
 
 function App() {
   useDynamicFavicon();

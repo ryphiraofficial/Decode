@@ -82,6 +82,7 @@
     line-height: 1.5; /* Increased from 1.2 for elegant line gap spacing */
     text-align: center;
     max-width: 900px;
+    width: 100%; /* Force flex child to stretch fully, preventing shrink-to-fit stacking */
     letter-spacing: -0.02em;
     text-transform: none;
 }
@@ -90,6 +91,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%; /* Stretch flex words container to use the full width */
 }
 
 .reveal-word {
@@ -254,6 +256,28 @@
 
     .about-values {
         padding: 80px 0;
+    }
+
+    .about-sticky-wrapper {
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 0.75rem !important; /* Minimize side padding to give the text maximum horizontal stretch */
+    }
+
+    .about-headline {
+        font-size: clamp(1.15rem, 5.5vw, 3rem) !important; /* Scales fluidly so words never stack vertically */
+        text-align: center !important;
+        width: 100% !important; /* Force flex item stretching on mobile */
+        max-width: 100% !important; /* Let it stretch across the viewport */
+        padding: 0 !important; /* Remove redundant side padding */
+        margin: 0 auto !important;
+        line-height: 1.45 !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    .reveal-text-container {
+        justify-content: center !important;
+        width: 100% !important;
     }
 
     .value-card {

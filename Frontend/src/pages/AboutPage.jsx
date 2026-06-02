@@ -151,7 +151,7 @@ const AboutPage = () => {
             <section className="ap-narrative-sec">
                 <div className="ap-container">
                     <div className="ap-narrative-content">
-                        <div className="ap-narrative-header text-center md:text-left">
+                        <div className="ap-narrative-header text-left">
                             <span className="ap-badge">The Studio</span>
                             <h2 className="ap-narrative-title">
                                 We bridge the gap between <br className="hidden md:block" />
@@ -160,10 +160,10 @@ const AboutPage = () => {
                         </div>
                         
                         <div className="ap-narrative-grid">
-                            <p className="ap-narrative-p text-center md:text-left">
+                            <p className="ap-narrative-p text-left">
                                 At Decoode, we believe that software is more than just code—it's the architecture of the modern world. Our team of senior engineers and architects work closely with global partners to build resilient, scalable, and beautiful digital ecosystems.
                             </p>
-                            <p className="ap-narrative-p dim text-center md:text-left">
+                            <p className="ap-narrative-p dim text-left">
                                 Founded by industry veterans, our studio operates on the principles of apprenticeship and technical excellence. We don't just deliver projects; we architect the future of how users interact with technology.
                             </p>
                         </div>

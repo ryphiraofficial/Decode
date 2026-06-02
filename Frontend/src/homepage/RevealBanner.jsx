@@ -10,7 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const RevealBanner = ({
   bannerTitle = "Building The Future Of Innovation",
   introLeft = "BUILD",
-  introRight = "FUTURE",
+  introRight = "SMART",
   imageUrl = "https://i.pinimg.com/736x/58/a5/2d/58a52d97ff4f0264adf6bedc07ba48ad.jpg",
   maskUrl = "https://cdn.prod.website-files.com/63d02462bc5e77103606f366/63d0a28247070a2569588667_mask.png",
 }) => {
@@ -106,7 +106,7 @@ const RevealBanner = ({
   return (
     <div className="bg-white text-black overflow-x-hidden">
       {/* Animated Banner Section */}
-      <section ref={sectionRef} className="relative w-screen h-screen overflow-hidden">
+      <section ref={sectionRef} className="relative w-full h-screen overflow-hidden">
         {/* Main Image Container */}
         <div ref={containerRef} className="relative w-full h-full will-change-transform bg-white">
           <div className="absolute inset-0 opacity-40">
@@ -114,12 +114,12 @@ const RevealBanner = ({
               src={imageUrl}
               alt="banner"
               className="w-full h-full object-cover grayscale"
-              style={{ objectPosition: '10% center' }}
+              style={{ objectPosition: '50% center' }}
             />
           </div>
 
           {/* Masked Image Layer Wrapper */}
-          <div className="absolute inset-0 -translate-x-6 md:-translate-x-16 z-10">
+          <div className="absolute inset-0 z-10">
             <div
               ref={maskRef}
               className="absolute inset-0 will-change-transform"
@@ -134,19 +134,22 @@ const RevealBanner = ({
                 src={imageUrl}
                 alt="mask"
                 className="w-full h-full object-cover grayscale brightness-50 contrast-125"
-                style={{ objectPosition: '40% center' }}
+                style={{ objectPosition: '50% center' }}
               />
             </div>
           </div>
 
           {/* Centered Reveal Title */}
-          <div className="absolute inset-0 flex items-center justify-center z-20 px-8 text-center pointer-events-none -translate-x-6 md:-translate-x-16">
-            <h1 className="text-white text-5xl md:text-[8rem] font-black leading-[0.85] tracking-tighter">
+          <div className="absolute inset-0 flex items-center justify-center z-20 px-8 text-center pointer-events-none">
+            <h1 
+              className="text-white font-black leading-[0.95] tracking-tighter w-full max-w-5xl mx-auto"
+              style={{ fontSize: 'clamp(2.2rem, 7vw, 6.5rem)' }}
+            >
               {bannerTitle.split(" ").map((word, i) => (
                 <span
                   key={i}
                   ref={el => { headerWordsRef.current[i] = el }}
-                  className="inline-block mr-3"
+                  className="inline-block mr-[0.22em]"
                 >
                   {word}
                 </span>
@@ -156,16 +159,26 @@ const RevealBanner = ({
         </div>
 
         {/* Floating Intro Text */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30 -translate-x-6 md:-translate-x-16">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
           <div className="grid grid-cols-2 w-full">
             <div className="flex justify-end pr-4 md:pr-8 lg:pr-12">
               <div ref={introLeftRef}>
-                <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introLeft}</h1>
+                <h1 
+                  className="uppercase font-black tracking-tighter text-black mix-blend-difference"
+                  style={{ fontSize: 'clamp(2.5rem, 12vw, 9.5rem)' }}
+                >
+                  {introLeft}
+                </h1>
               </div>
             </div>
             <div className="flex justify-start pl-4 md:pl-8 lg:pl-12">
               <div ref={introRightRef}>
-                <h1 className="text-5xl md:text-[12rem] uppercase font-black tracking-tighter text-black mix-blend-difference">{introRight}</h1>
+                <h1 
+                  className="uppercase font-black tracking-tighter text-black mix-blend-difference"
+                  style={{ fontSize: 'clamp(2.5rem, 12vw, 9.5rem)' }}
+                >
+                  {introRight}
+                </h1>
               </div>
             </div>
           </div>
