@@ -160,7 +160,7 @@ const Team = () => {
 
                             {/* Elegant low-contrast body text */}
                             <p className="text-neutral-500 text-base md:text-xl leading-relaxed font-light text-center">
-                                At Decoode, we are all about creating a habitat that lets you grow stronger roots and larger branches. Together let's make a fruitful journey!
+                                At Dcoode, we are all about creating a habitat that lets you grow stronger roots and larger branches. Together let's make a fruitful journey!
                             </p>
                         </div>
 

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import './css/ScrollToTop.css';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { pathname } = useLocation();
 
   // Show button when page is scrolled down
   const toggleVisibility = () => {
@@ -36,6 +38,10 @@ const ScrollToTop = () => {
       });
     }
   };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [pathname]);
 
   useEffect(() => {
     window.addEventListener('scroll', toggleVisibility);

@@ -27,12 +27,12 @@ const Footer = () => {
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
-              <li><a href="/about">About</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/services">Industries</a></li>
-              <li><a href="/all-courses">Works</a></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/services">Industries</Link></li>
+              {/* <li><Link to="/all-courses">Works</Link></li> */}
               <li><a href="mailto:dcoodeofficial@gmail.com">Careers</a></li>
-              <li><a href="mailto:dcoodeofficial@gmail.com">Contact</a></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -40,10 +40,10 @@ const Footer = () => {
           <div className="footer-col">
             <h4>Services</h4>
             <ul>
-              <li><a href="/services">Branding</a></li>
-              <li><a href="/services">Experience Design</a></li>
-              <li><a href="/services">Technology</a></li>
-              <li><a href="/services">Digital Marketing</a></li>
+              <li><Link to="/services">Branding</Link></li>
+              <li><Link to="/services">Experience Design</Link></li>
+              <li><Link to="/services">Technology</Link></li>
+              <li><Link to="/services">Digital Marketing</Link></li>
             </ul>
           </div>
 
@@ -52,12 +52,12 @@ const Footer = () => {
             <h4>Other</h4>
             <ul>
               <li><a href="mailto:dcoodeofficial@gmail.com">Partnership</a></li>
-              <li><a href="/about">Awards and Recognitions</a></li>
-              <li><a href="/insights">Insights</a></li>
-              <li><a href="/insights">Blogs</a></li>
-              <li><a href="/about">Resource Augmentation</a></li>
-              <li><a href="/about">Testimonials</a></li>
-              <li><a href="/about">Our Clients</a></li>
+              <li><Link to="/about">Awards and Recognitions</Link></li>
+              <li><Link to="/insights">Insights</Link></li>
+              <li><Link to="/insights">Blogs</Link></li>
+              <li><Link to="/about">Resource Augmentation</Link></li>
+              <li><Link to="/about">Testimonials</Link></li>
+              <li><Link to="/about">Our Clients</Link></li>
               <li><a href="mailto:dcoodeofficial@gmail.com">Submit Feedback to Our CEO</a></li>
               <li><a href="/browsher/DCOODE.pdf" download="DCOODE-Brochure.pdf">Download Brochure</a></li>
               <li><a href="/legal">Sitemap</a></li>
@@ -80,7 +80,7 @@ const Footer = () => {
              
               <li>
                 <span className="connect-label">Whatsapp</span>
-                <span className="connect-value">: <a href="https://wa.me/+91 85478 65694" target="_blank" rel="noopener noreferrer">+91 85478 65694</a></span>
+                <span className="connect-value">: <a href="https://wa.me/918547865694" target="_blank" rel="noopener noreferrer">+91 85478 65694</a></span>
               </li>
             </ul>
           </div>
@@ -90,18 +90,18 @@ const Footer = () => {
         {/* Bottom Row */}
         <div className="footer-bottom-row">
           <div className="footer-copyright">
-            DECOODE © 2026 All rights reserved.
+            DCOODE © 2026 All rights reserved.
           </div>
           
           <div className="footer-links">
-            <a href="/privacy-policy">Privacy Policy</a>
+            <Link to="/privacy">Privacy Policy</Link>
             <span className="divider">|</span>
-            <a href="/terms-conditions">Terms & Conditions</a>
+            <Link to="/terms">Terms & Conditions</Link>
           </div>
 
           <div className="footer-socials">
             {/* LinkedIn */}
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link" title="LinkedIn">
+            <a href="https://www.linkedin.com/company/dcoode/" target="_blank" rel="noopener noreferrer" className="social-link" title="LinkedIn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                 <rect x="2" y="9" width="4" height="12" />
@@ -110,12 +110,12 @@ const Footer = () => {
             </a>
             
             {/* YouTube */}
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link" title="YouTube">
+            {/* <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link" title="YouTube">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
                 <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
                 <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
               </svg>
-            </a>
+            </a> */}
 
             {/* Instagram */}
             <a href="https://www.instagram.com/_dcoode_/" target="_blank" rel="noopener noreferrer" className="social-link" title="Instagram">
@@ -127,14 +127,14 @@ const Footer = () => {
             </a>
 
             {/* Facebook */}
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Facebook">
+            {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Facebook">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
               </svg>
-            </a>
+            </a> */}
 
             {/* Website / Globe */}
-            <a href="https://decoode.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Website">
+            <a href="https://dcoode.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Website">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="2" y1="12" x2="22" y2="12" />
