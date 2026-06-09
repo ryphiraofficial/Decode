@@ -147,17 +147,34 @@
     color: #95ff00;
 }
 
+.headline-wrapper {
+    position: relative;
+    z-index: 40;
+    pointer-events: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 450px;
+}
+
+.seo-hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(0, 0, 0, 0.55);
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.4;
+}
+
 .headline {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
     line-height: 1.05;
-    max-width: 450px;
-    position: relative;
-    /* Ensure z-index works */
-    z-index: 40;
-    pointer-events: none;
+    margin: 0;
     text-shadow: 0 0 40px rgba(255, 255, 255, 0.95);
-    text-align: left;
 }
 
 .sidebar-info {
