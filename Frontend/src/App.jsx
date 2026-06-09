@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './shared/Navbar';
 import Hero from './homepage/Hero';
+import PartnerLogos from './homepage/PartnerLogos';
 import About from './homepage/About';
 import Services from './homepage/Services';
 import OurStory from './homepage/OurStory';
@@ -11,14 +12,14 @@ import Team from './homepage/Team';
 import Insights from './homepage/Insights';
 // import Preloader from './components/Preloader';
 // import Internships from './components/Internships';
-import { useDynamicFavicon } from './hooks/useDynamicFavicon';
+// import { useDynamicFavicon } from './hooks/useDynamicFavicon';
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 // import Lenis from 'lenis';
 
 function App() {
-  useDynamicFavicon();
+  // useDynamicFavicon();
 
   return (
     <div className="app">
@@ -40,6 +41,7 @@ function App() {
         {/* Navbar and Footer are now handled globally by Layout.jsx */}
         <main>
           <Hero />
+          <PartnerLogos />
           <About />
           <Services />
           <RevealBanner />

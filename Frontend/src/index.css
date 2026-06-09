@@ -1,35 +1,35 @@
  @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap');
 
-:root {
-  --primary: #00FF41;
-  --primary-glow: rgba(0, 255, 65, 0.25);
-  --secondary: #A8FF1A;
-  /* vibrant lime/yellow green */
-  --bg-dark: #000000;
-  --bg-surface: #0a0a0a;
-  --text-main: #ffffff;
-  --text-dim: #a1a1aa;
-  --border-dim: #1a1a1a;
+ :root {
+   --primary: #00FF41;
+   --primary-glow: rgba(0, 255, 65, 0.25);
+   --secondary: #A8FF1A;
+   /* vibrant lime/yellow green */
+   --bg-dark: #000000;
+   --bg-surface: #0a0a0a;
+   --text-main: #ffffff;
+   --text-dim: #a1a1aa;
+   --border-dim: #1a1a1a;
 
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-}
+   --font-heading: 'Outfit', sans-serif;
+   --font-body: 'Plus Jakarta Sans', sans-serif;
+ }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
 
-body {
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  font-family: var(--font-body);
-  overflow-x: hidden;
-}
+ body {
+   background-color: var(--bg-dark);
+   color: var(--text-main);
+   font-family: var(--font-body);
+   overflow-x: hidden;
+ }
 
-/* Lenis Smooth Scroll Boilerplate - COMMENTED OUT
+ /* Lenis Smooth Scroll Boilerplate - COMMENTED OUT
 html.lenis,
 html.lenis body {
   height: auto;
@@ -52,562 +52,621 @@ html.lenis body {
 }
 */
 
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-/* Modern Curve Section Separators */
-.sep-curve-top-surface {
-  position: relative;
-  background: var(--bg-surface);
-  margin-top: -100px;
-  padding-top: 150px;
-}
-
-.sep-curve-top-surface::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: var(--bg-surface);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  transform: translateY(-98%);
-  z-index: 10;
-}
-
-.sep-curve-bottom-surface {
-  position: relative;
-  background: var(--bg-surface);
-  padding-bottom: 150px;
-}
-
-.sep-curve-bottom-surface::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: var(--bg-surface);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  transform: translateY(98%);
-  z-index: 10;
-}
-
-.sep-curve-top-dark {
-  position: relative;
-  background: var(--bg-dark);
-  margin-top: -100px;
-  padding-top: 150px;
-}
-
-.sep-curve-top-dark::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: var(--bg-dark);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  transform: translateY(-98%);
-  z-index: 10;
-}
-
-.sep-curve-bottom-dark {
-  position: relative;
-  background: var(--bg-dark);
-  padding-bottom: 200px;
-}
-
-.sep-curve-bottom-dark::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-color: var(--bg-dark);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  transform: translateY(98%);
-  z-index: 10;
-}
-
-/* Mobile Reset */
-@media (max-width: 768px) {
-  [class*="sep-"] {
-    clip-path: none !important;
-    margin-top: 0 !important;
-    padding-top: 80px !important;
-    padding-bottom: 80px !important;
-  }
-}
-
-/* Buttons */
-.btn-primary {
-  background: var(--primary);
-  color: #000;
-  padding: 16px 40px;
-  font-weight: 700;
-  border: none;
-  font-family: var(--font-heading);
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-}
-
-.btn-primary:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 15px 30px var(--primary-glow);
-  transform: translateY(-3px);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--text-main);
-  padding: 16px 40px;
-  font-weight: 600;
-  border: 1px solid var(--border-dim);
-  font-family: var(--font-heading);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-.btn-outline:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #fff 40%, var(--primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-label {
-  color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
-  display: block;
-}
-
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.025;
-  /* Even more subtle grain */
-  background: var(--noise);
-}
-
-/* Sleek Typography Muting - Globally Muted Font Weights for Minimalist Tech Aesthetic */
-* {
-  font-weight: 300 !important; /* Mute normal/body texts to clean light weights */
-}
-
-h1, h2, h3, h4, h5, h6, 
-strong, b, th, 
-[class*="title"], [class*="heading"], [class*="number"], [class*="metric-number"], 
-.navbar-link, .nav-item, .navbar-brand-wrapper, 
-button, .btn-primary, .btn-outline, 
-span.font-bold, span.font-black, span.font-semibold {
-  font-weight: 500 !important; /* Mute headings, buttons, and bold sections from heavy/black to sophisticated medium (500) */
-}
-
-/* Custom Heading Specificity Overrides to bypass global 500 muting and force elegant thin weight */
-h2.team-heading-override,
-h3.services-heading-override {
-  font-weight: 100 !important;
-}
-
-/* ── ULTRA-PREMIUM RESPONSIVE OVERRIDES (100% DEVICE COMPATIBILITY WITH PRESERVED ALIGNMENTS) ── */
-
-/* 2. Responsive scaling for tablets and laptops (max-width: 1024px) */
-@media (max-width: 1024px) {
-  .container {
-    padding: 0 30px !important; /* Comfortably shrinks outer borders */
-  }
-  
-  h1, [class*="hero-title"], .contact-hero-title {
-    font-size: clamp(2.5rem, 7vw, 3.8rem) !important;
-    line-height: 1.15 !important;
-  }
-  
-  h2, [class*="title-v4"] {
-    font-size: clamp(2rem, 5vw, 2.8rem) !important;
-    line-height: 1.2 !important;
-  }
-}
-
-/* 3. Responsive overrides for mobile and smaller devices (max-width: 768px) */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 20px !important; /* Optimizes content space on narrow screens */
-  }
-
-  /* Safely stack grid layout elements without changing individual selector stylings */
-  .footer-directory-cols,
-  .contact-container,
-  .contact-real-form .form-row {
-    grid-template-columns: 1fr !important;
-    gap: 30px !important;
-  }
-
-  /* Metric counters stacking for small screens */
-  .cta-metrics-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    text-align: center;
-    justify-content: center;
-  }
-  
-  .metric-card {
-    align-items: center !important;
-  }
-  
-  /* Font size scale downs to prevent viewport clippings */
-  h1, [class*="hero-title"], .contact-hero-title {
-    font-size: clamp(2rem, 9vw, 2.8rem) !important;
-  }
-  
-  h2, [class*="title-v4"] {
-    font-size: clamp(1.8rem, 7vw, 2.2rem) !important;
-  }
-  
-  h3, [class*="card-title"] {
-    font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
-  }
-
-  /* Adjust section padding for mobile comfort */
-  [class*="outer-section"], .contact-page-wrapper {
-    padding-top: 100px !important;
-    padding-bottom: 60px !important;
-  }
-}
-
-/* 4. Micro-mobile optimization (max-width: 480px) */
-@media (max-width: 480px) {
-  .container {
-    padding: 0 16px !important;
-  }
-
-  /* Button sizes optimization */
-  .btn-primary, .btn-outline, .contact-submit-btn {
-    width: 100% !important;
-    padding: 14px 24px !important;
-    font-size: 0.85rem !important;
-  }
-}
-
-/* ── 5. ULTRA-WIDE IMAC AND HIGH-RESOLUTION MONITORS (1920px to 2560px+) ── */
-@media (min-width: 1920px) {
-  /* Central containers expansion for widescreen breathing room */
-  .container, 
-  .about-page-root .container, 
-  .footer-container,
-  .insights-container {
-    max-width: 1680px !important;
-    padding: 0 60px !important;
-  }
-
-  /* Extended navigation bar structure */
-  .navbar {
-    max-width: 1440px !important;
-    padding: 18px 50px !important;
-  }
-  
-  .navbar.navbar--contracted {
-    max-width: 200px !important;
-    padding: 10px 24px !important;
-    border-radius: 40px !important;
-  }
-  
-  .navbar-link {
-    font-size: 0.95rem !important;
-  }
-
-  /* Global section scaling */
-  [class*="outer-section"], 
-  .footer-luxury, 
-  .cta-outer-section {
-    padding-top: 160px !important;
-    padding-bottom: 120px !important;
-  }
-
-  /* Massive Hero Screen scaling */
-  .headline {
-    font-size: clamp(4.5rem, 6vw, 6rem) !important;
-    max-width: 650px !important;
-  }
-  
-  .sidebar-info {
-    font-size: 1.1rem !important;
-    max-width: 420px !important;
-  }
-
-  .category-label {
-    font-size: clamp(2.8rem, 4vw, 3.8rem) !important;
-  }
-
-  /* Universal typographic scaling */
-  h1, [class*="hero-title"], .about-title {
-    font-size: 5.5rem !important;
-  }
-
-  h2, [class*="title-v4"], .section-title-dark {
-    font-size: 3.8rem !important;
-  }
-
-  h3, [class*="card-title"], .value-card h3 {
-    font-size: 2.2rem !important;
-  }
-
-  p, [class*="desc-v4"], .about-lead, .founder-text-dark, .value-card p {
-    font-size: 1.15rem !important;
-  }
-  
-  .connect-details li, .footer-col ul li a {
-    font-size: 1rem !important;
-  }
-
-  /* SERVICES KINETIC SLIDER OVERRIDES */
-  .services-typographic-canvas {
-    max-width: 1560px !important;
-    height: 680px !important;
-  }
-
-  .services-section h3 {
-    font-size: 8rem !important;
-  }
-
-  .services-section p {
-    font-size: 1.3rem !important;
-    max-width: 850px !important;
-  }
-
-  /* INSIGHTS HOMEPAGE STRETCH OVERRIDES */
-  .insights-grid {
-    gap: 3.5rem !important;
-  }
-
-  .insight-heading {
-    font-size: 1.55rem !important;
-  }
-
-  .insight-meta {
-    font-size: 0.9rem !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .explore-button {
-    width: 20rem !important;
-    padding: 1.25rem 0 !important;
-    font-size: 0.95rem !important;
-  }
-
-  /* TEAM SLIDEOVER OVERRIDES */
-  .team-section h2 {
-    font-size: 5rem !important;
-  }
-
-  .team-section p {
-    font-size: 1.3rem !important;
-    max-width: 600px !important;
-  }
-}
-
-@media (min-width: 2560px) {
-  /* Ultra-wide container boundaries */
-  .container, 
-  .about-page-root .container, 
-  .footer-container,
-  .insights-container {
-    max-width: 2200px !important;
-    padding: 0 80px !important;
-  }
-
-  /* Cinematic floating navbar */
-  .navbar {
-    max-width: 1920px !important;
-    padding: 22px 60px !important;
-  }
-
-  .navbar-link {
-    font-size: 1.05rem !important;
-  }
-
-  /* Cinematic padding scales */
-  [class*="outer-section"], 
-  .footer-luxury, 
-  .cta-outer-section {
-    padding-top: 220px !important;
-    padding-bottom: 180px !important;
-  }
-
-  /* Ultra-wide Hero scale */
-  .headline {
-    font-size: clamp(6rem, 6vw, 8rem) !important;
-    max-width: 850px !important;
-  }
-
-  .sidebar-info {
-    font-size: 1.3rem !important;
-    max-width: 550px !important;
-  }
-
-  .category-label {
-    font-size: clamp(3.8rem, 4vw, 5rem) !important;
-  }
-
-  /* High-resolution typographical boosts */
-  h1, [class*="hero-title"], .about-title {
-    font-size: 7.5rem !important;
-  }
-
-  h2, [class*="title-v4"], .section-title-dark {
-    font-size: 5.2rem !important;
-  }
-
-  h3, [class*="card-title"], .value-card h3 {
-    font-size: 2.8rem !important;
-  }
-
-  p, [class*="desc-v4"], .about-lead, .founder-text-dark, .value-card p {
-    font-size: 1.35rem !important;
-  }
-
-  .connect-details li, .footer-col ul li a {
-    font-size: 1.15rem !important;
-  }
-
-  /* SERVICES KINETIC SLIDER OVERRIDES */
-  .services-typographic-canvas {
-    max-width: 1980px !important;
-    height: 850px !important;
-  }
-
-  .services-section h3 {
-    font-size: 10.5rem !important;
-  }
-
-  .services-section p {
-    font-size: 1.6rem !important;
-    max-width: 1100px !important;
-  }
-
-  /* INSIGHTS HOMEPAGE STRETCH OVERRIDES */
-  .insights-grid {
-    gap: 4.5rem !important;
-  }
-
-  .insight-heading {
-    font-size: 2rem !important;
-  }
-
-  .insight-meta {
-    font-size: 1.05rem !important;
-    margin-bottom: 1.2rem !important;
-  }
-
-  .explore-button {
-    width: 24rem !important;
-    padding: 1.5rem 0 !important;
-    font-size: 1.15rem !important;
-  }
-
-  /* TEAM SLIDEOVER OVERRIDES */
-  .team-section h2 {
-    font-size: 6.5rem !important;
-  }
-
-  .team-section p {
-    font-size: 1.6rem !important;
-    max-width: 800px !important;
-  }
-}
-
-/* ==========================================================================
+ .container {
+   max-width: 1320px;
+   margin: 0 auto;
+   padding: 0 40px;
+ }
+
+ /* Modern Curve Section Separators */
+ .sep-curve-top-surface {
+   position: relative;
+   background: var(--bg-surface);
+   margin-top: -100px;
+   padding-top: 150px;
+ }
+
+ .sep-curve-top-surface::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100px;
+   background-color: var(--bg-surface);
+   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+   mask-size: 100% 100%;
+   -webkit-mask-size: 100% 100%;
+   transform: translateY(-98%);
+   z-index: 10;
+ }
+
+ .sep-curve-bottom-surface {
+   position: relative;
+   background: var(--bg-surface);
+   padding-bottom: 150px;
+ }
+
+ .sep-curve-bottom-surface::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 100px;
+   background-color: var(--bg-surface);
+   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+   mask-size: 100% 100%;
+   -webkit-mask-size: 100% 100%;
+   transform: translateY(98%);
+   z-index: 10;
+ }
+
+ .sep-curve-top-dark {
+   position: relative;
+   background: var(--bg-dark);
+   margin-top: -100px;
+   padding-top: 150px;
+ }
+
+ .sep-curve-top-dark::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100px;
+   background-color: var(--bg-dark);
+   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z' /%3E%3C/svg%3E") no-repeat bottom;
+   mask-size: 100% 100%;
+   -webkit-mask-size: 100% 100%;
+   transform: translateY(-98%);
+   z-index: 10;
+ }
+
+ .sep-curve-bottom-dark {
+   position: relative;
+   background: var(--bg-dark);
+   padding-bottom: 200px;
+ }
+
+ .sep-curve-bottom-dark::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 100px;
+   background-color: var(--bg-dark);
+   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C480,100 960,100 1440,0 L1440,0 L0,0 Z' /%3E%3C/svg%3E") no-repeat top;
+   mask-size: 100% 100%;
+   -webkit-mask-size: 100% 100%;
+   transform: translateY(98%);
+   z-index: 10;
+ }
+
+ /* Mobile Reset */
+ @media (max-width: 768px) {
+   [class*="sep-"] {
+     clip-path: none !important;
+     margin-top: 0 !important;
+     padding-top: 80px !important;
+     padding-bottom: 80px !important;
+   }
+ }
+
+ /* Buttons */
+ .btn-primary {
+   background: var(--primary);
+   color: #000;
+   padding: 16px 40px;
+   font-weight: 700;
+   border: none;
+   font-family: var(--font-heading);
+   cursor: pointer;
+   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   text-transform: uppercase;
+   font-size: 0.9rem;
+   letter-spacing: 1px;
+ }
+
+ .btn-primary:hover {
+   filter: brightness(1.1);
+   box-shadow: 0 15px 30px var(--primary-glow);
+   transform: translateY(-3px);
+ }
+
+ .btn-outline {
+   background: transparent;
+   color: var(--text-main);
+   padding: 16px 40px;
+   font-weight: 600;
+   border: 1px solid var(--border-dim);
+   font-family: var(--font-heading);
+   cursor: pointer;
+   transition: all 0.3s ease;
+   text-transform: uppercase;
+   font-size: 0.9rem;
+ }
+
+ .btn-outline:hover {
+   border-color: var(--primary);
+   color: var(--primary);
+ }
+
+ .text-gradient {
+   background: linear-gradient(135deg, #fff 40%, var(--primary) 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+ }
+
+ .section-label {
+   color: var(--primary);
+   font-size: 0.85rem;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+   margin-bottom: 16px;
+   display: block;
+ }
+
+ .noise-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 9999;
+   pointer-events: none;
+   opacity: 0.025;
+   /* Even more subtle grain */
+   background: var(--noise);
+ }
+
+ /* Sleek Typography Muting - Globally Muted Font Weights for Minimalist Tech Aesthetic */
+ * {
+   font-weight: 300 !important;
+   /* Mute normal/body texts to clean light weights */
+ }
+
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ strong,
+ b,
+ th,
+ [class*="title"],
+ [class*="heading"],
+ [class*="number"],
+ [class*="metric-number"],
+ .navbar-link,
+ .nav-item,
+ .navbar-brand-wrapper,
+ button,
+ .btn-primary,
+ .btn-outline,
+ span.font-bold,
+ span.font-black,
+ span.font-semibold {
+   font-weight: 500 !important;
+   /* Mute headings, buttons, and bold sections from heavy/black to sophisticated medium (500) */
+ }
+
+ /* Custom Heading Specificity Overrides to bypass global 500 muting and force elegant thin weight */
+ h2.team-heading-override,
+ h3.services-heading-override {
+   font-weight: 100 !important;
+ }
+
+ /* ── ULTRA-PREMIUM RESPONSIVE OVERRIDES (100% DEVICE COMPATIBILITY WITH PRESERVED ALIGNMENTS) ── */
+
+ /* 2. Responsive scaling for tablets and laptops (max-width: 1024px) */
+ @media (max-width: 1024px) {
+   .container {
+     padding: 0 30px !important;
+     /* Comfortably shrinks outer borders */
+   }
+
+   h1,
+   [class*="hero-title"],
+   .contact-hero-title {
+     font-size: clamp(2.5rem, 7vw, 3.8rem) !important;
+     line-height: 1.15 !important;
+   }
+
+   h2,
+   [class*="title-v4"] {
+     font-size: clamp(2rem, 5vw, 2.8rem) !important;
+     line-height: 1.2 !important;
+   }
+ }
+
+ /* 3. Responsive overrides for mobile and smaller devices (max-width: 768px) */
+ @media (max-width: 768px) {
+   .container {
+     padding: 0 20px !important;
+     /* Optimizes content space on narrow screens */
+   }
+
+   /* Safely stack grid layout elements without changing individual selector stylings */
+   .footer-directory-cols,
+   .contact-container,
+   .contact-real-form .form-row {
+     grid-template-columns: 1fr !important;
+     gap: 30px !important;
+   }
+
+   /* Metric counters stacking for small screens */
+   .cta-metrics-grid {
+     grid-template-columns: 1fr !important;
+     gap: 24px !important;
+     text-align: center;
+     justify-content: center;
+   }
+
+   .metric-card {
+     align-items: center !important;
+   }
+
+   /* Font size scale downs to prevent viewport clippings */
+   h1,
+   [class*="hero-title"],
+   .contact-hero-title {
+     font-size: clamp(2rem, 9vw, 2.8rem) !important;
+   }
+
+   h2,
+   [class*="title-v4"] {
+     font-size: clamp(1.8rem, 7vw, 2.2rem) !important;
+   }
+
+   h3,
+   [class*="card-title"] {
+     font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+   }
+
+   /* Adjust section padding for mobile comfort */
+   [class*="outer-section"],
+   .contact-page-wrapper {
+     padding-top: 100px !important;
+     padding-bottom: 60px !important;
+   }
+ }
+
+ /* 4. Micro-mobile optimization (max-width: 480px) */
+ @media (max-width: 480px) {
+   .container {
+     padding: 0 16px !important;
+   }
+
+   /* Button sizes optimization */
+   .btn-primary,
+   .btn-outline,
+   .contact-submit-btn {
+     width: 100% !important;
+     padding: 14px 24px !important;
+     font-size: 0.85rem !important;
+   }
+ }
+
+ /* ── 5. ULTRA-WIDE IMAC AND HIGH-RESOLUTION MONITORS (1920px to 2560px+) ── */
+ @media (min-width: 1920px) {
+
+   /* Central containers expansion for widescreen breathing room */
+   .container,
+   .about-page-root .container,
+   .footer-container,
+   .insights-container {
+     max-width: 1680px !important;
+     padding: 0 60px !important;
+   }
+
+   /* Extended navigation bar structure */
+   .navbar {
+     max-width: 1440px !important;
+     padding: 18px 50px !important;
+   }
+
+   .navbar.navbar--contracted {
+     max-width: 200px !important;
+     padding: 10px 24px !important;
+     border-radius: 40px !important;
+   }
+
+   .navbar-link {
+     font-size: 0.95rem !important;
+   }
+
+   /* Global section scaling */
+   [class*="outer-section"],
+   .footer-luxury,
+   .cta-outer-section {
+     padding-top: 160px !important;
+     padding-bottom: 120px !important;
+   }
+
+   /* Massive Hero Screen scaling */
+   .headline {
+     font-size: clamp(4.5rem, 6vw, 6rem) !important;
+     max-width: 650px !important;
+   }
+
+   .sidebar-info {
+     font-size: 1.1rem !important;
+     max-width: 420px !important;
+   }
+
+   .category-label {
+     font-size: clamp(2.8rem, 4vw, 3.8rem) !important;
+   }
+
+   /* Universal typographic scaling */
+   h1,
+   [class*="hero-title"],
+   .about-title {
+     font-size: 5.5rem !important;
+   }
+
+   h2,
+   [class*="title-v4"],
+   .section-title-dark {
+     font-size: 3.8rem !important;
+   }
+
+   h3,
+   [class*="card-title"],
+   .value-card h3 {
+     font-size: 2.2rem !important;
+   }
+
+   p,
+   [class*="desc-v4"],
+   .about-lead,
+   .founder-text-dark,
+   .value-card p {
+     font-size: 1.15rem !important;
+   }
+
+   .connect-details li,
+   .footer-col ul li a {
+     font-size: 1rem !important;
+   }
+
+   /* SERVICES KINETIC SLIDER OVERRIDES */
+   .services-typographic-canvas {
+     max-width: 1560px !important;
+     height: 680px !important;
+   }
+
+   .services-section h3 {
+     font-size: 8rem !important;
+   }
+
+   .services-section p {
+     font-size: 1.3rem !important;
+     max-width: 850px !important;
+   }
+
+   /* INSIGHTS HOMEPAGE STRETCH OVERRIDES */
+   .insights-grid {
+     gap: 3.5rem !important;
+   }
+
+   .insight-heading {
+     font-size: 1.55rem !important;
+   }
+
+   .insight-meta {
+     font-size: 0.9rem !important;
+     margin-bottom: 1rem !important;
+   }
+
+   .explore-button {
+     width: 20rem !important;
+     padding: 1.25rem 0 !important;
+     font-size: 0.95rem !important;
+   }
+
+   /* TEAM SLIDEOVER OVERRIDES */
+   .team-section h2 {
+     font-size: 5rem !important;
+   }
+
+   .team-section p {
+     font-size: 1.3rem !important;
+     max-width: 600px !important;
+   }
+ }
+
+ @media (min-width: 2560px) {
+
+   /* Ultra-wide container boundaries */
+   .container,
+   .about-page-root .container,
+   .footer-container,
+   .insights-container {
+     max-width: 2200px !important;
+     padding: 0 80px !important;
+   }
+
+   /* Cinematic floating navbar */
+   .navbar {
+     max-width: 1920px !important;
+     padding: 22px 60px !important;
+   }
+
+   .navbar-link {
+     font-size: 1.05rem !important;
+   }
+
+   /* Cinematic padding scales */
+   [class*="outer-section"],
+   .footer-luxury,
+   .cta-outer-section {
+     padding-top: 220px !important;
+     padding-bottom: 180px !important;
+   }
+
+   /* Ultra-wide Hero scale */
+   .headline {
+     font-size: clamp(6rem, 6vw, 8rem) !important;
+     max-width: 850px !important;
+   }
+
+   .sidebar-info {
+     font-size: 1.3rem !important;
+     max-width: 550px !important;
+   }
+
+   .category-label {
+     font-size: clamp(3.8rem, 4vw, 5rem) !important;
+   }
+
+   /* High-resolution typographical boosts */
+   h1,
+   [class*="hero-title"],
+   .about-title {
+     font-size: 7.5rem !important;
+   }
+
+   h2,
+   [class*="title-v4"],
+   .section-title-dark {
+     font-size: 5.2rem !important;
+   }
+
+   h3,
+   [class*="card-title"],
+   .value-card h3 {
+     font-size: 2.8rem !important;
+   }
+
+   p,
+   [class*="desc-v4"],
+   .about-lead,
+   .founder-text-dark,
+   .value-card p {
+     font-size: 1.35rem !important;
+   }
+
+   .connect-details li,
+   .footer-col ul li a {
+     font-size: 1.15rem !important;
+   }
+
+   /* SERVICES KINETIC SLIDER OVERRIDES */
+   .services-typographic-canvas {
+     max-width: 1980px !important;
+     height: 850px !important;
+   }
+
+   .services-section h3 {
+     font-size: 10.5rem !important;
+   }
+
+   .services-section p {
+     font-size: 1.6rem !important;
+     max-width: 1100px !important;
+   }
+
+   /* INSIGHTS HOMEPAGE STRETCH OVERRIDES */
+   .insights-grid {
+     gap: 4.5rem !important;
+   }
+
+   .insight-heading {
+     font-size: 2rem !important;
+   }
+
+   .insight-meta {
+     font-size: 1.05rem !important;
+     margin-bottom: 1.2rem !important;
+   }
+
+   .explore-button {
+     width: 24rem !important;
+     padding: 1.5rem 0 !important;
+     font-size: 1.15rem !important;
+   }
+
+   /* TEAM SLIDEOVER OVERRIDES */
+   .team-section h2 {
+     font-size: 6.5rem !important;
+   }
+
+   .team-section p {
+     font-size: 1.6rem !important;
+     max-width: 800px !important;
+   }
+ }
+
+ /* ==========================================================================
    ── ADDITIONAL DEVICE RESPONSIVENESS OVERRIDES ──
    ========================================================================== */
 
-/* 1. Height-based laptop scaling (e.g. 1892x882, 1440x900, or standard 1366x768) */
-@media (max-height: 950px) {
-  .services-typographic-canvas {
-    height: 360px !important;
-  }
-  .services-typographic-canvas > div {
-    gap: 1.25rem !important; /* tighter layout spacing */
-  }
-  .services-heading-override {
-    font-size: clamp(2.2rem, 5vw, 4.5rem) !important;
-  }
-  .services-section p {
-    font-size: 0.9rem !important;
-    max-width: 580px !important;
-    line-height: 1.5 !important;
-  }
-}
+ /* 1. Height-based laptop scaling (e.g. 1892x882, 1440x900, or standard 1366x768) */
+ @media (max-height: 950px) {
+   .services-typographic-canvas {
+     height: 360px !important;
+   }
 
-/* 2. iPhone 16 Pro Max and general high-end smartphone viewports (max-width: 480px) */
-@media (max-width: 480px) {
-  /* Prevent horizontal layout shifts on narrow, tall modern mobile devices */
-  body {
-    overflow-x: hidden !important;
-  }
+   .services-typographic-canvas>div {
+     gap: 1.25rem !important;
+     /* tighter layout spacing */
+   }
 
-  /* RevealBanner text scale down on mobile viewports to prevent wrapping Build/Future */
-  .mix-blend-difference {
-    font-size: clamp(2.2rem, 11vw, 4.2rem) !important;
-  }
-  
-  /* Services typographic layout adjustments for small mobile screens */
-  .services-typographic-canvas {
-    height: 300px !important;
-    padding: 0 10px !important;
-  }
-  
-  .services-heading-override {
-    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
-    margin-bottom: 8px !important;
-  }
-  
-  .services-section p {
-    font-size: 0.75rem !important;
-    line-height: 1.4 !important;
-    max-width: 280px !important;
-  }
-  
-  /* Centering adjustment for team images */
-  .team-section {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-}
+   .services-heading-override {
+     font-size: clamp(2.2rem, 5vw, 4.5rem) !important;
+   }
+
+   .services-section p {
+     font-size: 0.9rem !important;
+     max-width: 580px !important;
+     line-height: 1.5 !important;
+   }
+ }
+
+ /* 2. iPhone 16 Pro Max and general high-end smartphone viewports (max-width: 480px) */
+ @media (max-width: 480px) {
+
+   /* Prevent horizontal layout shifts on narrow, tall modern mobile devices */
+   body {
+     overflow-x: hidden !important;
+   }
+
+   /* RevealBanner text scale down on mobile viewports to prevent wrapping Build/Future */
+   .mix-blend-difference {
+     font-size: clamp(2.2rem, 11vw, 4.2rem) !important;
+   }
+
+   /* Services typographic layout adjustments for small mobile screens */
+   .services-typographic-canvas {
+     height: 300px !important;
+     padding: 0 10px !important;
+   }
+
+   .services-heading-override {
+     font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+     margin-bottom: 8px !important;
+   }
+
+   .services-section p {
+     font-size: 0.75rem !important;
+     line-height: 1.4 !important;
+     max-width: 280px !important;
+   }
+
+   /* Centering adjustment for team images */
+   .team-section {
+     padding-left: 0 !important;
+     padding-right: 0 !important;
+   }
+ }

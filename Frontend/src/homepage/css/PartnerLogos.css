@@ -1,0 +1,82 @@
+.partner-section {
+  padding: 80px 0;
+  background: #0c0c0b; /* Matches main theme background */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.partner-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.partner-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 45px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.partner-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  flex-wrap: wrap;
+}
+
+.partner-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo-item img {
+  height: 80px; /* Increased height from 55px */
+  max-width: 250px; /* Increased max-width from 200px */
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo-item.force-white img {
+  filter: brightness(0) invert(1); /* Forces UXHub to be solid white */
+}
+
+.partner-logo-item img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .partner-flex {
+    gap: 60px;
+  }
+  
+  .partner-logo-item img {
+    height: 65px;
+  }
+}
+
+@media (max-width: 768px) {
+  .partner-section {
+    padding: 50px 0;
+  }
+
+  .partner-flex {
+    gap: 40px;
+  }
+  
+  .partner-logo-item img {
+    height: 50px;
+  }
+}
+

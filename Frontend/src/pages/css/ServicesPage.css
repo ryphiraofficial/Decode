@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 180px 0 100px 0; /* Extra top padding to clear the floating navbar */
+  padding: 180px 0 100px 0;
   background: var(--dark-bg);
   overflow: hidden;
   border-bottom: 1px solid var(--card-border-dark);
@@ -155,8 +155,13 @@
   background: rgba(0, 0, 0, 0.04);
 }
 
-.sp-white-bg-line-left { left: 8%; }
-.sp-white-bg-line-right { right: 8%; }
+.sp-white-bg-line-left {
+  left: 8%;
+}
+
+.sp-white-bg-line-right {
+  right: 8%;
+}
 
 /* Containers */
 .ap-container {
@@ -171,6 +176,7 @@
   .ap-container {
     padding: 0 24px;
   }
+
   .sp-white-bg-line-left,
   .sp-white-bg-line-right {
     display: none;
@@ -218,10 +224,25 @@
   margin-bottom: 20px;
 }
 
-.sp-text-dark { color: #000000 !important; }
-.sp-text-light { color: #ffffff !important; }
-.sp-text-gray-dark { color: #666666 !important; font-size: 1.15rem; font-weight: 500; }
-.sp-text-gray-light { color: #a1a1aa !important; font-size: 1.15rem; font-weight: 500; }
+.sp-text-dark {
+  color: #000000 !important;
+}
+
+.sp-text-light {
+  color: #ffffff !important;
+}
+
+.sp-text-gray-dark {
+  color: #666666 !important;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.sp-text-gray-light {
+  color: #a1a1aa !important;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
 
 /* Grid System */
 .ap-grid {
@@ -252,7 +273,7 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .ap-card-icon {
@@ -290,7 +311,6 @@
 }
 
 .sp-card-dark:hover {
-  transform: translateY(-8px);
   border-color: rgba(0, 255, 65, 0.3);
   box-shadow: 0 20px 40px rgba(0, 255, 65, 0.05);
 }
@@ -313,7 +333,6 @@
 }
 
 .sp-card-white:hover {
-  transform: translateY(-8px);
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
   background: #ffffff;
@@ -419,9 +438,18 @@
   height: 10px;
   border-radius: 50%;
 }
-.sp-code-dot.red { background: #ff5f56; }
-.sp-code-dot.yellow { background: #ffbd2e; }
-.sp-code-dot.green { background: #27c93f; }
+
+.sp-code-dot.red {
+  background: #ff5f56;
+}
+
+.sp-code-dot.yellow {
+  background: #ffbd2e;
+}
+
+.sp-code-dot.green {
+  background: #27c93f;
+}
 
 .sp-code-title {
   position: absolute;
@@ -451,9 +479,11 @@
 .sp-code-highlight {
   color: var(--neon-green);
 }
+
 .sp-code-tag {
   color: #ec4899;
 }
+
 .sp-code-keyword {
   color: #3b82f6;
 }
@@ -485,7 +515,7 @@
   font-family: var(--font-serif);
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -495,7 +525,6 @@
   border-color: var(--neon-green);
   background: #ffffff;
   color: #000000;
-  transform: translateY(-5px);
   box-shadow: 0 15px 30px var(--neon-glow);
 }
 
@@ -514,12 +543,11 @@
   border: 1px solid var(--card-border-dark);
   padding: 30px 50px;
   border-radius: 24px;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .sp-process-item:hover {
   border-color: rgba(0, 255, 65, 0.25);
-  transform: translateX(10px);
   background: rgba(10, 10, 10, 0.8);
 }
 
@@ -550,10 +578,12 @@
   .sp-process-item {
     padding: 24px 30px;
   }
+
   .sp-process-num {
     margin-right: 24px;
     font-size: 1.8rem;
   }
+
   .sp-process-title {
     font-size: 1.1rem;
   }
@@ -566,14 +596,13 @@
   border-radius: 28px;
   padding: 50px;
   color: #000000;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
 .sp-case-card:hover {
-  transform: translateY(-8px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
   border-color: rgba(0, 0, 0, 0.15);
 }
@@ -618,7 +647,7 @@
   border: 1px solid var(--card-border-dark);
   padding: 40px;
   border-radius: 24px;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -626,7 +655,6 @@
 
 .sp-why-card:hover {
   border-color: rgba(0, 255, 65, 0.2);
-  transform: translateY(-5px);
   background: rgba(10, 10, 10, 0.8);
 }
 
@@ -814,4 +842,100 @@
   background: #00e63a !important;
   box-shadow: 0 15px 40px rgba(0, 255, 65, 0.5);
   transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   ── SCROLL TRIGGERED TRANSITIONS & ENTRY ANIMATIONS ──
+   ========================================================================== */
+
+/* Base animation setup */
+.animate-on-scroll {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Hero Slide Up Animation on Load */
+.hero-slide-up {
+  transform: translateY(80px);
+  transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-slide-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide Left Animation */
+.slide-left {
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide Right Animation */
+.slide-right {
+  transform: translateX(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Up Animation */
+.fade-up {
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scale Up Animation */
+.scale-up {
+  transform: scale(0.95) translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scale-up.in-view {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* ==========================================================================
+   ── INTERACTIVE HOVER TRANSFORMS (Defined last to take precedence) ──
+   ========================================================================== */
+
+.sp-card-dark,
+.sp-card-white,
+.sp-tech-item,
+.sp-process-item,
+.sp-case-card,
+.sp-why-card {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+              background-color 0.4s, 
+              border-color 0.4s, 
+              box-shadow 0.4s;
+}
+
+.sp-card-dark.in-view:hover,
+.sp-card-white.in-view:hover,
+.sp-case-card.in-view:hover {
+  transform: translateY(-8px) !important;
+}
+
+.sp-tech-item.in-view:hover,
+.sp-why-card.in-view:hover {
+  transform: translateY(-5px) !important;
+}
+
+.sp-process-item.in-view:hover {
+  transform: translateX(10px) !important;
 }

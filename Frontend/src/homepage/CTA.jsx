@@ -109,7 +109,7 @@ const CTA = () => {
                             className="cta-btn-v4"
                             style={{ textDecoration: 'none' }}
                         >
-                            <span>Start a Project</span>
+                            <span>connect with us</span>
                             <svg className="cta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                                 <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>

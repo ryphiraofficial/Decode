@@ -28,6 +28,10 @@ const Hero = () => {
         '/profiles dcoode/rohit.jpg',
         '/profiles dcoode/nidhin.jpg',
         '/profiles dcoode/mridul.jpg',
+        // '/profiles dcoode/image1.png',
+        // '/profiles dcoode/image2.png',
+        // '/profiles dcoode/image3.png',
+        // '/profiles dcoode/image4.png'
     ];
 
     const colors = [
