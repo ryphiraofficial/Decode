@@ -112,7 +112,7 @@ const InsightDetailPage = () => {
             )}
 
             {/* Premium Call-to-Action Registration Button */}
-            {insight.id !== 1 && (
+            {insight.isRegisterOpen && (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}

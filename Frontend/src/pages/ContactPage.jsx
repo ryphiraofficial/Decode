@@ -18,6 +18,10 @@ const ContactPage = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [rating, setRating] = useState(5);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewText, setReviewText] = useState('');
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const officialEmail = import.meta.env.VITE_OFFICIAL_EMAIL || 'dcoodeofficial@gmail.com';
 
   const handleChange = (e) => {
@@ -31,8 +35,44 @@ const ContactPage = () => {
     setSubmitted(true);
   };
 
+  // ── Google Form Integration Config ──
+  // Replace these placeholders with your actual Google Form ID and entry IDs
+  const GOOGLE_FORM_ID = "YOUR_GOOGLE_FORM_ID"; 
+  const ENTRY_ID_RATING = "entry.RATING_FIELD_ID"; 
+  const ENTRY_ID_REVIEW = "entry.REVIEW_FIELD_ID"; 
+
+  const handleReviewSubmit = (e) => {
+    // We let the form action target the hidden iframe in the background
+    const clipboardContent = reviewText || "Excellent IT solutions and custom software development services in Kerala!";
+    
+    navigator.clipboard.writeText(clipboardContent)
+      .then(() => {
+        setReviewSubmitted(true);
+        // Submit form programmatically
+        document.getElementById("google-review-form").submit();
+        
+        setTimeout(() => {
+          window.open('https://maps.app.goo.gl/TBMZ6Fb9R7pX27WT9', '_blank');
+          setReviewSubmitted(false);
+          setReviewText('');
+        }, 3000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+        document.getElementById("google-review-form").submit();
+        window.open('https://maps.app.goo.gl/TBMZ6Fb9R7pX27WT9', '_blank');
+      });
+  };
+
   return (
     <div className="contact-page-wrapper">
+      {/* Hidden iframe to intercept Google Form submission redirect */}
+      <iframe 
+        name="hidden_iframe" 
+        id="hidden_iframe" 
+        style={{ display: 'none' }}
+      ></iframe>
+
       {/* Background Decorative Grid and Glow Elements */}
       <div className="contact-bg-grid" />
       <div className="contact-glow-sphere-1" />
@@ -93,6 +133,70 @@ const ContactPage = () => {
             <a href="https://linkedin.com/company/dcoode" target="_blank" rel="noopener noreferrer" className="social-link">LinkedIn</a>
             <a href="https://www.instagram.com/_dcoode_/" target="_blank" rel="noopener noreferrer" className="social-link">Instagram</a>
             <a href={`mailto:${officialEmail}`} className="social-link">Email ID</a>
+          </motion.div>
+
+          {/* Google Review Box Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="contact-review-box"
+          >
+            <h3 className="review-box-title">Rate Us on Google</h3>
+            <p className="review-box-subtitle">
+              Choose a rating, add a brief review, and hit submit to post it to our official Google listing.
+            </p>
+            
+            <form 
+              id="google-review-form"
+              action={`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`}
+              method="POST"
+              target="hidden_iframe"
+            >
+              {/* Invisible inputs holding the form state values */}
+              <input type="hidden" name={ENTRY_ID_RATING} value={`${rating} Stars`} />
+              <input type="hidden" name={ENTRY_ID_REVIEW} value={reviewText} />
+
+              <div className="star-rating-wrapper">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    className={`star-btn ${(hoverRating || rating) >= star ? 'active' : ''}`}
+                    onClick={() => setRating(star)}
+                    onMouseEnter={() => setHoverRating(star)}
+                    onMouseLeave={() => setHoverRating(0)}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+
+              <textarea
+                className="review-textarea"
+                placeholder="Write a brief review (your review text will copy automatically)..."
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                rows="3"
+              />
+
+              <button 
+                type="button" 
+                className="review-submit-btn" 
+                onClick={handleReviewSubmit}
+              >
+                <span>Submit to Google Reviews</span>
+                <svg className="review-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </button>
+            </form>
+
+            {reviewSubmitted && (
+              <p className="review-success-msg">
+                ✨ Review saved & copied to clipboard! Opening Google Reviews tab. Just paste (Ctrl+V) and post it!
+              </p>
+            )}
           </motion.div>
         </div>
 

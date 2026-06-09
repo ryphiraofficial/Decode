@@ -160,13 +160,14 @@
 
 .seo-hero-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    color: rgba(0, 0, 0, 0.55);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: rgba(0, 0, 0, 0.45);
     text-transform: uppercase;
     margin: 0;
     line-height: 1.4;
+    display: inline-block;
 }
 
 .headline {
@@ -260,10 +261,36 @@
         /* Move brand info above headline if desired, or keep as is */
     }
 
+    .headline-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+        gap: 8px;
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .seo-hero-title {
+        font-size: 10px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.08em !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+        color: rgba(0, 0, 0, 0.45) !important;
+        margin: 0 auto 4px auto !important;
+        max-width: 290px !important;
+        display: block !important;
+        text-transform: uppercase !important;
+    }
+
     .headline {
-        font-size: 2.2rem;
+        font-size: clamp(2.8rem, 11vw, 3.4rem) !important;
         text-align: center;
         max-width: 100%;
+        line-height: 1.1;
+        margin: 0 auto;
     }
 
     .image-container {

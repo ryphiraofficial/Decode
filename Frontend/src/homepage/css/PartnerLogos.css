@@ -1,6 +1,6 @@
 .partner-section {
   padding: 80px 0;
-  background: #0c0c0b; /* Matches main theme background */
+  background: #1f1f1e; /* Matches main theme background */
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -10,7 +10,7 @@
 
 .partner-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
   padding: 0 40px;
@@ -26,57 +26,67 @@
   font-weight: 700;
 }
 
-.partner-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-  flex-wrap: wrap;
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 32px;
 }
 
 .partner-logo-item {
+  background: transparent;
+  border-radius: 0;
+  height: 75px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: none;
   transition: transform 0.3s ease;
+  box-sizing: border-box;
 }
 
 .partner-logo-item img {
-  height: 80px; /* Increased height from 55px */
-  max-width: 250px; /* Increased max-width from 200px */
+  height: 100%;
+  max-width: 100%;
+  width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
-.partner-logo-item.force-white img {
-  filter: brightness(0) invert(1); /* Forces UXHub to be solid white */
-}
-
-.partner-logo-item img:hover {
-  transform: scale(1.05);
+.partner-logo-item:hover {
+  transform: scale(1.08);
+  background: transparent;
 }
 
 @media (max-width: 1024px) {
-  .partner-flex {
-    gap: 60px;
+  .partner-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
   }
   
-  .partner-logo-item img {
-    height: 65px;
+  .partner-logo-item {
+    height: 50px;
+    padding: 0;
   }
 }
 
 @media (max-width: 768px) {
   .partner-section {
-    padding: 50px 0;
+    padding: 48px 0;
   }
 
-  .partner-flex {
-    gap: 40px;
+  .partner-container {
+    padding: 0 24px;
+  }
+
+  .partner-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
   
-  .partner-logo-item img {
-    height: 50px;
+  .partner-logo-item {
+    height: 40px;
+    padding: 0;
   }
 }
 
