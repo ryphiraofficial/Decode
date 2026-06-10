@@ -53,8 +53,8 @@ const Footer = () => {
             <ul>
               <li><a href="mailto:dcoodeofficial@gmail.com">Partnership</a></li>
               <li><Link to="/about">Awards and Recognitions</Link></li>
-              <li><Link to="/insights">Insights</Link></li>
-              <li><Link to="/insights">Blogs</Link></li>
+              <li><Link to="/blog">Insights</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
               <li><Link to="/about">Resource Augmentation</Link></li>
               <li><Link to="/about">Testimonials</Link></li>
               <li><Link to="/about">Our Clients</Link></li>

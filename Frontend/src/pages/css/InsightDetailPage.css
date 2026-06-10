@@ -98,18 +98,32 @@
   height: 16px;
 }
 
-/* Editorial split structure */
-.editorial-split-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  align-items: start;
+/* Editorial flow text-wrap structure */
+.editorial-flow-layout {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.editorial-flow-layout::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 @media (min-width: 1024px) {
-  .editorial-split-layout {
-    grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
+  .editorial-flow-layout .editorial-image-frame {
+    float: left;
+    width: 44%;
+    margin-right: 48px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .editorial-flow-layout .editorial-image-frame {
+    width: 100%;
+    margin-bottom: 32px;
   }
 }
 
@@ -214,10 +228,12 @@
 
 /* Coordinates details box - clean slate light layout */
 .editorial-coordinates-box {
+  clear: both;
   background: #fbfbfb;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   padding: 24px;
+  margin-top: 40px;
 }
 
 .coords-box-title {
@@ -339,6 +355,7 @@
 
 /* Register Now CTA Button Styles */
 .register-btn-wrapper {
+  clear: both;
   margin-top: 35px;
   width: 100%;
 }

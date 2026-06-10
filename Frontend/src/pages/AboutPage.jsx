@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import './css/AboutPage.css';
+import PartnerLogos from '../homepage/PartnerLogos';
 
 const MagneticMorphStack = () => {
     const containerRef = useRef(null);
@@ -161,7 +162,7 @@ const AboutPage = () => {
                         
                         <div className="ap-narrative-grid">
                             <p className="ap-narrative-p text-left">
-                                At Decoode, we believe that software is more than just code—it's the architecture of the modern world. Our team of senior engineers and architects work closely with global partners to build resilient, scalable, and beautiful digital ecosystems.
+                                At Dcoode, we believe that software is more than just code—it's the architecture of the modern world. Our team of senior engineers and architects work closely with global partners to build resilient, scalable, and beautiful digital ecosystems.
                             </p>
                             <p className="ap-narrative-p dim text-left">
                                 Founded by industry veterans, our studio operates on the principles of apprenticeship and technical excellence. We don't just deliver projects; we architect the future of how users interact with technology.
@@ -196,24 +197,27 @@ const AboutPage = () => {
                     
                     {/* <div className="ap-stats-row">
                         <div className="ap-stat-item text-center md:text-left">
-                            <span className="ap-stat-value">15+</span>
-                            <span className="ap-stat-label">Years Exp.</span>
+                            <span className="ap-stat-value">20+</span>
+                            <span className="ap-stat-label">Industrial Tracks</span>
                         </div>
                         <div className="ap-stat-item text-center md:text-left">
                             <span className="ap-stat-value">150+</span>
-                            <span className="ap-stat-label">Projects</span>
+                            <span className="ap-stat-label">Completed Projects</span>
                         </div>
                         <div className="ap-stat-item text-center md:text-left">
-                            <span className="ap-stat-value">100+</span>
-                            <span className="ap-stat-label">Alumni</span>
+                            <span className="ap-stat-value">500+</span>
+                            <span className="ap-stat-label">Trained Alumni</span>
                         </div>
                         <div className="ap-stat-item text-center md:text-left">
-                            <span className="ap-stat-value">05</span>
-                            <span className="ap-stat-label">Continents</span>
+                            <span className="ap-stat-value">15+</span>
+                            <span className="ap-stat-label">Expert Mentors</span>
                         </div>
                     </div> */}
                 </div>
             </section>
+
+            {/* Trusted Brands & Partners Section */}
+            <PartnerLogos />
         </div>
     );
 };

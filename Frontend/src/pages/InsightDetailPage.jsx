@@ -49,10 +49,10 @@ const InsightDetailPage = () => {
           </Link>
         </motion.div>
 
-        {/* Dynamic Split Editorial Layout */}
-        <div className="editorial-split-layout">
+        {/* Dynamic Flow Editorial Layout */}
+        <div className="editorial-flow-layout">
           
-          {/* Left Column: Premium Framed Poster */}
+          {/* Float-left Framed Poster */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,78 +67,68 @@ const InsightDetailPage = () => {
             <div className="frame-overlay" />
           </motion.div>
 
-          {/* Right Column: Dynamic Rich Typography */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-            className="editorial-content-panel"
-          >
-            <div className="editorial-meta-row">
-              <span className="editorial-tag">{insight.tag}</span>
-              <span className="editorial-dot">•</span>
-              <span className="editorial-date">{insight.date}</span>
-            </div>
+          <div className="editorial-meta-row">
+            <span className="editorial-tag">{insight.tag}</span>
+            <span className="editorial-dot">•</span>
+            <span className="editorial-date">{insight.date}</span>
+          </div>
 
-            <h1 className="editorial-title">{insight.title}</h1>
-            
-            {insight.subtitle && (
-              <p className="editorial-subtitle">{insight.subtitle}</p>
-            )}
+          <h1 className="editorial-title">{insight.title}</h1>
+          
+          {insight.subtitle && (
+            <p className="editorial-subtitle">{insight.subtitle}</p>
+          )}
 
-            <div className="editorial-separator" />
+          <div className="editorial-separator" />
 
-            <div className="editorial-body">
-              {insight.content.map((paragraph, index) => (
-                <p key={index} className="editorial-paragraph">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+          {insight.content.map((paragraph, index) => (
+            <p key={index} className="editorial-paragraph">
+              {paragraph}
+            </p>
+          ))}
 
-            {/* Event Specific coordinates */}
-            {insight.details && (
-              <div className="editorial-coordinates-box">
-                <h4 className="coords-box-title">Event Coordinates</h4>
-                <div className="coords-grid">
-                  <div className="coord-block">
-                    <span className="coord-block-label">Venue Location</span>
-                    <span className="coord-block-value">{insight.details.location}</span>
-                  </div>
-                  <div className="coord-block">
-                    <span className="coord-block-label">Date & Timing</span>
-                    <span className="coord-block-value">{insight.details.time}</span>
-                  </div>
-                  <div className="coord-block">
-                    <span className="coord-block-label">Contact us</span>
-                    <a href={`mailto:${insight.details.rsvp}`} className="coord-block-value link">{insight.details.rsvp}</a>
-                  </div>
+          {/* Event Specific coordinates */}
+          {insight.details && (
+            <div className="editorial-coordinates-box">
+              <h4 className="coords-box-title">Event Coordinates</h4>
+              <div className="coords-grid">
+                <div className="coord-block">
+                  <span className="coord-block-label">Venue Location</span>
+                  <span className="coord-block-value">{insight.details.location}</span>
+                </div>
+                <div className="coord-block">
+                  <span className="coord-block-label">Date & Timing</span>
+                  <span className="coord-block-value">{insight.details.time}</span>
+                </div>
+                <div className="coord-block">
+                  <span className="coord-block-label">Contact us</span>
+                  <a href={`mailto:${insight.details.rsvp}`} className="coord-block-value link">{insight.details.rsvp}</a>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
-            {/* Premium Call-to-Action Registration Button */}
-            {insight.isRegisterOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="register-btn-wrapper"
+          {/* Premium Call-to-Action Registration Button */}
+          {insight.isRegisterOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="register-btn-wrapper"
+            >
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLScOcMxqkd6pcrIvpM58byYUoeBKzYX8VAuqulYv5D6cZ74_kw/viewform" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="register-cta-btn"
               >
-                <a 
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScOcMxqkd6pcrIvpM58byYUoeBKzYX8VAuqulYv5D6cZ74_kw/viewform" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="register-cta-btn"
-                >
-                  <span>Register Now</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="register-icon">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </motion.div>
-            )}
-          </motion.div>
+                <span>Register Now</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="register-icon">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </motion.div>
+          )}
         </div>
 
         {/* Symmetrical Event Photo Gallery */}

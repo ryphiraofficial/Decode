@@ -319,15 +319,13 @@ const CourseDetail = () => {
                   <span className="option-badge">Mastery</span>
                 </div>
               </div>
-
               <Link 
                 to="/contact" 
                 className="enroll-btn"
-                state={{ message: `Hello Dcoode Studio! I am interested in enrolling in the ${title} (${activePlan} Month Track). Let's coordinate.` }}
+                state={{ message: `Hii I am interested in enrolling in the ${title} (${activePlan} Month Track).` }}
               >
                 Inquire for Enrollment
               </Link>
-
               <div className="enroll-perks">
                 <div className="enroll-perk-item">
                   <ShieldCheck size={18} className="enroll-perk-icon" />
@@ -349,5 +347,4 @@ const CourseDetail = () => {
     </div>
   );
 };
-
 export default CourseDetail;

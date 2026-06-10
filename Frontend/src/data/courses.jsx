@@ -14,7 +14,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b1a2d', 
     icon: <Monitor size={20} /> 
   },
@@ -26,7 +26,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#5c8a99', 
     icon: <LayoutTemplate size={20} /> 
   },
@@ -38,7 +38,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Active', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#eb7555', 
     icon: <Monitor size={20} /> 
   },
@@ -50,7 +50,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Open', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#4f91f7', 
     icon: <LayoutTemplate size={20} /> 
   },
@@ -62,7 +62,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b5668', 
     icon: <PieChart size={20} /> 
   },
@@ -74,7 +74,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Active', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#eb9b4a', 
     icon: <Activity size={20} /> 
   },
@@ -86,7 +86,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Open', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#4f91f7', 
     icon: <LineChart size={20} /> 
   },
@@ -98,7 +98,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b5668', 
     icon: <Activity size={20} /> 
   },
@@ -110,7 +110,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Active', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#5c8a99', 
     icon: <PieChart size={20} /> 
   },
@@ -122,7 +122,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b1a2d', 
     icon: <CheckCircle size={20} /> 
   },
@@ -134,7 +134,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Open', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#eb7555', 
     icon: <LayoutTemplate size={20} /> 
   },
@@ -146,7 +146,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Active', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#4f91f7', 
     icon: <LayoutTemplate size={20} /> 
   },
@@ -158,7 +158,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Open', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#5c8a99', 
     icon: <LayoutTemplate size={20} /> 
   },
@@ -170,7 +170,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b5668', 
     icon: <PieChart size={20} /> 
   },
@@ -182,7 +182,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Active', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b1a2d', 
     icon: <CheckCircle size={20} /> 
   },
@@ -194,7 +194,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#eb9b4a', 
     icon: <HardHat size={20} /> 
   },
@@ -206,7 +206,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Open', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#eb7555', 
     icon: <PenTool size={20} /> 
   },
@@ -218,7 +218,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'New Cohort', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#4f91f7', 
     icon: <Monitor size={20} /> 
   },
@@ -230,7 +230,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Active', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b5668', 
     icon: <HardHat size={20} /> 
   },
@@ -242,7 +242,7 @@ export const coursesData = [
     loc: 'Online / Hybrid', 
     type: '1, 3, 6 Months', 
     date: 'Open', 
-    company: 'Decoode', 
+    company: 'Dcoode', 
     logoColor: '#0b1a2d', 
     icon: <Monitor size={20} /> 
   },

@@ -173,8 +173,8 @@ const Hero = () => {
                     </div>
 
                     <div className="sidebar-info text-right md:text-left">
-                        {/* <div className="logo mb-4 uppercase">DECOODE<span className="dot">.</span></div> */}
-                        {/* <p className="font-bold mb-2">DECOODE STUDIO</p> */}
+                        {/* <div className="logo mb-4 uppercase">DCOODE<span className="dot">.</span></div> */}
+                        {/* <p className="font-bold mb-2">DCOODE STUDIO</p> */}
                         {/* <p>Architecting digital resilience through<br />bespoke engineering and visionary<br />design for future-forward brands.</p> */}
                     </div>
                 </div>

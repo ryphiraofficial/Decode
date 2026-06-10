@@ -227,7 +227,7 @@ const ServicesPage = () => {
                       &nbsp;&nbsp;<span className="sp-code-keyword">return</span> (<br />
                       &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="sp-code-keyword">SafeAreaView</span>&gt;<br />
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="sp-code-keyword">Animated.View</span> style={'{styles.glow}'}&gt;<br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="sp-code-keyword">DecoodeCoreMobileEngine</span> /&gt;<br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="sp-code-keyword">DcoodeCoreMobileEngine</span> /&gt;<br />
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="sp-code-keyword">Animated.View</span>&gt;<br />
                       &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="sp-code-keyword">SafeAreaView</span>&gt;<br />
                       &nbsp;&nbsp;);<br />

@@ -6,7 +6,7 @@ import "./css/Insights.css";
 import { insights } from "../data/insightsData.js";
 
 const InsightCard = ({ insight, index }) => (
-  <Link to={`/insight/${insight.id}`} style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
+  <Link to={`/blog/${insight.id}`} style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
     <motion.article
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -66,26 +66,12 @@ const Insights = () => {
 
         {/* Cinematic Grid Row */}
         <div className="insights-grid">
-          {insights.map((insight, index) => (
+          {insights.filter(item => [1, 2, 3].includes(item.id)).map((insight, index) => (
             <InsightCard key={insight.id} insight={insight} index={index} />
           ))}
         </div>
 
-        {/* Minimal Rectangle CTA matching video/screenshot outline design */}
-        <div className="insights-button-wrapper">
-          <Link to="/insights" style={{ textDecoration: 'none' }}>
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="explore-button"
-            >
-              <span>Explore all insights</span>
-              <ArrowRight className="explore-icon" />
-            </motion.div>
-          </Link>
-        </div>
+
 
       </div>
     </section>

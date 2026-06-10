@@ -10,8 +10,8 @@ import ServicesPage from './pages/ServicesPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import LegalPage from './pages/LegalPage.jsx';
-import InsightDetailPage from './pages/InsightDetailPage.jsx';
-import InsightsPage from './pages/InsightsPage.jsx';
+import BlogPage from './pages/BlogPage.jsx';
+import BlogDetailPage from './pages/BlogDetailPage.jsx';
 import Layout from './shared/Layout.jsx';
 
 function AnimatedRoutes() {
@@ -26,8 +26,11 @@ function AnimatedRoutes() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/insights" element={<InsightsPage />} />
-        <Route path="/insight/:id" element={<InsightDetailPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogDetailPage />} />
+        {/* Legacy routes pointing to upgraded Blog page for SEO compatibility */}
+        <Route path="/insights" element={<BlogPage />} />
+        <Route path="/insight/:id" element={<BlogDetailPage />} />
         <Route path="/privacy" element={<LegalPage title="Privacy Policy" />} />
         <Route path="/terms" element={<LegalPage title="Terms of Service" />} />
       </Routes>

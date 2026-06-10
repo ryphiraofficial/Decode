@@ -186,7 +186,7 @@ const AllCourses = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <span style={{ fontWeight: 800 }}>DECOODE</span>
+            <span style={{ fontWeight: 800 }}>DCOODE</span>
             <span style={{ fontWeight: 800 }}>ACADEMY</span>
             <span style={{ fontWeight: 800 }}>ENGINEERING</span>
             <span style={{ fontWeight: 800 }}>SYSTEMS</span>
