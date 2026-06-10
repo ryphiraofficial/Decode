@@ -267,36 +267,38 @@ const AllCourses = () => {
         <div className="ac-featured-grid">
           {filteredCourses.length > 0 ? (
             filteredCourses.map((item, idx) => (
-              <motion.div
-                key={idx}
-                className="ac-course-card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="ac-course-header">
-                  <div className="ac-course-cat-icon">{item.catIcon}</div>
-                  <div className="ac-course-cat-name">{item.cat}</div>
-                </div>
-
-                <h3 className="ac-course-title">{item.title}</h3>
-
-                <div className="ac-course-meta">
-                  <div className="ac-course-meta-item">
-                    {item.type}
+              <Link to={`/course/${item.id}`} key={idx} className="ac-course-card-link">
+                <motion.div
+                  className="ac-course-card"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -5, boxShadow: '0 15px 35px rgba(0,0,0,0.06)' }}
+                >
+                  <div className="ac-course-header">
+                    <div className="ac-course-cat-icon">{item.catIcon}</div>
+                    <div className="ac-course-cat-name">{item.cat}</div>
                   </div>
-                </div>
 
-                <div className="ac-course-footer">
-                  <div>
-                    <div className="ac-course-date">{item.date} by</div>
-                    <div className="ac-course-company">{item.company}</div>
+                  <h3 className="ac-course-title">{item.title}</h3>
+
+                  <div className="ac-course-meta">
+                    <div className="ac-course-meta-item">
+                      {item.type}
+                    </div>
                   </div>
-                  <div className="ac-course-logo" style={{ background: item.logoColor }}>
-                    {item.icon}
+
+                  <div className="ac-course-footer">
+                    <div>
+                      <div className="ac-course-date">{item.date} by</div>
+                      <div className="ac-course-company">{item.company}</div>
+                    </div>
+                    <div className="ac-course-logo" style={{ background: item.logoColor }}>
+                      {item.icon}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))
           ) : (
             <div style={{ padding: '50px', textAlign: 'center', color: '#718096', width: '100%', gridColumn: '1 / -1' }}>

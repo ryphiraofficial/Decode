@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import App from './App.jsx';
 import AllCourses from './pages/AllCourses.jsx';
+import CourseDetail from './pages/CourseDetail.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
@@ -21,6 +22,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<App />} />
         <Route path="/all-courses" element={<AllCourses />} />
+        <Route path="/course/:id" element={<CourseDetail />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />

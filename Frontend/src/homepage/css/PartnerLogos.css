@@ -1,6 +1,6 @@
 .partner-section {
   padding: 80px 0;
-  background: #1f1f1e; /* Matches main theme background */
+  background: #1f1f1e; 
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -26,47 +26,73 @@
   font-weight: 700;
 }
 
-.partner-grid {
+.partner-grid-desktop {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
 }
 
+.partner-marquee-wrapper {
+  display: none;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 8px)); /* Scrolls exactly one full loop length */
+  }
+}
+
 .partner-logo-item {
-  background: transparent;
-  border-radius: 0;
-  height: 75px;
-  padding: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  height: 110px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .partner-logo-item img {
-  height: 100%;
+  max-height: 100%;
   max-width: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
 
 .partner-logo-item:hover {
-  transform: scale(1.08);
-  background: transparent;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.08);
+}
+
+/* Turn transparent white logos dark to render on the white cards */
+.partner-logo-item.darken-logo img {
+  filter: brightness(0) opacity(0.85);
 }
 
 @media (max-width: 1024px) {
-  .partner-grid {
+  .partner-grid-desktop {
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 24px;
   }
   
   .partner-logo-item {
-    height: 50px;
-    padding: 0;
+    height: 100px !important;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .partner-logo-item img {
+    max-height: 100% !important;
+    max-width: 100%;
   }
 }
 
@@ -76,17 +102,108 @@
   }
 
   .partner-container {
-    padding: 0 24px;
+    padding: 0 16px; /* slightly tighter side margins for scrolling edge room */
   }
 
-  .partner-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .partner-grid-desktop {
+    display: none;
   }
-  
+
+  .partner-marquee-wrapper {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .partner-marquee-wrapper::before,
+  .partner-marquee-wrapper::after {
+    content: "";
+    height: 100%;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .partner-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #1f1f1e, transparent);
+  }
+
+  .partner-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #1f1f1e, transparent);
+  }
+
+  .partner-marquee-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: marquee-scroll 25s linear infinite;
+  }
+
+  .partner-marquee-track .partner-logo-item {
+    flex-shrink: 0;
+    height: 80px !important;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
   .partner-logo-item {
-    height: 40px;
-    padding: 0;
+    height: 80px !important;
+    padding: 8px;
+    border-radius: 8px;
   }
+
+  .partner-logo-item img {
+    max-height: 100% !important;
+    max-width: 100%;
+  }
+}
+          
+/* Individual Logo Sizing and Fitting (Desktop) */
+.logo-leanlytics img { width: 150px; height: auto; max-height: none; }
+.logo-textra img { width: 140px; height: auto; max-height: none; }
+.logo-uxhub img { width: 130px; height: auto; max-height: none; }
+.logo-ryphira img { width: 170px; height: auto; max-height: none; }
+.logo-ncerc img { height: 150px; width: auto; max-height: none; }
+.logo-nehru img { width: 130px; height: auto; max-height: none; }
+.logo-army img { height: 100px; width: auto; border-radius: 50%; max-height: none; }
+.logo-navy img { height: 100px; width: auto; max-height: none; }
+.logo-poly img { height: 100px; width: auto; max-height: none; }
+.logo-qa img { width: 160px; height: auto; max-height: none; }
+.logo-jcet img { height: 110px; width: auto; max-height: none; }
+
+/* Individual Logo Sizing and Fitting (Tablet) */
+@media (max-width: 1024px) {
+  .logo-leanlytics img { width: 150px; height: auto; }
+  .logo-textra img { width: 140px; height: auto; }
+  .logo-uxhub img { width: 130px; height: auto; }
+  .logo-ryphira img { width: 150px; height: 170px; }
+  .logo-ncerc img { height: 120px; width: auto; }
+  .logo-nehru img { width: 120px; height: auto; }
+  .logo-army img { height: 90px; width: auto; }
+  .logo-navy img { width: 110px; height: auto; }
+  .logo-poly img { height: 90px; width: auto; }
+  .logo-qa img { width: 170px; height: auto; }
+  .logo-jcet img { height: 80px; width: auto; }
+}
+
+/* Individual Logo Sizing and Fitting (Mobile) */
+@media (max-width: 768px) {
+  .logo-leanlytics img { width: 120px; height: auto; }
+  .logo-textra img { width: 110px; height: auto; }
+  .logo-uxhub img { width: 90px; height: auto; }
+  .logo-ryphira img { width: 130px; height: auto; }
+  .logo-ncerc img { height: 100px; width: auto; }
+  .logo-nehru img { width: 100px; height: auto; }
+  .logo-army img { height: 85px; width: auto; }
+  .logo-navy img { width: 95px; height: auto; }
+  .logo-poly img { height: 95px; width: auto; }
+  .logo-qa img { width: 110px; height: auto; }
+  .logo-jcet img { height: 90px; width: auto; }
 }
 

@@ -1,0 +1,388 @@
+/* CourseDetail.css - Premium Cinematic Tech Studio theme */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
+
+.course-detail-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 140px 0 100px 0;
+  overflow: hidden;
+  color: #0b1a2d;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Background glows */
+.detail-glow-sphere {
+  position: absolute;
+  top: 10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.04) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Back Link */
+.back-link-wrapper {
+  margin-bottom: 30px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #4a5b70;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: color 0.25s ease;
+}
+
+.back-link:hover {
+  color: #0066ff;
+}
+
+/* Header Content */
+.detail-header {
+  margin-bottom: 50px;
+}
+
+.detail-category-badge {
+  display: inline-block;
+  background: #f0f5fa;
+  color: #0066ff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.detail-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #0b1a2d;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+
+.detail-desc {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #4a5b70;
+  max-width: 800px;
+}
+
+/* Grid Layout */
+.detail-content-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+@media (max-width: 992px) {
+  .detail-content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Left Column Content */
+.detail-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.detail-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0b1a2d;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detail-section-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+}
+
+.overview-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4a5b70;
+  margin-bottom: 24px;
+}
+
+/* Skills list */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.skill-tag {
+  background: #f3f7fb;
+  color: #0b1a2d;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+/* Curriculum list */
+.curriculum-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.curriculum-phase {
+  position: relative;
+  padding-left: 30px;
+  border-left: 2px solid #e2e8f0;
+}
+
+.curriculum-phase::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0066ff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px #0066ff;
+}
+
+.phase-duration {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0066ff;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.phase-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0b1a2d;
+  margin-bottom: 8px;
+}
+
+.phase-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4a5b70;
+  margin-bottom: 12px;
+}
+
+.phase-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topic-bullet {
+  background: rgba(0, 102, 255, 0.05);
+  color: #0066ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* Target audience checklist */
+.checklist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #4a5b70;
+  line-height: 1.4;
+}
+
+.checklist-icon {
+  color: #0066ff;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Right Column Enrollment Card */
+.enroll-card {
+  position: sticky;
+  top: 120px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.enroll-price-section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 24px;
+}
+
+.enroll-price-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #4a5b70;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.enroll-price-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0b1a2d;
+}
+
+.enroll-price-sub {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-top: 4px;
+}
+
+/* Plans checklist inside card */
+.enroll-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.enroll-option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0b1a2d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.enroll-option-row:hover {
+  background: #f0f5fa;
+  border-color: #0066ff;
+}
+
+.enroll-option-row.active {
+  background: #0066ff;
+  color: #ffffff;
+  border-color: #0066ff;
+}
+
+.option-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.enroll-option-row.active .option-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.enroll-btn {
+  background: #000000;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 18px;
+  border-radius: 100px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.enroll-btn:hover {
+  background: #0066ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
+}
+
+.enroll-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 24px;
+}
+
+.enroll-perk-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: #4a5b70;
+  font-weight: 500;
+}
+
+.enroll-perk-icon {
+  color: #0066ff;
+  flex-shrink: 0;
+}

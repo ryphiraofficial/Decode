@@ -381,6 +381,12 @@
   gap: 30px;
 }
 
+.ac-course-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .ac-course-card {
   background: #ffffff;
   border-radius: 20px;

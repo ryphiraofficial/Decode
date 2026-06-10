@@ -236,7 +236,7 @@
     z-index: 40;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .hero-container {
         padding: 20px;
     }

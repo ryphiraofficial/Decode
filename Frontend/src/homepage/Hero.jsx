@@ -46,7 +46,7 @@ const Hero = () => {
 
     useEffect(() => {
         const calculateGrid = () => {
-            const isMobile = window.innerWidth <= 768;
+            const isMobile = window.innerWidth <= 1024;
             const size = isMobile ? 60 : 40;
             const cols = Math.ceil(window.innerWidth / size);
             const rows = Math.ceil(window.innerHeight / size);
@@ -90,7 +90,7 @@ const Hero = () => {
                 const randomIndex = Math.floor(Math.random() * pixelsRef.current.length);
                 const p = pixelsRef.current[randomIndex];
 
-                const isMobile = window.innerWidth <= 768;
+                const isMobile = window.innerWidth <= 1024;
                 const colMid = cols / 2;
                 const rowMid = rows / 2;
                 const colRange = isMobile ? cols * 0.25 : cols * 0.15; // Narrowed for mobile
@@ -168,7 +168,7 @@ const Hero = () => {
 
                 <div className="flex justify-between items-center h-full main-content-row">
                     <div className="headline-wrapper">
-                        <span className="seo-hero-title">Dcoode | IT Solutions & Software Development in Kerala</span>
+                        <span className="seo-hero-title">IT Solutions & Software Development</span>
                         <h1 className="headline">Difference<br />for the<br />future.</h1>
                     </div>
 

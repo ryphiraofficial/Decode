@@ -1,6 +1,7 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { insights } from '../data/insightsData.js';
 import './css/InsightDetailPage.css';
 
@@ -15,7 +16,7 @@ const InsightDetailPage = () => {
         <div className="container">
           <h2>Insight Not Found</h2>
           <p>The post you are trying to view does not exist or has been relocated.</p>
-          <a href="/" className="back-btn">Return Home</a>
+          <Link to="/insights" className="back-btn">Return to Insights</Link>
         </div>
       </div>
     );
@@ -23,6 +24,11 @@ const InsightDetailPage = () => {
 
   return (
     <div className="insight-detail-wrapper">
+      <Helmet>
+        <title>{insight.title} | Dcoode Studio</title>
+        <meta name="description" content={insight.subtitle || insight.content[0].substring(0, 155)} />
+        <meta name="keywords" content={`${insight.tag}, ${insight.title}`} />
+      </Helmet>
       <div className="insight-detail-grid" />
       <div className="insight-detail-glow-1" />
       <div className="insight-detail-glow-2" />
@@ -35,12 +41,12 @@ const InsightDetailPage = () => {
           transition={{ duration: 0.5 }}
           className="back-btn-wrapper"
         >
-          <a href="/" className="back-btn">
+          <Link to="/insights" className="back-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="back-icon">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
             <span>Back to Insights</span>
-          </a>
+          </Link>
         </motion.div>
 
         {/* Dynamic Split Editorial Layout */}

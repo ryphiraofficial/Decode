@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './css/ContactPage.css';
 
@@ -12,16 +13,17 @@ const servicesOptions = [
 ];
 
 const ContactPage = () => {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: location.state?.message || ''
   });
   const [submitted, setSubmitted] = useState(false);
-  const [rating, setRating] = useState(5);
-  const [hoverRating, setHoverRating] = useState(0);
-  const [reviewText, setReviewText] = useState('');
-  const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const [loadingReviews, setLoadingReviews] = useState(true);
+  const [ratingScore, setRatingScore] = useState("5.0");
+  const [ratingCount, setRatingCount] = useState(12);
   const officialEmail = import.meta.env.VITE_OFFICIAL_EMAIL || 'dcoodeofficial@gmail.com';
 
   const handleChange = (e) => {
@@ -35,34 +37,76 @@ const ContactPage = () => {
     setSubmitted(true);
   };
 
-  // ── Google Form Integration Config ──
-  // Replace these placeholders with your actual Google Form ID and entry IDs
-  const GOOGLE_FORM_ID = "YOUR_GOOGLE_FORM_ID"; 
-  const ENTRY_ID_RATING = "entry.RATING_FIELD_ID"; 
-  const ENTRY_ID_REVIEW = "entry.REVIEW_FIELD_ID"; 
+  useEffect(() => {
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    const placeId = import.meta.env.VITE_GOOGLE_PLACE_ID;
 
-  const handleReviewSubmit = (e) => {
-    // We let the form action target the hidden iframe in the background
-    const clipboardContent = reviewText || "Excellent IT solutions and custom software development services in Kerala!";
-    
-    navigator.clipboard.writeText(clipboardContent)
-      .then(() => {
-        setReviewSubmitted(true);
-        // Submit form programmatically
-        document.getElementById("google-review-form").submit();
-        
-        setTimeout(() => {
-          window.open('https://maps.app.goo.gl/TBMZ6Fb9R7pX27WT9', '_blank');
-          setReviewSubmitted(false);
-          setReviewText('');
-        }, 3000);
-      })
-      .catch((err) => {
-        console.error('Failed to copy: ', err);
-        document.getElementById("google-review-form").submit();
-        window.open('https://maps.app.goo.gl/TBMZ6Fb9R7pX27WT9', '_blank');
-      });
-  };
+    if (!apiKey || apiKey === "YOUR_GOOGLE_MAPS_API_KEY_HERE" || !placeId) {
+      console.warn("Google Maps credentials not configured in .env. Please configure VITE_GOOGLE_MAPS_API_KEY and VITE_GOOGLE_PLACE_ID.");
+      setLoadingReviews(false);
+      return;
+    }
+
+    const scriptId = "google-maps-sdk-script";
+    let script = document.getElementById(scriptId);
+
+    const initializePlaces = () => {
+      try {
+        const dummyNode = document.createElement("div");
+        const service = new window.google.maps.places.PlacesService(dummyNode);
+
+        service.getDetails(
+          {
+            placeId: placeId,
+            fields: ["reviews", "rating", "user_ratings_total"]
+          },
+          (place, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK && place) {
+              if (place.rating) {
+                setRatingScore(place.rating.toFixed(1));
+              }
+              if (place.user_ratings_total) {
+                setRatingCount(place.user_ratings_total);
+              }
+              if (place.reviews) {
+                const formatted = place.reviews.map((rev) => ({
+                  name: rev.author_name || "Google User",
+                  rating: rev.rating || 5,
+                  time: rev.relative_time_description || "Recently",
+                  text: rev.text || "",
+                  avatar: rev.author_name ? rev.author_name.charAt(0) : "G",
+                  profilePhoto: rev.profile_photo_url
+                }));
+                setReviews(formatted);
+              }
+            } else {
+              console.error("Google PlacesService failed with status:", status);
+            }
+            setLoadingReviews(false);
+          }
+        );
+      } catch (err) {
+        console.error("Error running Google PlacesService details request:", err);
+        setLoadingReviews(false);
+      }
+    };
+
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.onload = initializePlaces;
+      document.head.appendChild(script);
+    } else {
+      if (window.google && window.google.maps && window.google.maps.places) {
+        initializePlaces();
+      } else {
+        script.addEventListener("load", initializePlaces);
+      }
+    }
+  }, []);
 
   return (
     <div className="contact-page-wrapper">
@@ -135,67 +179,75 @@ const ContactPage = () => {
             <a href={`mailto:${officialEmail}`} className="social-link">Email ID</a>
           </motion.div>
 
-          {/* Google Review Box Form */}
+          {/* Google Review Box Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             className="contact-review-box"
           >
-            <h3 className="review-box-title">Rate Us on Google</h3>
-            <p className="review-box-subtitle">
-              Choose a rating, add a brief review, and hit submit to post it to our official Google listing.
-            </p>
-            
-            <form 
-              id="google-review-form"
-              action={`https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`}
-              method="POST"
-              target="hidden_iframe"
-            >
-              {/* Invisible inputs holding the form state values */}
-              <input type="hidden" name={ENTRY_ID_RATING} value={`${rating} Stars`} />
-              <input type="hidden" name={ENTRY_ID_REVIEW} value={reviewText} />
+            <div className="review-box-header">
+              <div>
+                <h3 className="review-box-title">Google Reviews</h3>
+                <div className="google-rating-summary">
+                  <span className="rating-score">{ratingScore}</span>
+                  <div className="stars">
+                    {"★".repeat(Math.round(parseFloat(ratingScore)))}
+                    {"☆".repeat(5 - Math.round(parseFloat(ratingScore)))}
+                  </div>
+                  <span className="rating-count">({ratingCount} reviews)</span>
+                </div>
+              </div>
+              <a 
+                href="https://maps.app.goo.gl/TBMZ6Fb9R7pX27WT9" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="write-review-badge-btn"
+              >
+                Write a Review
+              </a>
+            </div>
 
-              <div className="star-rating-wrapper">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    type="button"
-                    className={`star-btn ${(hoverRating || rating) >= star ? 'active' : ''}`}
-                    onClick={() => setRating(star)}
-                    onMouseEnter={() => setHoverRating(star)}
-                    onMouseLeave={() => setHoverRating(0)}
-                  >
-                    ★
-                  </button>
+            {loadingReviews ? (
+              <div className="reviews-loading">
+                <div className="spinner"></div>
+                <span>Fetching reviews from Google...</span>
+              </div>
+            ) : (
+              <div className="reviews-list">
+                {reviews.map((rev, idx) => (
+                  <div className="review-card" key={idx}>
+                    <div className="review-card-header">
+                      {rev.profilePhoto ? (
+                        <img 
+                          src={rev.profilePhoto} 
+                          alt={rev.name} 
+                          className="review-author-avatar-img" 
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <div className="review-author-avatar">{rev.avatar}</div>
+                      )}
+                      <div>
+                        <div className="review-author-name">{rev.name}</div>
+                        <div className="review-meta">
+                          <span className="review-stars">
+                            {"★".repeat(rev.rating)}
+                            {"☆".repeat(5 - rev.rating)}
+                          </span>
+                          <span className="review-date">{rev.time}</span>
+                        </div>
+                      </div>
+                      <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                        alt="Google" 
+                        className="google-icon-small" 
+                      />
+                    </div>
+                    <p className="review-card-text">"{rev.text}"</p>
+                  </div>
                 ))}
               </div>
-
-              <textarea
-                className="review-textarea"
-                placeholder="Write a brief review (your review text will copy automatically)..."
-                value={reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-                rows="3"
-              />
-
-              <button 
-                type="button" 
-                className="review-submit-btn" 
-                onClick={handleReviewSubmit}
-              >
-                <span>Submit to Google Reviews</span>
-                <svg className="review-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                  <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </button>
-            </form>
-
-            {reviewSubmitted && (
-              <p className="review-success-msg">
-                ✨ Review saved & copied to clipboard! Opening Google Reviews tab. Just paste (Ctrl+V) and post it!
-              </p>
             )}
           </motion.div>
         </div>
