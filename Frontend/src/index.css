@@ -670,3 +670,26 @@ html.lenis body {
      padding-right: 0 !important;
    }
  }
+
+ /* -- HOMEPAGE VERTICAL SPACING OVERRIDES -- */
+ .app .partner-section {
+   padding: 35px 0 !important;
+ }
+
+ .app .about-reveal-section {
+   height: 130vh !important;
+ }
+
+ .app .services-section {
+   height: 220vh !important;
+ }
+
+ .app .insights-section {
+   padding: 3.5rem 1.5rem !important;
+ }
+
+ @media (min-width: 768px) {
+   .app .insights-section {
+     padding: 3.5rem 3rem !important;
+   }
+ }
