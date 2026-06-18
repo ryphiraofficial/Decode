@@ -41,12 +41,12 @@ function App() {
         {/* Navbar and Footer are now handled globally by Layout.jsx */}
         <main>
           <Hero />
-          <PartnerLogos />
           <About />
           <Services />
           <RevealBanner />
           <Team />
           <Insights />
+          <PartnerLogos />
           <CTA />
         </main>
       </motion.div>

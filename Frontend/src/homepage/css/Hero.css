@@ -158,7 +158,7 @@
     max-width: 450px;
 }
 
-.seo-hero-title {
+.seo-hero-label {
     font-family: 'Outfit', sans-serif;
     font-size: 0.52rem;
     font-weight: 600;
@@ -272,7 +272,7 @@
         max-width: 340px;
     }
 
-    .seo-hero-title {
+    .seo-hero-label {
         font-size: 8px !important;
         font-weight: 500 !important;
         letter-spacing: 0.15em !important;

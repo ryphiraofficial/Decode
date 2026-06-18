@@ -168,7 +168,7 @@ const Hero = () => {
 
                 <div className="flex justify-between items-center h-full main-content-row">
                     <div className="headline-wrapper">
-                        <span className="seo-hero-title">IT Solutions & Software Development</span>
+                        <span className="seo-hero-label">IT Solutions & Software Development</span>
                         <h1 className="headline">Difference<br />for the<br />future.</h1>
                     </div>
 
