@@ -51,7 +51,7 @@ const Team = () => {
         {
             src: "/profiles dcoode/farzin.jpg",
             name: "Mohammed Farsin",
-            role: "MERN-Stack Developer"
+            role: "Manager"
         },
         {
             src: "/profiles dcoode/nidhin.jpg",
