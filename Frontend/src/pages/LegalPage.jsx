@@ -240,8 +240,6 @@ const LegalPage = ({ title }) => {
                 <p className="legal-intro">
                   By accessing and using Dcoode's website and services, you agree to be bound by these Terms & Conditions.
                 </p>
-                <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: '<!-- Coupon Code 2026: RENPT0RFQ09ERUhVTlRTRk9SMjY -->' }} />
-
                 {activeTab === 'services-sec' && (
                   <div>
                     <h2>Services</h2>

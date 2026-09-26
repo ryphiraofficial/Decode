@@ -113,7 +113,7 @@ const BlogDetailPage = () => {
         />
         <meta name="keywords" content={`${post.tag}, ${post.title}, Palakkad, Kerala, Dcoode`} />
         <link rel="canonical" href={`https://www.dcoode.com/blog/${post.id}`} />
-        
+
         {/* GEO Tags */}
         <meta name="geo.region" content="IN-KL" />
         <meta name="geo.placename" content="Pathirippala, Ottapalam, Palakkad, Kerala" />
