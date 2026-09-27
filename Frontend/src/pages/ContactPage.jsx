@@ -25,6 +25,7 @@ const ContactPage = () => {
   const [ratingScore, setRatingScore] = useState("5.0");
   const [ratingCount, setRatingCount] = useState(12);
   const officialEmail = import.meta.env.VITE_OFFICIAL_EMAIL || 'dcoodeofficial@gmail.com';
+  const officialPhone = import.meta.env.VITE_OFFICIAL_PHONE || '+91 85478 65694';
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -154,6 +155,10 @@ const ContactPage = () => {
             <div className="coordinate-item">
               <span className="coord-label">General & Partnership Inquiry</span>
               <a href={`mailto:${officialEmail}`} className="coord-value">{officialEmail}</a>
+            </div>
+            <div className="coordinate-item">
+              <span className="coord-label">Direct Contact / Phone</span>
+              <a href={`tel:${officialPhone.replace(/\s+/g, '')}`} className="coord-value">{officialPhone}</a>
             </div>
             <div className="coordinate-item">
               <span className="coord-label">Studio Location</span>

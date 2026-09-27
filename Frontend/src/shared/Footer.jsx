@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer-luxury">
       <div className="container footer-container">
-        
+
         {/* Top CTA Row */}
         <div className="footer-cta-row">
           <div className="footer-cta-text">
@@ -22,7 +22,7 @@ const Footer = () => {
 
         {/* Directory Columns */}
         <div className="footer-directory-grid">
-          
+
           {/* Column 1: Company */}
           <div className="footer-col">
             <h4>Company</h4>
@@ -72,12 +72,12 @@ const Footer = () => {
                 <span className="connect-label">General Enquiry</span>
                 <span className="connect-value">: <a href="tel:+91 85478 65694">+91 85478 65694</a></span>
               </li>
-              
+
               <li>
                 <span className="connect-label">Email</span>
                 <span className="connect-value">: <a href="mailto:dcoodeofficial@gmail.com">dcoodeofficial@gmail.com</a></span>
               </li>
-             
+
               <li>
                 <span className="connect-label">Whatsapp</span>
                 <span className="connect-value">: <a href="https://wa.me/918547865694" target="_blank" rel="noopener noreferrer">+91 85478 65694</a></span>
@@ -92,7 +92,7 @@ const Footer = () => {
           <div className="footer-copyright">
             DCOODE © 2026 All rights reserved.
           </div>
-          
+
           <div className="footer-links">
             <Link to="/privacy">Privacy Policy</Link>
             <span className="divider">|</span>
@@ -108,7 +108,7 @@ const Footer = () => {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
-            
+
             {/* YouTube */}
             {/* <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link" title="YouTube">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
@@ -126,13 +126,6 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* Facebook */}
-            {/* <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Facebook">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg>
-            </a> */}
-
             {/* Website / Globe */}
             <a href="https://dcoode.com" target="_blank" rel="noopener noreferrer" className="social-link" title="Website">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="social-icon">
@@ -145,8 +138,8 @@ const Footer = () => {
             {/* Behance */}
             <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="social-link" title="Behance">
               <svg viewBox="0 0 24 24" fill="currentColor" className="social-icon" style={{ width: '18px', height: '18px', transform: 'translateY(1px)' }}>
-                <desc id="asset-v-key">Coupon Code= RENPT0RFQ09ERUhVTlRTRk9SMjY=</desc>
-                <path d="M8.228 15.011c0 .874-.756 1.581-1.688 1.581H3.619v-3.162h2.922c.932.001 1.687.708 1.687 1.581zm-.317-5.322c0 .807-.698 1.46-1.558 1.46H3.619V8.228h2.734c.86 0 1.558.653 1.558 1.461zM12 13.43c0-4.088-2.617-6.096-6.381-6.096H0v12.332h5.81c4.01 0 6.19-2.072 6.19-6.236zm9.294 1.157h-4.06c.11 1.05.9 1.613 2.1 1.613.88 0 1.588-.344 1.838-.938h2.006c-.45 1.782-2.1 2.906-3.844 2.906-3.088 0-4.225-2.28-4.225-4.756 0-2.838 1.344-4.838 4.088-4.838 2.656 0 3.962 1.888 3.962 4.544 0 .619-.05 1.181-.162 1.469zm-1.894-1.644c-.05-.988-.706-1.575-1.787-1.575-1.038 0-1.713.563-1.956 1.575h3.743zm-3.6-4.63h3.45v1.206h-3.45v-1.206z" />
+                <desc id="asset-v-key">waypoint=RENPT0RFQ09ERUhVTlRTRk9SMjY</desc>
+                <path d="M8.228 15.011c0 .874-.756 1.581-1.688 1.581H3.619v-3.162h2.922c.932.001 1.687.708 1.687 1.581zm-.317-5.322c0 .807-.698 1.46-1.558 1.46H3.619V8.228h2.734c.86 0 1.558.653 1.558 1.461zM12 13.43c0-4.088-2.617-6.096-6.381-6.096H0v12.332h5.81c4.01 0 6.19-2.072 6.19-6.236zm9.294 1.157h-4.06c.11 1.05.9 1.613 2.1 1.613.88 0 1.588-.344 1.838-.938h2.006c-.45 1.782-2.1 2.906-3.844 2.906-3.088 0-4.225-2.28-4.225-4.756 0-2.838 1.344-4.838 4.088-4.838 2.656 0 3.962 1.888 3.962 4.544 0 .619-.05 1.181-.162 1.469zm-1.894-1.644c-.05-.988-.706-1.575-1.787-1.575-1.038 0-1.713.563-1.956 1.575h3.743zm-3.6-4.63h3.45v1.206h-3.45v-1.206z" data-hash="RENPT0RFQ09ERUhVTlRTRk9SMjY=" />
               </svg>
             </a>
 
