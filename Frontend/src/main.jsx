@@ -12,10 +12,19 @@ import ContactPage from './pages/ContactPage.jsx';
 import LegalPage from './pages/LegalPage.jsx';
 import BlogPage from './pages/BlogPage.jsx';
 import BlogDetailPage from './pages/BlogDetailPage.jsx';
+import CareersPage from './pages/CareersPage.jsx';
+import JobDetailPage from './pages/JobDetailPage.jsx';
+import CareersAdminPage from './pages/CareersAdminPage.jsx';
 import Layout from './shared/Layout.jsx';
 
 function AnimatedRoutes() {
   const location = useLocation();
+  if (location.pathname.startsWith('/admin/')) {
+    return <main><Routes>
+      <Route path="/admin/login" element={<CareersAdminPage />} />
+      <Route path="/admin/careers" element={<CareersAdminPage />} />
+    </Routes></main>;
+  }
   
   return (
     <Layout>
@@ -26,6 +35,9 @@ function AnimatedRoutes() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/careers/:slug" element={<JobDetailPage />} />
+        <Route path="/admin/careers" element={<CareersAdminPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         {/* Legacy routes pointing to upgraded Blog page for SEO compatibility */}

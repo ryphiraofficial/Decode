@@ -1,0 +1,3 @@
+const jwt = require('jsonwebtoken');
+const Admin = require('../models/Admin');
+module.exports = async (req, res, next) => { try { const token = req.headers.authorization?.replace('Bearer ', '') || req.query.token; if (!token) return res.status(401).json({ message: 'Admin authentication is required.' }); const claims = jwt.verify(token, process.env.JWT_SECRET || 'local-dcoode-careers-secret', { algorithms: ['HS256'] }); const admin = await Admin.findById(claims.id).select('_id email'); if (!admin) return res.status(403).json({ message: 'Admin access is required.' }); req.admin = admin; next(); } catch { res.status(401).json({ message: 'Your session has expired. Please sign in again.' }); } };

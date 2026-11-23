@@ -190,6 +190,16 @@
   font-weight: 300;
 }
 
+.footer-copyright a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-copyright a:hover {
+  color: #ffffff;
+}
+
 .footer-links {
   display: flex;
   align-items: center;

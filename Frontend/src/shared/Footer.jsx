@@ -31,7 +31,7 @@ const Footer = () => {
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/services">Industries</Link></li>
               {/* <li><Link to="/all-courses">Works</Link></li> */}
-              <li><a href="mailto:dcoodeofficial@gmail.com">Careers</a></li>
+              <li><Link to="/careers">Careers</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
@@ -90,7 +90,7 @@ const Footer = () => {
         {/* Bottom Row */}
         <div className="footer-bottom-row">
           <div className="footer-copyright">
-            DCOODE © 2026 All rights reserved.
+            <Link to="/admin/login">DCOODE</Link> © 2026 All rights reserved.
           </div>
 
           <div className="footer-links">

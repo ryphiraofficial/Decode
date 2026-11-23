@@ -1,0 +1,13 @@
+import { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Link, useParams } from 'react-router-dom';
+import { applyToJob, getJob } from '../data/careers';
+import './css/Careers.css';
+
+export default function JobDetailPage() {
+ const {slug}=useParams(); const [job,setJob]=useState(null); const [error,setError]=useState(''); const [sent,setSent]=useState(false); const [busy,setBusy]=useState(false);
+ useEffect(()=>{getJob(slug).then(setJob)},[slug]);
+ async function submit(e){e.preventDefault();setError('');setBusy(true);const form=Object.fromEntries(new FormData(e.currentTarget));try{await applyToJob(slug,form);setSent(true)}catch(err){setError(err.message)}finally{setBusy(false)}}
+ if(!job) return <div className="career-detail"><Link to="/careers" className="career-back"><ArrowLeft size={16}/> All roles</Link><h1>Role not found.</h1></div>;
+ return <div className="career-detail"><Link to="/careers" className="career-back"><ArrowLeft size={16}/> All roles</Link><header><span className="careers-index">{job.department} / {job.type}</span><h1>{job.title}<em>.</em></h1><p>{job.location} · {job.mode} · {job.experience}</p></header><div className="career-detail-grid"><article><span className="careers-index">THE ROLE</span><p>{job.description}</p><h2>What you’ll do</h2><ul>{job.responsibilities.map(x=><li key={x}>{x}</li>)}</ul><h2>What you’ll bring</h2><ul>{job.requirements.map(x=><li key={x}>{x}</li>)}</ul></article><aside className="career-apply" id="apply"><span className="careers-index">YOUR NEXT STEP</span>{sent?<><h2>Application received.</h2><p>Thanks for your interest. The DCOODE team will be in touch if there’s a fit.</p><Link to="/careers">Explore other roles <ArrowUpRight size={16}/></Link></>:<><h2>Let’s make<br/>something good.</h2><form onSubmit={submit}><label>Full name<input name="name" required autoComplete="name"/></label><label>Email<input name="email" type="email" required autoComplete="email"/></label><label>Phone<input name="phone" type="tel" required autoComplete="tel"/></label><label>Portfolio / LinkedIn<input name="portfolio" type="url" placeholder="https://"/></label><label>Tell us about yourself<textarea name="coverNote" rows="4" required/></label><label>Résumé <input name="resume" type="file" accept=".pdf,.doc,.docx" required/></label><label className="career-consent"><input name="consent" type="checkbox" required/> I agree to DCOODE processing my application details.</label>{error&&<p className="career-error">{error}</p>}<button disabled={busy}>{busy?'Sending…':'Submit application'} <ArrowUpRight size={17}/></button></form></>}</aside></div></div>
+}

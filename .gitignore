@@ -6,3 +6,5 @@ dist/
 .vscode/
 .idea/
 build/
+backend/.mongodb-data/
+backend/uploads/
