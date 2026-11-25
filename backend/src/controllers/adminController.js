@@ -10,26 +10,24 @@ const sign = (admin) => jwt.sign({ id: admin._id, email: admin.email }, process.
 exports.login = asyncHandler(async (req, res) => {
   const inputEmail = String(req.body.email || '').trim().toLowerCase();
   const inputPassword = String(req.body.password || '');
-  const envEmail = (process.env.ADMIN_EMAIL || 'admin@dcoode.com').trim().toLowerCase();
-  const envPassword = process.env.ADMIN_PASSWORD || 'DcoodeDev!2026';
-
-  let admin = await Admin.findOne({ email: inputEmail });
-  if (inputEmail === envEmail && inputPassword === envPassword) {
-    if (!admin) {
-      const passwordHash = await bcrypt.hash(envPassword, 12);
-      admin = await Admin.create({ email: envEmail, passwordHash });
-    } else {
-      const valid = await admin.verifyPassword(inputPassword);
-      if (!valid) {
-        admin.passwordHash = await bcrypt.hash(envPassword, 12);
-        await admin.save();
-      }
-    }
-    return res.json({ token: sign(admin) });
-  }
-
+  const admin = await Admin.findOne({ email: inputEmail });
   if (!admin || !(await admin.verifyPassword(inputPassword))) return res.status(401).json({ message: 'Incorrect email or password.' });
   res.json({ token: sign(admin) });
+});
+exports.getAccount = asyncHandler(async (req, res) => res.json({ email: req.admin.email }));
+exports.updateAccount = asyncHandler(async (req, res) => {
+  const email = String(req.body.email || '').trim().toLowerCase();
+  const currentPassword = String(req.body.currentPassword || '');
+  const newPassword = String(req.body.newPassword || '');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ message: 'Enter a valid email address.' });
+  if (newPassword && (newPassword.length < 8 || Buffer.byteLength(newPassword, 'utf8') > 72)) return res.status(400).json({ message: 'The new password must be at least 8 characters and no more than 72 bytes.' });
+  const admin = await Admin.findById(req.admin._id);
+  if (!admin || !(await admin.verifyPassword(currentPassword))) return res.status(401).json({ message: 'Your current password is incorrect.' });
+  if (await Admin.exists({ email, _id: { $ne: admin._id } })) return res.status(409).json({ message: 'This email address is already in use.' });
+  admin.email = email;
+  if (newPassword) admin.passwordHash = await bcrypt.hash(newPassword, 12);
+  await admin.save();
+  res.json({ email: admin.email, message: 'Account settings updated.' });
 });
 exports.listJobs = asyncHandler(async (_req, res) => res.json(await Job.find().sort({ createdAt: -1 })));
 exports.createJob = asyncHandler(async (req, res) => res.status(201).json(await Job.create(req.body)));

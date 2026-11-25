@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BriefcaseBusiness, Check, Download, FileText, LayoutDashboard, LogOut, Plus, RefreshCw, Trash2, Upload, Users, X } from 'lucide-react';
+import { BriefcaseBusiness, Check, FileText, LogOut, Plus, RefreshCw, Settings, Trash2, Upload, X } from 'lucide-react';
 import Logo from '../shared/Logo';
 import './css/Careers.css';
 
@@ -14,12 +14,14 @@ export default function CareersAdminPage() {
   const [authorized,setAuthorized] = useState(false);
   const [section,setSection] = useState('jobs');
   const [jobs,setJobs] = useState([]);
-  const [apps,setApps] = useState([]);
   const [form,setForm] = useState(emptyJob);
   const [editingId,setEditingId] = useState(null);
   const [message,setMessage] = useState('');
   const [isLocked,setIsLocked] = useState(false);
   const [isDragging,setIsDragging] = useState(false);
+  const [saving,setSaving] = useState(false);
+  const [signingIn,setSigningIn] = useState(false);
+  const [account,setAccount] = useState({ email:'', currentPassword:'', newPassword:'', confirmPassword:'' });
   const headers = { Authorization:`Bearer ${token}` };
 
   useEffect(()=>{ if(authorized) navigate('/admin/careers',{replace:true}); else if(!token) navigate('/admin/login',{replace:true}); },[authorized,token,navigate]);
@@ -112,36 +114,64 @@ export default function CareersAdminPage() {
     setAuthorized(false);
     try {
       if(!API) throw new Error('Admin service is not configured.');
-      const [jobResponse,appResponse] = await Promise.all([fetch(`${API}/api/admin/jobs`,{headers}),fetch(`${API}/api/admin/applications`,{headers})]);
-      if(!jobResponse.ok || !appResponse.ok) throw new Error('Please sign in with an authorized admin account.');
-      setJobs(await jobResponse.json()); setApps(await appResponse.json()); setAuthorized(true); setMessage('');
+      const jobResponse = await fetch(`${API}/api/admin/jobs`,{headers});
+      if(!jobResponse.ok) throw new Error('Please sign in with an authorized admin account.');
+      setJobs(await jobResponse.json()); setAuthorized(true); setMessage('');
     } catch(error) {
-      sessionStorage.removeItem('careerAdminToken'); setToken(''); setJobs([]); setApps([]);
+      sessionStorage.removeItem('careerAdminToken'); setToken(''); setJobs([]);
       setMessage(error instanceof TypeError ? 'Cannot reach the admin server. Start the backend and check VITE_API_URL.' : error.message);
     }
   }
   async function login(event){
-    event.preventDefault(); setMessage('');
+    event.preventDefault(); setMessage(''); setSigningIn(true);
     try {
+      if (!API) throw new Error('The sign-in service is not configured. Please contact the site administrator.');
       const body=Object.fromEntries(new FormData(event.currentTarget));
       const response=await fetch(`${API}/api/admin/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-      const data=await response.json();
+      const data=await response.json().catch(() => null);
       if(response.status === 429) {
         setIsLocked(true);
-        throw new Error(data.message);
+        throw new Error(data?.message || 'Too many sign-in attempts. Please try again later.');
       }
-      if(!response.ok) throw new Error(data.message);
+      if(!response.ok) throw new Error(data?.message || 'Unable to sign in right now. Please try again later.');
+      if (!data?.token) throw new Error('The sign-in service returned an unexpected response. Please try again later.');
       sessionStorage.setItem('careerAdminToken',data.token); setToken(data.token);
-    } catch(error){ setMessage(error instanceof TypeError?'Cannot reach the admin server. Start the backend and check VITE_API_URL.':error.message); }
+    } catch(error){ setMessage(error instanceof TypeError?'Cannot reach the sign-in service. Please try again later.':error.message); } finally { setSigningIn(false); }
   }
   async function save(event){
     event.preventDefault();
-    const payload={...form,responsibilities:form.responsibilities.split('\n').filter(Boolean),requirements:form.requirements.split('\n').filter(Boolean)};
-    const url = editingId ? `${API}/api/admin/jobs/${editingId}` : `${API}/api/admin/jobs`;
-    const method = editingId ? 'PATCH' : 'POST';
-    const response=await fetch(url,{method,headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    setMessage(response.ok ? (editingId ? 'Position updated successfully.' : 'Position created successfully.') : 'Could not save this position.');
-    if(response.ok){ cancelEdit(); await load(); }
+    setSaving(true); setMessage('');
+    try {
+      const payload={...form,responsibilities:form.responsibilities.split('\n').filter(Boolean),requirements:form.requirements.split('\n').filter(Boolean)};
+      const url = editingId ? `${API}/api/admin/jobs/${editingId}` : `${API}/api/admin/jobs`;
+      const response=await fetch(url,{method:editingId ? 'PATCH' : 'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if (!response.ok) throw new Error('Could not save this position. Please try again.');
+      const success = editingId ? 'Position updated successfully.' : 'Position created successfully.';
+      cancelEdit(); await load(); setMessage(success);
+    } catch { setMessage('Could not save this position. Please try again.'); }
+    finally { setSaving(false); }
+  }
+  async function openSettings() {
+    setSection('settings'); setMessage('');
+    try {
+      const response = await fetch(`${API}/api/admin/account`, { headers });
+      if (!response.ok) throw new Error();
+      const data = await response.json();
+      setAccount({ email:data.email, currentPassword:'', newPassword:'', confirmPassword:'' });
+    } catch { setMessage('Could not load account settings. Please try again.'); }
+  }
+  async function saveAccount(event) {
+    event.preventDefault(); setMessage('');
+    if (account.newPassword !== account.confirmPassword) { setMessage('New passwords do not match.'); return; }
+    setSaving(true);
+    try {
+      const response = await fetch(`${API}/api/admin/account`, { method:'PATCH', headers:{...headers,'Content-Type':'application/json'}, body:JSON.stringify({email:account.email,currentPassword:account.currentPassword,newPassword:account.newPassword}) });
+      const data = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(data?.message || 'Could not update account settings. Please try again.');
+      setAccount({email:data.email,currentPassword:'',newPassword:'',confirmPassword:''});
+      setMessage('Account settings updated successfully.');
+    } catch (error) { setMessage(error instanceof TypeError ? 'Cannot reach the server. Please try again.' : error.message); }
+    finally { setSaving(false); }
   }
   function editJob(job){
     setEditingId(job._id || job.id);
@@ -178,11 +208,9 @@ export default function CareersAdminPage() {
       setMessage(err.message);
     }
   }
-  async function updateStatus(id,status){ await fetch(`${API}/api/admin/applications/${id}`,{method:'PATCH',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({status})}); load(); }
   function signOut(){ sessionStorage.removeItem('careerAdminToken'); setAuthorized(false); setToken(''); }
-  const exportUrl=API?`${API}/api/admin/applications/export.xlsx?token=${encodeURIComponent(token)}`:'';
 
-  if(!authorized) return <div className="career-admin career-admin-access"><div className="admin-access-panel"><a className="admin-back" href="/careers">← Back to careers</a><header><h1>Careers desk</h1><p>Sign in with your authorized admin account.</p></header>{message&&<p className="admin-message" role="alert">{message}</p>}{token?<p role="status">Checking your access…</p>:<form className="admin-login" onSubmit={login}><label>Email address<input type="email" name="email" placeholder="admin@dcoode.com" autoComplete="username" disabled={isLocked} required/></label><label>Password<input type="password" name="password" placeholder="••••••••••••" autoComplete="current-password" disabled={isLocked} required/></label><button disabled={isLocked}>{isLocked ? 'Account locked' : 'Sign in'}</button></form>}</div></div>;
+  if(!authorized) return <div className="career-admin career-admin-access"><div className="admin-access-panel"><a className="admin-back" href="/careers">← Back to careers</a><header><h1>Careers desk</h1><p>Sign in with your authorized admin account.</p></header>{message&&<p className="admin-message" role="alert">{message}</p>}{token?<p role="status">Checking your access…</p>:<form className="admin-login" onSubmit={login}><label>Email address<input type="email" name="email" placeholder="admin@dcoode.com" autoComplete="username" disabled={isLocked} required/></label><label>Password<input type="password" name="password" placeholder="••••••••••••" autoComplete="current-password" disabled={isLocked} required/></label><button disabled={isLocked || signingIn}>{isLocked ? 'Account locked' : signingIn ? 'Signing in?' : 'Sign in'}</button></form>}</div></div>;
 
   const field=(name,label,props={})=><label key={name}>{label}<input {...props} required value={form[name]} onChange={e=>setForm({...form,[name]:e.target.value})}/></label>;
   return <div className="admin-shell">
@@ -190,12 +218,12 @@ export default function CareersAdminPage() {
       <a href="/careers" className="admin-brand"><Logo scale={1.05}/><small>Recruitment desk</small></a>
       <nav aria-label="Admin navigation">
         <button className={section==='jobs'?'active':''} onClick={()=>setSection('jobs')}><BriefcaseBusiness size={18}/> Positions <b>{jobs.length}</b></button>
-        <button className={section==='applications'?'active':''} onClick={()=>setSection('applications')}><Users size={18}/> Applications <b>{apps.length}</b></button>
+        <button className={section==='settings'?'active':''} onClick={openSettings}><Settings size={18}/> Settings</button>
       </nav>
       <div className="admin-sidebar-foot"><a href="/careers" target="_blank" rel="noreferrer"><FileText size={17}/> View careers page</a><button onClick={signOut}><LogOut size={17}/> Sign out</button></div>
     </aside>
     <main className="admin-workspace">
-      <header className="admin-workspace-head"><div><span>DCOODE / TALENT</span><h1>{section==='jobs'?'Positions':'Applications'}</h1><p>{section==='jobs'?'Publish opportunities and manage active roles.':'Review candidates and update their progress.'}</p></div><button className="admin-refresh" onClick={load}><RefreshCw size={16}/> Refresh</button></header>
+      <header className="admin-workspace-head"><div><span>DCOODE / TALENT</span><h1>{section==='jobs'?'Positions':'Settings'}</h1><p>{section==='jobs'?'Publish opportunities and manage active roles.':'Manage your sign-in details.'}</p></div>{section === 'jobs' && <button className="admin-refresh" onClick={load}><RefreshCw size={16}/> Refresh</button>}</header>
       {message&&<p className="admin-message" role="status">{message}</p>}
       {section==='jobs'?<div className="admin-jobs-layout">
         <section className="admin-position-list">
@@ -329,11 +357,21 @@ export default function CareersAdminPage() {
 
             <div className="admin-form-footer">
               <label className="admin-publish"><input type="checkbox" checked={form.published} onChange={e=>setForm({...form,published:e.target.checked})}/> Publish immediately</label>
-              <button className="admin-submit">{editingId ? 'Update position' : 'Create position'} {editingId ? <Check size={17}/> : <Plus size={17}/>}</button>
+              <button className="admin-submit" disabled={saving}>{saving ? 'Saving?' : editingId ? 'Update position' : 'Create position'} {!saving && (editingId ? <Check size={17}/> : <Plus size={17}/>)}</button>
             </div>
           </div>
         </form>
-      </div>:<section className="admin-candidate-list"><div className="admin-section-title"><h2>Candidate pipeline</h2><a href={exportUrl}><Download size={16}/> Export Excel</a></div>{apps.length?apps.map(app=><article key={app._id}><div><span>{app.job?.title||'Position'}</span><h3>{app.name}</h3><p>{app.email} · {new Date(app.createdAt).toLocaleDateString()}</p>{app.resumeUrl&&<a href={`${API}${app.resumeUrl}?token=${encodeURIComponent(token)}`} target="_blank" rel="noreferrer">View résumé</a>}</div><select aria-label={`Status for ${app.name}`} value={app.status} onChange={e=>updateStatus(app._id,e.target.value)}>{['New','Reviewing','Shortlisted','Rejected','Hired'].map(status=><option key={status}>{status}</option>)}</select></article>):<p className="admin-empty">No applications have been received yet.</p>}</section>}
+      </div>:<form className="admin-job-form admin-settings" onSubmit={saveAccount}>
+        <div className="admin-section-title"><div><span>ACCOUNT ACCESS</span><h2>Sign-in details</h2></div></div>
+        <p className="admin-settings-intro">Update your email address or choose a new password. Enter your current password to confirm changes.</p>
+        <div className="admin-form-stack">
+          <label>Email address<input type="email" autoComplete="username" required value={account.email} onChange={e=>setAccount({...account,email:e.target.value})}/></label>
+          <label>Current password<input type="password" autoComplete="current-password" required value={account.currentPassword} onChange={e=>setAccount({...account,currentPassword:e.target.value})}/></label>
+          <label>New password <small>Leave blank to keep your current password. At least 8 characters.</small><input type="password" autoComplete="new-password" minLength={8} value={account.newPassword} onChange={e=>setAccount({...account,newPassword:e.target.value})}/></label>
+          <label>Confirm new password<input type="password" autoComplete="new-password" value={account.confirmPassword} onChange={e=>setAccount({...account,confirmPassword:e.target.value})}/></label>
+        </div>
+        <button className="admin-submit" disabled={saving}>{saving ? 'Saving?' : 'Save changes'} {!saving && <Check size={17}/>}</button>
+      </form>}
     </main>
   </div>;
 }
