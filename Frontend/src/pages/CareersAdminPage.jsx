@@ -252,7 +252,7 @@ export default function CareersAdminPage() {
           <form className="admin-login" onSubmit={login}>
             <label>
               Email address
-              <input type="email" name="email" placeholder="admin@dcoode.com" autoComplete="username" disabled={isLocked} required />
+              <input type="email" name="email" autoComplete="username" disabled={isLocked} required />
             </label>
             <label>
               Password
