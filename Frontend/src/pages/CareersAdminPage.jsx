@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BriefcaseBusiness, Check, FileText, LogOut, Plus, RefreshCw, Settings, Trash2, Upload, X } from 'lucide-react';
+import { BriefcaseBusiness, Check, Download, FileText, LogOut, Plus, RefreshCw, Settings, Trash2, Upload, Users, X } from 'lucide-react';
 import Logo from '../shared/Logo';
 import './css/Careers.css';
 
@@ -14,6 +14,9 @@ export default function CareersAdminPage() {
   const [authorized,setAuthorized] = useState(false);
   const [section,setSection] = useState('jobs');
   const [jobs,setJobs] = useState([]);
+  const [apps,setApps] = useState([]);
+  const [appPage,setAppPage] = useState(1);
+  const APP_PAGE_SIZE = 8;
   const [form,setForm] = useState(emptyJob);
   const [editingId,setEditingId] = useState(null);
   const [message,setMessage] = useState('');
@@ -111,14 +114,19 @@ export default function CareersAdminPage() {
   }, [authorized, section]);
 
   async function load(){
-    setAuthorized(false);
     try {
       if(!API) throw new Error('Admin service is not configured.');
-      const jobResponse = await fetch(`${API}/api/admin/jobs`,{headers});
-      if(!jobResponse.ok) throw new Error('Please sign in with an authorized admin account.');
-      setJobs(await jobResponse.json()); setAuthorized(true); setMessage('');
+      const [jobResponse, appResponse] = await Promise.all([
+        fetch(`${API}/api/admin/jobs`,{headers}),
+        fetch(`${API}/api/admin/applications`,{headers})
+      ]);
+      if(!jobResponse.ok || !appResponse.ok) throw new Error('Please sign in with an authorized admin account.');
+      setJobs(await jobResponse.json());
+      setApps(await appResponse.json());
+      setAuthorized(true);
+      setMessage('');
     } catch(error) {
-      sessionStorage.removeItem('careerAdminToken'); setToken(''); setJobs([]);
+      sessionStorage.removeItem('careerAdminToken'); setToken(''); setJobs([]); setApps([]);
       setMessage(error instanceof TypeError ? 'Cannot reach the admin server. Start the backend and check VITE_API_URL.' : error.message);
     }
   }
@@ -201,16 +209,100 @@ export default function CareersAdminPage() {
     try {
       const res = await fetch(`${API}/api/admin/jobs/${id}`, { method: 'DELETE', headers });
       if (!res.ok) throw new Error('Could not delete position.');
+      setJobs(prev => prev.filter(j => (j._id || j.id) !== id));
       setMessage('Position deleted successfully.');
       if (editingId === id) cancelEdit();
-      await load();
     } catch (err) {
       setMessage(err.message);
     }
   }
+  async function updateStatus(id,status){
+    setApps(prev => prev.map(a => a._id === id ? { ...a, status } : a));
+    try {
+      await fetch(`${API}/api/admin/applications/${id}`,{method:'PATCH',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({status})});
+    } catch {
+      load();
+    }
+  }
+  async function deleteApp(id, e){
+    if(e) e.stopPropagation();
+    if(!window.confirm('Are you sure you want to delete this submission?')) return;
+    try {
+      const res = await fetch(`${API}/api/admin/applications/${id}`, { method: 'DELETE', headers });
+      if(!res.ok) throw new Error('Could not delete submission.');
+      setApps(prev => prev.filter(a => a._id !== id));
+      setMessage('Submission deleted successfully.');
+    } catch(err) {
+      setMessage(err.message || 'Could not delete submission.');
+    }
+  }
+  const exportUrl=API?`${API}/api/admin/applications/export.xlsx?token=${encodeURIComponent(token)}`:'';
   function signOut(){ sessionStorage.removeItem('careerAdminToken'); setAuthorized(false); setToken(''); }
 
-  if(!authorized) return <div className="career-admin career-admin-access"><div className="admin-access-panel"><a className="admin-back" href="/careers">← Back to careers</a><header><h1>Careers desk</h1><p>Sign in with your authorized admin account.</p></header>{message&&<p className="admin-message" role="alert">{message}</p>}{token?<p role="status">Checking your access…</p>:<form className="admin-login" onSubmit={login}><label>Email address<input type="email" name="email" placeholder="admin@dcoode.com" autoComplete="username" disabled={isLocked} required/></label><label>Password<input type="password" name="password" placeholder="••••••••••••" autoComplete="current-password" disabled={isLocked} required/></label><button disabled={isLocked || signingIn}>{isLocked ? 'Account locked' : signingIn ? 'Signing in?' : 'Sign in'}</button></form>}</div></div>;
+  if (!token) {
+    return (
+      <div className="career-admin career-admin-access">
+        <div className="admin-access-panel">
+          <a className="admin-back" href="/careers">← Back to careers</a>
+          <header>
+            <h1>Careers desk</h1>
+            <p>Sign in with your authorized admin account.</p>
+          </header>
+          {message && <p className="admin-message" role="alert">{message}</p>}
+          <form className="admin-login" onSubmit={login}>
+            <label>
+              Email address
+              <input type="email" name="email" placeholder="admin@dcoode.com" autoComplete="username" disabled={isLocked} required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" placeholder="••••••••••••" autoComplete="current-password" disabled={isLocked} required />
+            </label>
+            <button disabled={isLocked || signingIn}>
+              {isLocked ? 'Account locked' : signingIn ? 'Signing in…' : 'Sign in'}
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  if (!authorized) {
+    return (
+      <div className="admin-shell admin-shell-skeleton" aria-busy="true" aria-label="Loading workspace…">
+        <aside className="admin-sidebar">
+          <div className="admin-brand">
+            <Logo scale={1.05} />
+            <small>Recruitment desk</small>
+          </div>
+          <nav aria-label="Admin navigation">
+            <div className="admin-skeleton-nav-item" />
+            <div className="admin-skeleton-nav-item" />
+            <div className="admin-skeleton-nav-item" />
+          </nav>
+        </aside>
+        <main className="admin-workspace">
+          <div className="admin-workspace-head">
+            <div>
+              <div className="admin-skeleton-tag" />
+              <div className="admin-skeleton-title" />
+              <div className="admin-skeleton-sub" />
+            </div>
+          </div>
+          <div className="admin-skeleton-grid">
+            <div className="admin-skeleton-col">
+              <div className="admin-skeleton-card" />
+              <div className="admin-skeleton-card" />
+              <div className="admin-skeleton-card" />
+            </div>
+            <div className="admin-skeleton-col admin-skeleton-col-wide">
+              <div className="admin-skeleton-form" />
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   const field=(name,label,props={})=><label key={name}>{label}<input {...props} required value={form[name]} onChange={e=>setForm({...form,[name]:e.target.value})}/></label>;
   return <div className="admin-shell">
@@ -218,12 +310,13 @@ export default function CareersAdminPage() {
       <a href="/careers" className="admin-brand"><Logo scale={1.05}/><small>Recruitment desk</small></a>
       <nav aria-label="Admin navigation">
         <button className={section==='jobs'?'active':''} onClick={()=>setSection('jobs')}><BriefcaseBusiness size={18}/> Positions <b>{jobs.length}</b></button>
+        <button className={section==='applications'?'active':''} onClick={()=>setSection('applications')}><Users size={18}/> Applications <b>{apps.length}</b></button>
         <button className={section==='settings'?'active':''} onClick={openSettings}><Settings size={18}/> Settings</button>
       </nav>
       <div className="admin-sidebar-foot"><a href="/careers" target="_blank" rel="noreferrer"><FileText size={17}/> View careers page</a><button onClick={signOut}><LogOut size={17}/> Sign out</button></div>
     </aside>
     <main className="admin-workspace">
-      <header className="admin-workspace-head"><div><span>DCOODE / TALENT</span><h1>{section==='jobs'?'Positions':'Settings'}</h1><p>{section==='jobs'?'Publish opportunities and manage active roles.':'Manage your sign-in details.'}</p></div>{section === 'jobs' && <button className="admin-refresh" onClick={load}><RefreshCw size={16}/> Refresh</button>}</header>
+      <header className="admin-workspace-head"><div><span>DCOODE / TALENT</span><h1>{section==='jobs'?'Positions':section==='applications'?'Applications & Enquiries':'Settings'}</h1><p>{section==='jobs'?'Publish opportunities and manage active roles.':section==='applications'?'Review candidate submissions, career enquiries, and update their progress.':'Manage your sign-in details.'}</p></div>{(section === 'jobs' || section === 'applications') && <button className="admin-refresh" onClick={load}><RefreshCw size={16}/> Refresh</button>}</header>
       {message&&<p className="admin-message" role="status">{message}</p>}
       {section==='jobs'?<div className="admin-jobs-layout">
         <section className="admin-position-list">
@@ -361,7 +454,119 @@ export default function CareersAdminPage() {
             </div>
           </div>
         </form>
-      </div>:<form className="admin-job-form admin-settings" onSubmit={saveAccount}>
+      </div>:section==='applications'?<section className="admin-candidate-list">
+        <div className="admin-section-title">
+          <div><span>TALENT PIPELINE</span><h2>Applications & Enquiries</h2><span>{apps.length} total</span></div>
+          <a href={exportUrl} className="admin-export-btn"><Download size={15}/> Export Excel</a>
+        </div>
+        {apps.length ? (
+          <>
+            <div className="admin-pipeline-table">
+              <div className="admin-table-head">
+                <span>Sl No</span>
+                <span>Candidate</span>
+                <span>Applied Role</span>
+                <span>Contact</span>
+                <span>Note / Cover</span>
+                <span>Résumé</span>
+                <span>Date</span>
+                <span>Status</span>
+                <span className="admin-th-action">Delete</span>
+              </div>
+              <div className="admin-table-body">
+                {apps.slice((appPage - 1) * APP_PAGE_SIZE, appPage * APP_PAGE_SIZE).map((app, index) => (
+                  <div className="admin-table-row" key={app._id}>
+                    <div className="admin-col-sl">
+                      <span>{String((appPage - 1) * APP_PAGE_SIZE + index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div className="admin-col-candidate">
+                      <strong>{app.name}</strong>
+                    </div>
+                    <div className="admin-col-role">
+                      <span className="admin-role-badge">
+                        {app.job?.title || app.enquiryType || 'General Career Enquiry'}
+                      </span>
+                    </div>
+                    <div className="admin-col-contact">
+                      <a href={`mailto:${app.email}`} className="admin-contact-email" title={app.email}>{app.email}</a>
+                      {app.phone && <span className="admin-contact-phone">{app.phone}</span>}
+                      {app.portfolio && <a href={app.portfolio} target="_blank" rel="noreferrer" className="admin-contact-link">Portfolio ↗</a>}
+                    </div>
+                    <div className="admin-col-note" title={app.coverNote}>
+                      <p>{app.coverNote}</p>
+                    </div>
+                    <div className="admin-col-resume">
+                      {app.resumeUrl ? (
+                        <a href={`${API}${app.resumeUrl}?token=${encodeURIComponent(token)}`} target="_blank" rel="noreferrer" className="admin-resume-pill">
+                          <FileText size={12} /> View CV ↗
+                        </a>
+                      ) : (
+                        <span className="admin-no-cv">—</span>
+                      )}
+                    </div>
+                    <div className="admin-col-date">
+                      <span>{new Date(app.createdAt).toLocaleDateString()}</span>
+                    </div>
+                    <div className="admin-col-status">
+                      <select aria-label={`Status for ${app.name}`} value={app.status} onChange={e=>updateStatus(app._id,e.target.value)}>
+                        {['New','Reviewing','Shortlisted','Rejected','Hired'].map(status=><option key={status}>{status}</option>)}
+                      </select>
+                    </div>
+                    <div className="admin-col-action">
+                      <button
+                        type="button"
+                        className="admin-app-delete-btn"
+                        title="Delete application"
+                        aria-label={`Delete application from ${app.name}`}
+                        onClick={(e) => deleteApp(app._id, e)}
+                      >
+                        <Trash2 size={13} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {apps.length > 0 && (
+              <div className="admin-pagination">
+                <span className="admin-pagination-info">
+                  Showing {(appPage - 1) * APP_PAGE_SIZE + 1}–{Math.min(appPage * APP_PAGE_SIZE, apps.length)} of {apps.length}
+                </span>
+                <div className="admin-pagination-controls">
+                  <button
+                    type="button"
+                    className="admin-page-nav-btn"
+                    disabled={appPage === 1}
+                    onClick={() => setAppPage(p => Math.max(1, p - 1))}
+                  >
+                    Previous
+                  </button>
+                  {Array.from({ length: Math.ceil(apps.length / APP_PAGE_SIZE) }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      type="button"
+                      className={`admin-page-num-btn ${appPage === page ? 'active' : ''}`}
+                      onClick={() => setAppPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    className="admin-page-nav-btn"
+                    disabled={appPage >= Math.ceil(apps.length / APP_PAGE_SIZE)}
+                    onClick={() => setAppPage(p => Math.min(Math.ceil(apps.length / APP_PAGE_SIZE), p + 1))}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <p className="admin-empty">No applications or enquiries have been received yet.</p>
+        )}
+      </section>:<form className="admin-job-form admin-settings" onSubmit={saveAccount}>
         <div className="admin-section-title"><div><span>ACCOUNT ACCESS</span><h2>Sign-in details</h2></div></div>
         <p className="admin-settings-intro">Update your email address or choose a new password. Enter your current password to confirm changes.</p>
         <div className="admin-form-stack">

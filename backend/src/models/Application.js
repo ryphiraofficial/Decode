@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const applicationSchema = new mongoose.Schema({
-  job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job', required: true, index: true },
+  job: { type: mongoose.Schema.Types.ObjectId, ref: 'Job', required: false, index: true },
+  enquiryType: { type: String, default: 'Position Application' },
   name: { type: String, required: true, trim: true },
   email: { type: String, required: true, lowercase: true, trim: true },
   phone: { type: String, required: true, trim: true },
@@ -12,5 +13,5 @@ const applicationSchema = new mongoose.Schema({
   resumeContentType: { type: String, default: 'application/pdf' },
   status: { type: String, enum: ['New', 'Reviewing', 'Shortlisted', 'Rejected', 'Hired'], default: 'New' }
 }, { timestamps: true });
-applicationSchema.index({ job: 1, email: 1 }, { unique: true });
+applicationSchema.index({ job: 1, email: 1 }, { unique: true, partialFilterExpression: { job: { $type: 'objectId' } } });
 module.exports = mongoose.model('Application', applicationSchema);

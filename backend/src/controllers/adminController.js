@@ -35,6 +35,7 @@ exports.updateJob = asyncHandler(async (req, res) => { const job = await Job.fin
 exports.deleteJob = asyncHandler(async (req, res) => { const job = await Job.findByIdAndDelete(req.params.id); if (!job) return res.status(404).json({ message: 'Position not found.' }); res.json({ message: 'Position deleted successfully.' }); });
 exports.listApplications = asyncHandler(async (_req, res) => { const apps = await Application.find().populate('job', 'title').sort({ createdAt: -1 }).lean(); res.json(apps.map(a => ({ ...a, resumeUrl: `/api/admin/applications/${a._id}/resume` }))); });
 exports.updateApplication = asyncHandler(async (req, res) => { const app = await Application.findByIdAndUpdate(req.params.id, { status: req.body.status }, { new: true, runValidators: true }); if (!app) return res.status(404).json({ message: 'Application not found.' }); res.json(app); });
+exports.deleteApplication = asyncHandler(async (req, res) => { const app = await Application.findByIdAndDelete(req.params.id); if (!app) return res.status(404).json({ message: 'Application not found.' }); res.json({ message: 'Application deleted successfully.' }); });
 exports.downloadResume = asyncHandler(async (req, res) => {
   const app = await Application.findById(req.params.id);
   if (!app) return res.status(404).json({ message: 'Application not found.' });
@@ -49,4 +50,23 @@ exports.downloadResume = asyncHandler(async (req, res) => {
   }
   res.status(404).json({ message: 'Résumé file not found.' });
 });
-exports.exportApplications = asyncHandler(async (_req, res) => { const apps = await Application.find().populate('job', 'title department').sort({ createdAt: -1 }).lean(); const rows = apps.map(a => ({ 'Candidate name': a.name, Email: a.email, Phone: a.phone, Portfolio: a.portfolio || '', Position: a.job?.title || '', Department: a.job?.department || '', Status: a.status, 'Applied at': a.createdAt.toISOString(), 'Cover note': a.coverNote })); const sheet = XLSX.utils.json_to_sheet(rows); const book = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(book, sheet, 'Applications'); const content = XLSX.write(book, { type: 'buffer', bookType: 'xlsx' }); res.setHeader('Content-Disposition', 'attachment; filename="dcoode-career-applications.xlsx"'); res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').send(content); });
+exports.exportApplications = asyncHandler(async (_req, res) => {
+  const apps = await Application.find().populate('job', 'title department').sort({ createdAt: -1 }).lean();
+  const rows = apps.map(a => ({
+    'Candidate name': a.name,
+    Email: a.email,
+    Phone: a.phone,
+    Portfolio: a.portfolio || '',
+    Position: a.job?.title || a.enquiryType || 'General Career Enquiry',
+    Department: a.job?.department || (a.enquiryType ? 'General Enquiry' : 'General'),
+    Status: a.status,
+    'Applied at': a.createdAt ? a.createdAt.toISOString() : '',
+    'Cover note': a.coverNote
+  }));
+  const sheet = XLSX.utils.json_to_sheet(rows);
+  const book = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(book, sheet, 'Applications');
+  const content = XLSX.write(book, { type: 'buffer', bookType: 'xlsx' });
+  res.setHeader('Content-Disposition', 'attachment; filename="dcoode-career-applications.xlsx"');
+  res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').send(content);
+});

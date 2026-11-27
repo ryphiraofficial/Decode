@@ -22,3 +22,10 @@ export async function applyToJob(slug, form) {
   const r = await fetch(`${API}/api/jobs/${slug}/applications`, { method: 'POST', body });
   const data = await r.json(); if (!r.ok) throw new Error(data.message || 'Application could not be submitted.'); return data;
 }
+export async function submitCareerEnquiry(form) {
+  if (!API) return { demo: true };
+  const body = new FormData();
+  for (const [key, value] of Object.entries(form)) body.append(key, value);
+  const r = await fetch(`${API}/api/enquiry`, { method: 'POST', body });
+  const data = await r.json(); if (!r.ok) throw new Error(data.message || 'Enquiry could not be submitted.'); return data;
+}

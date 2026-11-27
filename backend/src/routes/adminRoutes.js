@@ -88,5 +88,5 @@ router.post('/login', loginRateLimiter, admin.login);
 router.use(auth);
 router.get('/account', admin.getAccount); router.patch('/account', admin.updateAccount);
 router.get('/jobs', admin.listJobs); router.post('/jobs', admin.createJob); router.patch('/jobs/:id', admin.updateJob); router.delete('/jobs/:id', admin.deleteJob);
-router.get('/applications', admin.listApplications); router.patch('/applications/:id', admin.updateApplication); router.get('/applications/:id/resume', admin.downloadResume); router.get('/applications/export.xlsx', admin.exportApplications);
+router.get('/applications', admin.listApplications); router.patch('/applications/:id', admin.updateApplication); router.delete('/applications/:id', admin.deleteApplication); router.get('/applications/:id/resume', admin.downloadResume); router.get('/applications/export.xlsx', admin.exportApplications);
 module.exports = router;
